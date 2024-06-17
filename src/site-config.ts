@@ -1,19 +1,19 @@
 export const SiteConfig = {
-  title: "Now.ts",
-  description: "A template description for Now.ts",
+  title: "My Baraque",
+  description: "A simple app for managing your home tasks",
   prodUrl: "https://demo.nowts.app",
   domain: "demo.nowts.app",
   appIcon: "/images/icon.png",
   company: {
-    name: "NowTS Inc.",
-    address: "1234 Main St, New York, NY 10001",
+    name: "Aymeric Le Feyer",
+    address: "Bailleul",
   },
   brand: {
-    primary: "#007291",
+    primary: "#00A1FF",
   },
   email: {
-    from: "NowTS <nowts@resend.dev>", // Replace this with your domaine email
-    contact: "contact@nowts.app",
+    from: "Aymeric <nowts@resend.dev>", // Replace this with your domaine email
+    contact: "lefeyer.aymeric@gmail.com",
   },
   maker: {
     image: "https://melvynx.com/images/me/twitter-en.jpg",
