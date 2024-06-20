@@ -72,8 +72,33 @@ model User {
   sessions  Session[]
   accounts  Account[]
   feedbacks Feedback[]
+  house     House?     @relation(fields: [houseId], references: [id])
+  houseId   String?
+  tasks     Task[]
 }
 
+model House {
+  id      String @id @default(nanoid(11))
+  name    String
+  users   User[]
+  ownerId String
+  tasks   Task[]
+}
+
+model Task {
+  id         String   @id @default(nanoid(11))
+  title      String
+  content    String
+  houseId    String
+  house      House    @relation(fields: [houseId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isComplete Boolean  @default(false)
+  assignee   User?    @relation(fields: [assigneeId], references: [id])
+  assigneeId String?
+}
+
+// TODO delete it
 model Feedback {
   id      String  @id @default(nanoid(11))
   review  Int
