@@ -4,30 +4,31 @@ import { Home, LayoutDashboard, Settings, User2 } from "lucide-react";
 export const DASHBOARD_LINKS: NavigationLinkGroups[] = [
   {
     links: [
+      // {
+      //   title: "Dashboard",
+      //   icon: <LayoutDashboard />,
+      //   url: "/dashboard",
+      // }, 
       {
-        title: "Dashboard",
-        icon: <LayoutDashboard />,
-        url: "/dashboard",
-      }, {
-        title: "House",
+        title: "Baraque",
         icon: <Home />,
         url: "/house",
       },
       {
-        title: "Settings",
+        title: "Paramètres",
         icon: <Settings />,
         url: "/settings",
       },
     ],
   },
-  {
-    title: "Other",
-    links: [
-      {
-        title: "Users",
-        icon: <User2 />,
-        url: "/users",
-      },
-    ],
-  },
+  // {
+  //   title: "Other",
+  //   links: [
+  //     {
+  //       title: "Users",
+  //       icon: <User2 />,
+  //       url: "/users",
+  //     },
+  //   ],
+  // },
 ];
