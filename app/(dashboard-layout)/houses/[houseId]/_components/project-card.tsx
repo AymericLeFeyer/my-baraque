@@ -12,7 +12,14 @@ export type ProjectCardProps = {
 export const ProjectCard = (props: ProjectCardProps) => {
   const router = useRouter();
   return (
-    <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4">
+    <div
+      className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors duration-300 hover:bg-primary-foreground"
+      onClick={() =>
+        router.push(
+          `/houses/${props.project.houseId}/projects/${props.project.id}`,
+        )
+      }
+    >
       <div>
         <div className="font-semibold">{props.project.name}</div>
         <div>{props.project.description}</div>

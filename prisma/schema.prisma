@@ -72,9 +72,8 @@ model User {
   sessions  Session[]
   accounts  Account[]
   feedbacks Feedback[]
-  house     House?     @relation(fields: [houseId], references: [id])
-  houseId   String?
   tasks     Task[]
+  houses    House[]
 }
 
 model House {

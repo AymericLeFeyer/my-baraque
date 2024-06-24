@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, cloneElement } from "react";
 import type { NavigationLinkGroups } from "./navigation.type";
+import { FolderPlus, HousePlus } from "lucide-react";
 
 const useCurrentPath = (links: NavigationLinkGroups[]) => {
   const currentPath = usePathname();
@@ -42,6 +43,25 @@ export const DesktopVerticalMenu = ({
 
   return (
     <nav className={cn("flex flex-col gap-4", className)}>
+      <Fragment>
+        <Link
+          key="/"
+          className={cn(
+            "flex h-8 items-center gap-2 rounded-md px-2 text-sm transition-colors",
+            "hover:bg-card",
+            {
+              "bg-accent/50 hover:bg-accent/80": currentPath === "/houses/new",
+            },
+          )}
+          href="/houses/new"
+        >
+          <HousePlus className="size-4 " />
+          <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm">
+            Nouvelle baraque
+          </Typography>
+        </Link>
+        <Separator />
+      </Fragment>
       {links.map((section, index) => (
         <Fragment key={index}>
           {section.title ? (
@@ -66,6 +86,19 @@ export const DesktopVerticalMenu = ({
             </Link>
           ) : null}
           <div className="mx-4 flex flex-col gap-2">
+            <div className="flex">
+              <FolderPlus className="mt-1 size-3" />
+              <Typography variant="muted" className="px-2">
+                <a
+                  className={cn("hover:bg-accent/80 p-1 rounded-sm", {
+                    "bg-accent/50 hover:bg-accent/80 p-1 rounded-sm":
+                      currentPath === "true",
+                  })}
+                >
+                  Nouveau projet
+                </a>
+              </Typography>
+            </div>
             {section.links.map((link) => {
               return (
                 <div key={link.url} className="flex">

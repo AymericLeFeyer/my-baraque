@@ -15,8 +15,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { createHouse } from "../_actions/create-house";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 export function CreateHouseForm() {
+  const router = useRouter();
   const createHouseSchema = z.object({
     name: z.string().min(3, {
       message: "House name must be at least 3 characters long",
@@ -28,7 +30,14 @@ export function CreateHouseForm() {
   });
 
   function onSubmit(data: z.infer<typeof createHouseSchema>) {
-    createHouse(data.name);
+    createHouse(data.name).then((house) => {
+      if (!house) {
+        return;
+      }
+
+      router.refresh();
+      router.push(`/houses/${house.id}`);
+    });
   }
 
   return (

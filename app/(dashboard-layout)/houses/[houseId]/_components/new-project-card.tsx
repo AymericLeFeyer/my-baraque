@@ -50,7 +50,7 @@ export const NewProjectCard = (props: NewProjectProps) => {
   return (
     <>
       <div
-        className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-colors duration-300 hover:bg-primary"
+        className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-colors duration-300 hover:bg-primary-foreground"
         onClick={() => setOpen(true)}
       >
         <div className="font-semibold">Create a new project</div>
