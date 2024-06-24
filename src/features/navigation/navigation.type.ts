@@ -8,5 +8,7 @@ type DashboardLinkItem = {
 
 export type NavigationLinkGroups = {
   title?: string;
+  url: string;
+  icon: ReactElement;
   links: DashboardLinkItem[];
 };

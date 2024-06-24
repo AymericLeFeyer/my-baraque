@@ -13,7 +13,6 @@ import { Typography } from "@/components/ui/typography";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Fragment, cloneElement, useState } from "react";
-import { DASHBOARD_LINKS } from "../../../app/(dashboard-layout)/dashboard-links";
 import type { NavigationLinkGroups } from "./navigation.type";
 
 export const MobileDropdownMenu = ({
@@ -61,9 +60,6 @@ export const MobileDropdownMenu = ({
                 </Typography>
               </DropdownMenuItem>
             ))}
-            {index < DASHBOARD_LINKS.length - 1 ? (
-              <DropdownMenuSeparator />
-            ) : null}
           </Fragment>
         ))}
       </DropdownMenuContent>

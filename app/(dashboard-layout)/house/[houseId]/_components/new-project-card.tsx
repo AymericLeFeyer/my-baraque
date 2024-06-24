@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import type { z } from "zod";
-import { createProjectSchema } from "../create-project";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createProjectInHouse } from "../_actions/create-project";
 import {
@@ -27,6 +26,14 @@ export type NewProjectProps = {
 
 export const NewProjectCard = (props: NewProjectProps) => {
   const [open, setOpen] = useState(false);
+
+  const createProjectSchema = z.object({
+    name: z.string().min(3, {
+      message: "Project name must be at least 3 characters long",
+    }),
+    description: z.string().nullable(),
+  });
+
   const form = useForm<z.infer<typeof createProjectSchema>>({
     resolver: zodResolver(createProjectSchema),
   });
@@ -43,7 +50,7 @@ export const NewProjectCard = (props: NewProjectProps) => {
   return (
     <>
       <div
-        className="rounded-lg border border-gray-200 p-4 hover:bg-primary cursor-pointer transition-colors duration-300"
+        className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-colors duration-300 hover:bg-primary"
         onClick={() => setOpen(true)}
       >
         <div className="font-semibold">Create a new project</div>

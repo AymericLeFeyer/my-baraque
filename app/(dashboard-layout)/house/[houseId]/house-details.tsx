@@ -1,11 +1,11 @@
 import type { House } from "@prisma/client";
 import { Crown, Users } from "lucide-react";
-import { getUserById } from "./_actions/get-user";
-import { getUsersFromHouse } from "./_actions/get-users";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getProjectsFromHouse } from "./_actions/get-projects";
-import { ProjectCard } from "./_components/project-card";
+import { getUsersFromHouse } from "./_actions/get-users";
+import { getUserById } from "../_actions/get-user";
 import { NewProjectCard } from "./_components/new-project-card";
+import { ProjectCard } from "./_components/project-card";
 
 export type HouseDetailsProps = {
   house: House;
