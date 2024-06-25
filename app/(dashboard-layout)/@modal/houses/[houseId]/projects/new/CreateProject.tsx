@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createProjectInHouse } from "../../../_actions/create-project";
+import { createProjectInHouse } from "../../../../../houses/[houseId]/_actions/create-project";
 
 export function CreateProject({ houseId }: { houseId: string }) {
   const createProjectSchema = z.object({
@@ -37,9 +37,9 @@ export function CreateProject({ houseId }: { houseId: string }) {
 
   function onSubmit(data: z.infer<typeof createProjectSchema>) {
     createProjectInHouse(houseId, data.name, data.description);
-    close();
     toast.success("Project created");
     router.refresh();
+    close();
   }
 
   const router = useRouter();

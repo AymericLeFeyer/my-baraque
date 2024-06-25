@@ -5,7 +5,7 @@ export default async function RoutePage(props: PageParams<{}>) {
   return (
     <>
       <h1>Dashboard</h1>
-      <Link href="/toto">test</Link>
+      <Link href="/houses/dM210UuhGMb/projects/new">test</Link>
     </>
   );
 }
