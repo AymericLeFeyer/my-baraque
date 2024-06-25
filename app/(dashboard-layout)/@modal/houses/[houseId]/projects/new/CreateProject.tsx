@@ -14,9 +14,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { createProjectInHouse } from "../../../../../houses/[houseId]/_actions/create-project";
 
 export function CreateProject({ houseId }: { houseId: string }) {
@@ -32,13 +32,13 @@ export function CreateProject({ houseId }: { houseId: string }) {
   });
 
   const close = () => {
+    router.refresh();
     router.back();
   };
 
   function onSubmit(data: z.infer<typeof createProjectSchema>) {
     createProjectInHouse(houseId, data.name, data.description);
     toast.success("Project created");
-    router.refresh();
     close();
   }
 
@@ -52,7 +52,9 @@ export function CreateProject({ houseId }: { houseId: string }) {
           close();
         }}
       >
-        <DialogContent className="flex items-center justify-center bg-card px-4 py-8">
+        <DialogContent className=" items-center justify-center bg-card px-4 py-8">
+          <DialogTitle>Create a new project</DialogTitle>
+
           <Form form={form} onSubmit={onSubmit}>
             <FormField
               control={form.control}

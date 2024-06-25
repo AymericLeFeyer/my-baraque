@@ -90,7 +90,7 @@ export const DesktopVerticalMenu = ({
               <FolderPlus className="mt-1 size-3" />
               <Typography variant="muted" className="px-2">
                 <Link
-                  href={"/houses/dM210UuhGMb/projects/new"}
+                  href={`${section.url}/projects/new`}
                   className={cn("hover:bg-accent/80 p-1 rounded-sm", {
                     "bg-accent/50 hover:bg-accent/80 p-1 rounded-sm":
                       currentPath === "true",
