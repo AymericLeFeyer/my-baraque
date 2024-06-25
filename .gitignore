@@ -36,6 +36,5 @@ yarn-error.log*
 .env
 
 .cursorrules
-.vscode
 
 package-lock.json
