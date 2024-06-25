@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createProjectInHouse } from "../_actions/create-project";
 import {
   Form,
   FormControl,
@@ -19,14 +17,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { createProjectInHouse } from "../../../_actions/create-project";
 
-export type NewProjectProps = {
-  houseId: string;
-};
-
-export const NewProjectCard = (props: NewProjectProps) => {
-  const [open, setOpen] = useState(false);
-
+export function CreateProject({ houseId }: { houseId: string }) {
   const createProjectSchema = z.object({
     name: z.string().min(3, {
       message: "Project name must be at least 3 characters long",
@@ -38,9 +31,13 @@ export const NewProjectCard = (props: NewProjectProps) => {
     resolver: zodResolver(createProjectSchema),
   });
 
+  const close = () => {
+    router.back();
+  };
+
   function onSubmit(data: z.infer<typeof createProjectSchema>) {
-    createProjectInHouse(props.houseId, data.name, data.description);
-    setOpen(false);
+    createProjectInHouse(houseId, data.name, data.description);
+    close();
     toast.success("Project created");
     router.refresh();
   }
@@ -49,18 +46,10 @@ export const NewProjectCard = (props: NewProjectProps) => {
 
   return (
     <>
-      <div
-        className="cursor-pointer rounded-lg border border-gray-200 p-4 transition-colors duration-300 hover:bg-primary-foreground"
-        onClick={() => setOpen(true)}
-      >
-        <div className="font-semibold">Create a new project</div>
-        <div>Start a new project to keep track of your tasks</div>
-      </div>
-
       <Dialog
-        open={open}
-        onOpenChange={(open) => {
-          setOpen(open);
+        open={true}
+        onOpenChange={() => {
+          close();
         }}
       >
         <DialogContent className="flex items-center justify-center bg-card px-4 py-8">
@@ -107,4 +96,4 @@ export const NewProjectCard = (props: NewProjectProps) => {
       </Dialog>
     </>
   );
-};
+}

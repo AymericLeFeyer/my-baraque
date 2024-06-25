@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getProjectsFromHouse } from "./_actions/get-projects";
 import { getUsersFromHouse } from "./_actions/get-users";
 import { getUserById } from "../_actions/get-user";
-import { NewProjectCard } from "./_components/new-project-card";
 import { ProjectCard } from "./_components/project-card";
 
 export type HouseDetailsProps = {
@@ -43,9 +42,7 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
       <h1>Projects</h1>
 
       <div>
-        <div className="mb-6">
-          <NewProjectCard houseId={props.house.id} />
-        </div>
+        <div className="mb-6"></div>
         {projects.map((project) => (
           <div key={project.id}>
             <ProjectCard project={project} />
