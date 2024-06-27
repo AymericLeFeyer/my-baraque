@@ -1,5 +1,5 @@
 export const SiteConfig = {
-  title: "My Baraque",
+  title: "Baraque",
   description: "A simple app for managing your home tasks",
   prodUrl: "https://demo.nowts.app",
   domain: "demo.nowts.app",

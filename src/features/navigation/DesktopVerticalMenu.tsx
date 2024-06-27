@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, cloneElement } from "react";
 import type { NavigationLinkGroups } from "./navigation.type";
-import { FolderPlus, HousePlus } from "lucide-react";
+import { FolderPlus, HousePlus, Plus } from "lucide-react";
 
 const useCurrentPath = (links: NavigationLinkGroups[]) => {
   const currentPath = usePathname();
@@ -32,6 +32,16 @@ const useCurrentPath = (links: NavigationLinkGroups[]) => {
   return mostMatchingLink.url;
 };
 
+const useCurrentHouse = () => {
+  const currentPath = usePathname();
+  const pathSegments = currentPath.split("/");
+  if (pathSegments.length >= 2) {
+    return pathSegments[2];
+  }
+
+  return null;
+};
+
 export const DesktopVerticalMenu = ({
   links,
   className,
@@ -40,6 +50,7 @@ export const DesktopVerticalMenu = ({
   className?: string;
 }) => {
   const currentPath = usePathname();
+  const currentHouse = useCurrentHouse();
 
   return (
     <nav className={cn("flex flex-col gap-4", className)}>
@@ -47,8 +58,8 @@ export const DesktopVerticalMenu = ({
         <Link
           key="/"
           className={cn(
-            "flex h-8 items-center gap-2 rounded-md px-2 text-sm transition-colors",
-            "hover:bg-card",
+            "flex h-8 items-center rounded-md px-2 py-6 text-sm transition-colors justify-center ",
+            "hover:bg-card ",
             {
               "bg-accent/50 hover:bg-accent/80": currentPath === "/houses/new",
             },
@@ -56,7 +67,7 @@ export const DesktopVerticalMenu = ({
           href="/houses/new"
         >
           <HousePlus className="size-4 " />
-          <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm">
+          <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">
             Nouvelle baraque
           </Typography>
         </Link>
@@ -65,41 +76,41 @@ export const DesktopVerticalMenu = ({
       {links.map((section, index) => (
         <Fragment key={index}>
           {section.title ? (
-            <Link
-              key={section.url}
-              className={cn(
-                "flex h-8 items-center gap-2 rounded-md px-2 text-sm transition-colors",
-                "hover:bg-card",
-                {
-                  "bg-accent/50 hover:bg-accent/80":
-                    currentPath === section.url,
-                },
-              )}
-              href={section.url}
-            >
-              {cloneElement(section.icon, {
-                className: "h-4 w-4",
-              })}
-              <span className="flex h-8 items-center gap-2 rounded-md px-2 text-sm">
-                {section.title}
-              </span>
-            </Link>
+            <div className="flex gap-2">
+              <Link
+                key={section.url}
+                className={cn(
+                  "flex h-8 grow items-center gap-2 rounded-md px-2 text-sm transition-colors  justify-between",
+                  "hover:bg-card",
+                  {
+                    "bg-accent/50 hover:bg-accent/80":
+                      currentPath === section.url,
+                  },
+                  {
+                    "text-primary": currentHouse === section.url.split("/")[2],
+                  },
+                )}
+                href={section.url}
+              >
+                {" "}
+                <div className="flex h-8 items-center ">
+                  {cloneElement(section.icon, {
+                    className: "h-4 w-4",
+                  })}
+                  <span className="flex h-8 items-center gap-2 rounded-md px-2 text-sm">
+                    {section.title}
+                  </span>
+                </div>
+              </Link>
+              <Link
+                href={`${section.url}/projects/new`}
+                className="rounded-md p-1 transition-colors hover:bg-accent/50 px-2 flex items-center justify-center flex-grow-0"
+              >
+                <FolderPlus className="size-4 " />
+              </Link>
+            </div>
           ) : null}
           <div className="mx-4 flex flex-col gap-2">
-            <div className="flex">
-              <FolderPlus className="mt-1 size-3" />
-              <Typography variant="muted" className="px-2">
-                <Link
-                  href={`${section.url}/projects/new`}
-                  className={cn("hover:bg-accent/80 p-1 rounded-sm", {
-                    "bg-accent/50 hover:bg-accent/80 p-1 rounded-sm":
-                      currentPath === "true",
-                  })}
-                >
-                  Nouveau projet
-                </Link>
-              </Typography>
-            </div>
             {section.links.map((link) => {
               return (
                 <div key={link.url} className="flex">
@@ -109,7 +120,7 @@ export const DesktopVerticalMenu = ({
                   <Typography variant="muted" className="px-2">
                     <a
                       href={link.url}
-                      className={cn("hover:bg-accent/80 p-1 rounded-sm", {
+                      className={cn("hover:bg-card p-1 rounded-sm", {
                         "bg-accent/50 hover:bg-accent/80 p-1 rounded-sm":
                           currentPath === link.url,
                       })}
