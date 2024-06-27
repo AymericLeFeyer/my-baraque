@@ -42,7 +42,7 @@ export function CreateHouse() {
         router.push(`/houses/${house.id}`);
         setTimeout(() => {
           window.location.reload();
-        }, 500);
+        }, 1000);
       }, 100);
     });
   }

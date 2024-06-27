@@ -12,7 +12,7 @@ export const SiteConfig = {
     primary: "#00A1FF",
   },
   email: {
-    from: "Aymeric <nowts@resend.dev>", // Replace this with your domaine email
+    from: "Aymeric <baraque@resend.dev>", // Replace this with your domaine email
     contact: "lefeyer.aymeric@gmail.com",
   },
   maker: {
