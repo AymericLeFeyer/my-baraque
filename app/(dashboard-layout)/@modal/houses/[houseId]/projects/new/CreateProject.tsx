@@ -6,10 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -19,7 +17,6 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createProjectInHouse } from "../../../../../houses/[houseId]/_actions/create-project";
 import type { House } from "@prisma/client";
-import { DialogDescription } from "@radix-ui/react-dialog";
 import { Info } from "lucide-react";
 
 export function CreateProject({ house }: { house: House }) {

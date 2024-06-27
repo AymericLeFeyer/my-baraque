@@ -6,7 +6,6 @@ import {
 } from "@/features/page/layout";
 import { getHouseById } from "./_actions/get-house";
 import { HouseDetails } from "./house-details";
-import { Button } from "@/components/ui/button";
 import { canUserDeleteHouse } from "./_actions/delete-house";
 import { DeleteHouse } from "./_components/delete-house";
 
