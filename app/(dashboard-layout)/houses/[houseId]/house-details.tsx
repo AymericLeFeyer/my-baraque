@@ -5,6 +5,7 @@ import { getProjectsFromHouse } from "./_actions/get-projects";
 import { getUsersFromHouse } from "./_actions/get-users";
 import { getUserById } from "../_actions/get-user";
 import { ProjectCard } from "./_components/project-card";
+import { Typography } from "@/components/ui/typography";
 
 export type HouseDetailsProps = {
   house: House;
@@ -37,12 +38,11 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
         </div>
       </div>
 
-      <hr className="my-3" />
+      <Typography variant="h3" className="mt-6">
+        Projects
+      </Typography>
 
-      <h1>Projects</h1>
-
-      <div>
-        <div className="mb-6"></div>
+      <div className="mt-3 flex flex-col gap-3">
         {projects.map((project) => (
           <div key={project.id}>
             <ProjectCard project={project} />

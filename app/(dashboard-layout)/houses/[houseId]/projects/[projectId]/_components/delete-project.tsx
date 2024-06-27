@@ -3,43 +3,44 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
-import { deleteHouse } from "../_actions/delete-house";
 import { useRouter } from "next/navigation";
+import { deleteProject } from "../../../_actions/delete-project";
 
-export type DeleteHouseProps = {
+export type DeleteProjectProps = {
+  projectId: string;
   houseId: string;
 };
 
-export const DeleteHouse = (props: DeleteHouseProps) => {
-  const [modalDeleteHouse, setModalDeleteHouse] = useState(false);
+export const DeleteProject = (props: DeleteProjectProps) => {
+  const [modalDeleteProject, setModalDeleteProject] = useState(false);
   const router = useRouter();
 
   return (
     <>
-      <Button variant="destructive" onClick={() => setModalDeleteHouse(true)}>
-        Delete baraque
+      <Button variant="destructive" onClick={() => setModalDeleteProject(true)}>
+        Delete project
       </Button>
       <Dialog
-        open={modalDeleteHouse}
-        onOpenChange={(a) => setModalDeleteHouse(a)}
+        open={modalDeleteProject}
+        onOpenChange={(a) => setModalDeleteProject(a)}
       >
         <DialogContent>
-          <h1>Are you sure you want to delete this baraque?</h1>
+          <h1>Are you sure you want to delete this project?</h1>
           <div className="flex gap-2">
             <Button
               variant="destructive"
               onClick={() => {
-                deleteHouse(props.houseId);
-                setModalDeleteHouse(false);
+                deleteProject(props.projectId);
+                setModalDeleteProject(false);
                 router.refresh();
-                router.push("/houses");
+                router.push(`/houses/${props.houseId}`);
               }}
             >
               Delete
             </Button>
             <Button
               variant="secondary"
-              onClick={() => setModalDeleteHouse(false)}
+              onClick={() => setModalDeleteProject(false)}
             >
               Cancel
             </Button>

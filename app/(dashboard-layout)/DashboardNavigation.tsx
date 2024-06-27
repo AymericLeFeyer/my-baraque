@@ -35,7 +35,7 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
             width={24}
             height={24}
           />
-          <Link href="/" className="text-xl font-bold">
+          <Link href="/houses" className="text-xl font-bold">
             {SiteConfig.title}
           </Link>
         </div>

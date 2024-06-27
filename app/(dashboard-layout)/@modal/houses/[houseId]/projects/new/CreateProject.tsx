@@ -37,12 +37,19 @@ export function CreateProject({ house }: { house: House }) {
   };
 
   function onSubmit(data: z.infer<typeof createProjectSchema>) {
-    createProjectInHouse(house.id, data.name, data.description);
-    toast.success("Project created");
-    close();
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
+    createProjectInHouse(house.id, data.name, data.description).then(
+      (project) => {
+        toast.success("Project created");
+        close();
+
+        setTimeout(() => {
+          router.push(`/houses/${house.id}/projects/${project.id}`);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }, 100);
+      },
+    );
   }
 
   const router = useRouter();
