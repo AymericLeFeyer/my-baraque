@@ -40,6 +40,9 @@ export function CreateProject({ house }: { house: House }) {
     createProjectInHouse(house.id, data.name, data.description);
     toast.success("Project created");
     close();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   const router = useRouter();

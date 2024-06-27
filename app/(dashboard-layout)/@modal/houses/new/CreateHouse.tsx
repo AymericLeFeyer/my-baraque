@@ -40,6 +40,9 @@ export function CreateHouse() {
 
       setTimeout(() => {
         router.push(`/houses/${house.id}`);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       }, 100);
     });
   }
