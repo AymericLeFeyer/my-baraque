@@ -7,30 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, cloneElement } from "react";
 import type { NavigationLinkGroups } from "./navigation.type";
-import { FolderPlus, HousePlus, Plus } from "lucide-react";
-
-const useCurrentPath = (links: NavigationLinkGroups[]) => {
-  const currentPath = usePathname();
-  const pathSegments = currentPath.split("/");
-  const allDashboardLinks = links.flatMap((section) => section.links);
-
-  const linkMatchCounts = allDashboardLinks.map((link) => ({
-    url: link.url,
-    matchCount: link.url
-      .split("/")
-      .filter((segment, index) => segment === pathSegments[index]).length,
-  }));
-
-  const mostMatchingLink = linkMatchCounts.reduce(
-    (maxMatchLink, currentLink) =>
-      currentLink.matchCount > maxMatchLink.matchCount
-        ? currentLink
-        : maxMatchLink,
-    { url: "", matchCount: 0 },
-  );
-
-  return mostMatchingLink.url;
-};
+import { FolderPlus, HousePlus } from "lucide-react";
 
 const useCurrentHouse = () => {
   const currentPath = usePathname();
@@ -104,7 +81,7 @@ export const DesktopVerticalMenu = ({
               </Link>
               <Link
                 href={`${section.url}/projects/new`}
-                className="rounded-md p-1 transition-colors hover:bg-card px-2 flex items-center justify-center flex-grow-0"
+                className="flex grow-0 items-center justify-center rounded-md p-1 px-2 transition-colors hover:bg-card"
               >
                 <FolderPlus
                   className={cn("size-4 ", {
