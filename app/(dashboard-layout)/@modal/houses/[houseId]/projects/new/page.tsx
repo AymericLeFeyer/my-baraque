@@ -1,3 +1,4 @@
+import { getHouseById } from "../../../../../houses/[houseId]/_actions/get-house";
 import { CreateProject } from "./CreateProject";
 
 export default async function RoutePage({
@@ -5,5 +6,9 @@ export default async function RoutePage({
 }: {
   params: { houseId: string };
 }) {
-  return <CreateProject houseId={params.houseId} />;
+  const house = await getHouseById(params.houseId);
+  if (house == null) {
+    throw new Error("House not found");
+  }
+  return <CreateProject house={house} />;
 }

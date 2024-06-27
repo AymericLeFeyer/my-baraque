@@ -18,13 +18,16 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createProjectInHouse } from "../../../../../houses/[houseId]/_actions/create-project";
+import type { House } from "@prisma/client";
+import { DialogDescription } from "@radix-ui/react-dialog";
+import { Info } from "lucide-react";
 
-export function CreateProject({ houseId }: { houseId: string }) {
+export function CreateProject({ house }: { house: House }) {
   const createProjectSchema = z.object({
     name: z.string().min(3, {
       message: "Project name must be at least 3 characters long",
     }),
-    description: z.string().nullable(),
+    description: z.string().optional(),
   });
 
   const form = useForm<z.infer<typeof createProjectSchema>>({
@@ -37,7 +40,7 @@ export function CreateProject({ houseId }: { houseId: string }) {
   };
 
   function onSubmit(data: z.infer<typeof createProjectSchema>) {
-    createProjectInHouse(houseId, data.name, data.description);
+    createProjectInHouse(house.id, data.name, data.description);
     toast.success("Project created");
     close();
   }
@@ -52,22 +55,26 @@ export function CreateProject({ houseId }: { houseId: string }) {
           close();
         }}
       >
-        <DialogContent className=" items-center justify-center bg-card px-4 py-8">
-          <DialogTitle>Create a new project</DialogTitle>
+        <DialogContent className="items-center justify-center bg-card  py-8">
+          <DialogTitle className="text-xl">
+            Create a new project in{" "}
+            <span className="text-primary">{house.name}</span>
+          </DialogTitle>
 
-          <Form form={form} onSubmit={onSubmit}>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Info className="size-5" />
+            <p className="text-sm ">A project is a bundle of tasks ...</p>
+          </div>
+
+          <Form form={form} onSubmit={onSubmit} className="flex flex-col gap-2">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Project name" {...field} />
+                  <FormControl autoFocus={true}>
+                    <Input placeholder="Name" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    Enter the name of the project
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -77,22 +84,20 @@ export function CreateProject({ houseId }: { houseId: string }) {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Project description"
+                      placeholder="Description ?"
                       {...field}
                       value={field.value ?? ""}
                     />
                   </FormControl>
-                  <FormDescription>
-                    Enter the description of the project
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             ></FormField>
-            <Button type="submit">Create Project</Button>
+            <Button type="submit" className="mt-4">
+              Create Project
+            </Button>
           </Form>
         </DialogContent>
       </Dialog>

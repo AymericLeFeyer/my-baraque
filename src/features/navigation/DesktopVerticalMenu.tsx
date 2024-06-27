@@ -128,14 +128,13 @@ export const DesktopVerticalMenu = ({
                   {cloneElement(link.icon, {
                     className: "h-3 w-3 mt-1",
                   })}
-                  <Typography variant="muted" className="px-2">
-                    <div
-                      className={cn("", {
-                        "text-primary": currentPath === link.url,
-                      })}
-                    >
-                      {link.title}
-                    </div>
+                  <Typography
+                    variant="muted"
+                    className={cn("px-2", {
+                      "text-primary": currentPath === link.url,
+                    })}
+                  >
+                    {link.title}
                   </Typography>
                 </Link>
               );
