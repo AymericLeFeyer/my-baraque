@@ -104,31 +104,40 @@ export const DesktopVerticalMenu = ({
               </Link>
               <Link
                 href={`${section.url}/projects/new`}
-                className="rounded-md p-1 transition-colors hover:bg-accent/50 px-2 flex items-center justify-center flex-grow-0"
+                className="rounded-md p-1 transition-colors hover:bg-card px-2 flex items-center justify-center flex-grow-0"
               >
-                <FolderPlus className="size-4 " />
+                <FolderPlus
+                  className={cn("size-4 ", {
+                    "text-primary": currentHouse === section.url.split("/")[2],
+                  })}
+                />
               </Link>
             </div>
           ) : null}
           <div className="mx-4 flex flex-col gap-2">
             {section.links.map((link) => {
               return (
-                <div key={link.url} className="flex">
+                <Link
+                  href={link.url}
+                  key={link.url}
+                  className={cn("flex hover:bg-card p-1 rounded-sm", {
+                    "text-primary hover:bg-card  rounded-sm":
+                      currentPath === link.url,
+                  })}
+                >
                   {cloneElement(link.icon, {
                     className: "h-3 w-3 mt-1",
                   })}
                   <Typography variant="muted" className="px-2">
-                    <a
-                      href={link.url}
-                      className={cn("hover:bg-card p-1 rounded-sm", {
-                        "bg-accent/50 hover:bg-accent/80 p-1 rounded-sm":
-                          currentPath === link.url,
+                    <div
+                      className={cn("", {
+                        "text-primary": currentPath === link.url,
                       })}
                     >
                       {link.title}
-                    </a>
+                    </div>
                   </Typography>
-                </div>
+                </Link>
               );
             })}
           </div>
