@@ -3,6 +3,8 @@
 import type { Task } from "@prisma/client";
 import { create } from "zustand";
 import { updateTask } from "../_actions/update-task";
+import { rescheduleTask } from "../_actions/reschedule-task";
+import { toast } from "sonner";
 
 type TaskStore = {
   tasks: Task[];
@@ -26,6 +28,12 @@ const useTaskStore = create<TaskStore>((set) => ({
       if (updatedTask) {
         // Update task in db
         updateTask(updatedTask);
+        if (updatedTask.nextTimeInDays !== null) {
+          rescheduleTask(updatedTask).then((newTask) => {
+            toast.success("Task rescheduled");
+            state.addTask(newTask);
+          });
+        }
       }
       return { tasks: updatedTasks };
     });
