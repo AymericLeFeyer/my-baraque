@@ -8,7 +8,7 @@ import {
   Layout,
 } from "@/features/page/layout";
 import { ProjectDetails } from "./project-details";
-import { DeleteProject } from "./_components/delete-project";
+import { DeleteProject } from "./_components/DeleteProject";
 
 export default async function RoutePage({
   params,
