@@ -4,7 +4,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Typography } from "@/components/ui/typography";
 import type { Task } from "@prisma/client";
 import { MoreHorizontal } from "lucide-react";
-import { updateTask } from "../_actions/update-task";
 
 export type TaskItemProps = {
   task: Task;
