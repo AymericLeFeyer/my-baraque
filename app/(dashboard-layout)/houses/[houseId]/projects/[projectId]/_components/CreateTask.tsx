@@ -75,9 +75,9 @@ export function CreateTaskDialog({
   return (
     <>
       <Button
-        variant="default"
+        variant="outline"
         onClick={() => setShowNewTaskModal(true)}
-        className="flex gap-2"
+        className="flex gap-2 "
       >
         <ListPlus size={24} />
         <p className="font-bold">Add task</p>

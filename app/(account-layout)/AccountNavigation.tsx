@@ -36,7 +36,11 @@ export const AccountNavigation = async (props: PropsWithChildren) => {
       </header>
       {/* Desktop ONLY Navigation bar */}
       <Layout className="flex flex-row items-start gap-4">
-        <DesktopVerticalMenu links={ACCOUNT_LINKS} className="max-lg:hidden" />
+        <DesktopVerticalMenu
+          links={ACCOUNT_LINKS}
+          className="max-lg:hidden"
+          house={false}
+        />
         <Separator className="max-lg:hidden" orientation="vertical" />
         <main className="flex-1">{props.children}</main>
       </Layout>

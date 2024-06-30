@@ -40,7 +40,7 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
           </Link>
         </div>
         <div className="h-10" />
-        <DesktopVerticalMenu links={await buildLayout()} />
+        <DesktopVerticalMenu links={await buildLayout()} house={true} />
         <div className="flex-1" />
         {user ? (
           <UserDropdown>

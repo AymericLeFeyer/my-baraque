@@ -55,12 +55,17 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
 
   return (
     <>
-      <p>{props.project.description}</p>
-      <CreateTaskDialog project={props.project} addTaskCallback={addTask} />
+      <p className="mb-8 text-xl">{props.project.description}</p>
+      <div className="flex items-center justify-between">
+        <Typography variant="h3" className="mt-6">
+          Tasks
+        </Typography>
+        <CreateTaskDialog project={props.project} addTaskCallback={addTask} />
+      </div>
       <div className="mt-4 flex flex-col gap-4">
         <div className="flex items-center gap-2">
-          <List size={24} />
-          <Typography variant="large">To do</Typography>
+          <List size={16} />
+          <Typography variant="code">To do</Typography>
         </div>
         {organizedTasks.todo.map((task) => (
           <TaskItem
@@ -72,8 +77,8 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
         ))}
         <Divider className="mt-4" />
         <div className="flex items-center gap-2">
-          <CalendarClock size={24} />
-          <Typography variant="large">Scheduled</Typography>
+          <CalendarClock size={16} />
+          <Typography variant="code">Scheduled</Typography>
         </div>
         {organizedTasks.later
           .sort((t1, t2) => {
@@ -94,8 +99,8 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
           <AccordionItem value="completed">
             <AccordionTrigger>
               <div className="flex items-center gap-2">
-                <Check size={24} />
-                <Typography variant="large">Completed</Typography>
+                <Check size={16} />
+                <Typography variant="code">Completed</Typography>
               </div>
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-2">

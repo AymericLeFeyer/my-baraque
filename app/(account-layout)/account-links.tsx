@@ -13,9 +13,13 @@ export const ACCOUNT_LINKS: NavigationLinkGroups[] = [
       },
       { url: "/account/billing", title: "Billing", icon: <Coins /> },
     ],
+    url: "",
+    icon: <User2 />,
   },
   {
     title: "EMAIL SETTINGS",
     links: [{ url: "/account/email", title: "Settings", icon: <Mail /> }],
+    url: "",
+    icon: <Mail />,
   },
 ];

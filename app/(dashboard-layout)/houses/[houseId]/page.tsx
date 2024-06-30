@@ -8,6 +8,9 @@ import { getHouseById } from "./_actions/get-house";
 import { HouseDetails } from "./house-details";
 import { canUserDeleteHouse } from "./_actions/delete-house";
 import { DeleteHouse } from "./_components/delete-house";
+import { getUserById } from "../_actions/get-user";
+import { getUsersFromHouse } from "./_actions/get-users";
+import { getProjectsFromHouse } from "./_actions/get-projects";
 
 export default async function RoutePage({
   params,
@@ -20,6 +23,15 @@ export default async function RoutePage({
     throw new Error("House not found");
   }
 
+  const owner = await getUserById(house.ownerId);
+
+  if (!owner) {
+    throw new Error("Owner not found");
+  }
+
+  const users = await getUsersFromHouse(house.id);
+  const projects = await getProjectsFromHouse(house.id);
+
   return (
     <>
       <Layout>
@@ -30,7 +42,12 @@ export default async function RoutePage({
           )}
         </LayoutHeader>
         <LayoutContent>
-          <HouseDetails house={house} />
+          <HouseDetails
+            house={house}
+            owner={owner}
+            users={users}
+            projects={projects}
+          />
         </LayoutContent>
       </Layout>
     </>

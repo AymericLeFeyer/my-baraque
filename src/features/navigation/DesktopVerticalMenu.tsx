@@ -22,34 +22,39 @@ const useCurrentHouse = () => {
 export const DesktopVerticalMenu = ({
   links,
   className,
+  house,
 }: {
   links: NavigationLinkGroups[];
   className?: string;
+  house: boolean;
 }) => {
   const currentPath = usePathname();
   const currentHouse = useCurrentHouse();
 
   return (
     <nav className={cn("flex flex-col gap-4", className)}>
-      <Fragment>
-        <Link
-          key="/"
-          className={cn(
-            "flex h-8 items-center rounded-md px-2 py-6 text-sm transition-colors justify-center ",
-            "hover:bg-card ",
-            {
-              "bg-accent/50 hover:bg-accent/80": currentPath === "/houses/new",
-            },
-          )}
-          href="/houses/new"
-        >
-          <HousePlus className="size-4 " />
-          <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">
-            Nouvelle baraque
-          </Typography>
-        </Link>
-        <Separator />
-      </Fragment>
+      {house && (
+        <Fragment>
+          <Link
+            key="/"
+            className={cn(
+              "flex h-8 items-center rounded-md px-2 py-6 text-sm transition-colors justify-center ",
+              "hover:bg-card ",
+              {
+                "bg-accent/50 hover:bg-accent/80":
+                  currentPath === "/houses/new",
+              },
+            )}
+            href="/houses/new"
+          >
+            <HousePlus className="size-4 " />
+            <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">
+              Nouvelle baraque
+            </Typography>
+          </Link>
+          <Separator />
+        </Fragment>
+      )}
       {links.map((section, index) => (
         <Fragment key={index}>
           {section.title ? (
@@ -61,10 +66,11 @@ export const DesktopVerticalMenu = ({
                   "hover:bg-card",
                   {
                     "bg-accent/50 hover:bg-accent/80":
-                      currentPath === section.url,
+                      house && currentPath === section.url,
                   },
                   {
-                    "text-primary": currentHouse === section.url.split("/")[2],
+                    "text-primary":
+                      house && currentHouse === section.url.split("/")[2],
                   },
                 )}
                 href={section.url}
@@ -79,16 +85,19 @@ export const DesktopVerticalMenu = ({
                   </span>
                 </div>
               </Link>
-              <Link
-                href={`${section.url}/projects/new`}
-                className="flex grow-0 items-center justify-center rounded-md p-1 px-2 transition-colors hover:bg-card"
-              >
-                <FolderPlus
-                  className={cn("size-4 ", {
-                    "text-primary": currentHouse === section.url.split("/")[2],
-                  })}
-                />
-              </Link>
+              {house && (
+                <Link
+                  href={`${section.url}/projects/new`}
+                  className="flex grow-0 items-center justify-center rounded-md p-1 px-2 transition-colors hover:bg-card"
+                >
+                  <FolderPlus
+                    className={cn("size-4 ", {
+                      "text-primary":
+                        currentHouse === section.url.split("/")[2],
+                    })}
+                  />
+                </Link>
+              )}
             </div>
           ) : null}
           <div className="mx-4 flex flex-col gap-2">
@@ -99,7 +108,7 @@ export const DesktopVerticalMenu = ({
                   key={link.url}
                   className={cn("flex hover:bg-card p-1 rounded-sm", {
                     "text-primary hover:bg-card  rounded-sm":
-                      currentPath === link.url,
+                      house && currentPath === link.url,
                   })}
                 >
                   {cloneElement(link.icon, {
