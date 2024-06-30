@@ -7,6 +7,9 @@ import { ProjectCard } from "./_components/project-card";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
+import Link from "next/link";
 
 export type HouseDetailsProps = {
   house: House;
@@ -17,6 +20,7 @@ export type HouseDetailsProps = {
 
 export const HouseDetails = async (props: HouseDetailsProps) => {
   const router = useRouter();
+  const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
 
   return (
     <>
@@ -37,6 +41,11 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
               <AvatarImage src={user.image!} alt="avatar" />
             </Avatar>
           ))}
+          <Link href={`/houses/${props.house.id}/addUser`}>
+            <Avatar>
+              <AvatarFallback>+</AvatarFallback>
+            </Avatar>
+          </Link>
         </div>
       </div>
 
@@ -61,6 +70,15 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
           </div>
         ))}
       </div>
+
+      <Dialog
+        open={addUserDialogOpen}
+        onOpenChange={(v) => setAddUserDialogOpen(v)}
+      >
+        <DialogContent>
+          <DialogTitle>Add user</DialogTitle>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
