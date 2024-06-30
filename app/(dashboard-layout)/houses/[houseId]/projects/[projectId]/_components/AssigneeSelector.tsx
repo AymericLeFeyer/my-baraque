@@ -1,7 +1,5 @@
 import { AvatarFallback, Avatar, AvatarImage } from "@/components/ui/avatar";
 import type { Task, User } from "@prisma/client";
-import { getUserById } from "../../../../_actions/get-user";
-import { useEffect, useState } from "react";
 import { User as UserIcon } from "lucide-react";
 
 import {
@@ -20,19 +18,10 @@ export type AssigneeSelectorProps = {
 };
 
 export const AssigneeSelector = (props: AssigneeSelectorProps) => {
-  const [assignee, setAssignee] = useState<User | null>(null);
   const { updateAssignee } = useTaskStore();
   const { users } = useHouseStore();
 
-  useEffect(() => {
-    if (props.task.assigneeId) {
-      getUserById(props.task.assigneeId).then((user) => {
-        setAssignee(user);
-      });
-    }
-  }, [props.task.assigneeId]);
-
-  const UserTile = (props: { user: User | null }) => {
+  const UserTile = (props: { user: User | null; concise: boolean }) => {
     return (
       <div className="flex items-center gap-2">
         {" "}
@@ -42,7 +31,7 @@ export const AssigneeSelector = (props: AssigneeSelectorProps) => {
               {props.user.image && <AvatarImage src={props.user.image} />}
               <AvatarFallback>{props.user.name?.[0] ?? "A"}</AvatarFallback>
             </Avatar>
-            <p>{props.user.name}</p>
+            {props.concise && <p>{props.user.name}</p>}
           </>
         ) : (
           <>
@@ -62,20 +51,22 @@ export const AssigneeSelector = (props: AssigneeSelectorProps) => {
     <>
       <Select
         onValueChange={(v) => {
-          const userSelected = users.find((user) => user.id === v);
-          setAssignee(userSelected!);
           updateAssignee(v, props.task);
+          props.task.assigneeId = v;
         }}
       >
         <SelectTrigger className="h-[50px] w-auto">
-          <UserTile user={assignee} />
+          <UserTile
+            concise={false}
+            user={users.find((v) => v.id == props.task.assigneeId)!}
+          />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Assignee</SelectLabel>
             {users.map((user) => (
               <SelectItem key={user.id} value={user.id}>
-                <UserTile user={user} />{" "}
+                <UserTile concise user={user} />{" "}
               </SelectItem>
             ))}
           </SelectGroup>

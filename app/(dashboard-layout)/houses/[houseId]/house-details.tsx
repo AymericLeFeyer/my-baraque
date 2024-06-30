@@ -33,7 +33,7 @@ export const HouseDetails = (props: HouseDetailsProps) => {
         <div className="flex items-center gap-1">
           {users.map((user) => (
             <Avatar key={user.id}>
-              <AvatarFallback>{user.name?.[0] ?? "A"}</AvatarFallback>
+              <AvatarFallback>{user.email[0]}</AvatarFallback>
               <AvatarImage src={user.image!} alt="avatar" />
             </Avatar>
           ))}
