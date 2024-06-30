@@ -1,16 +1,17 @@
 "use client";
 
-import type { House, Project, Task } from "@prisma/client";
+import type { House, Project, Task, User } from "@prisma/client";
 import { CreateTaskDialog } from "./_components/CreateTask";
 import { getTasksByProjectId } from "./_actions/get-tasks";
 import useTaskStore from "./_stores/tasks.store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TaskItem } from "./_components/TaskItem";
 import { Typography } from "@/components/ui/typography";
 import { CalendarClock, Check, List } from "lucide-react";
 import { Divider } from "@/components/ui/divider";
 import { Accordion, AccordionTrigger } from "@/components/ui/accordion";
 import { AccordionContent, AccordionItem } from "@radix-ui/react-accordion";
+import { getUsersFromHouse } from "../../_actions/get-users";
 
 export type ProjectDetailsProps = {
   house: House;
@@ -73,6 +74,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
             task={task}
             onDelete={() => {}}
             setCompleted={setCompleted}
+            houseId={props.house.id}
           />
         ))}
         <Divider className="mt-4" />
@@ -91,6 +93,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
               onDelete={() => {}}
               setCompleted={setCompleted}
               daysToGo={getDaysToGo(task)}
+              houseId={props.house.id}
             />
           ))}
         <Divider className="mt-4" />
@@ -110,6 +113,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
                   task={task}
                   onDelete={() => {}}
                   setCompleted={setCompleted}
+                  houseId={props.house.id}
                 />
               ))}
             </AccordionContent>

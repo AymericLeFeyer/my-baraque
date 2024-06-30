@@ -4,11 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
-import type { Task } from "@prisma/client";
+import type { Task, User } from "@prisma/client";
 import { RotateCw } from "lucide-react";
+import { AssigneeSelector } from "./AssigneeSelector";
 
 export type TaskItemProps = {
   task: Task;
+  houseId: string;
   onDelete: () => void;
   setCompleted: (completed: boolean, task: Task) => void;
   daysToGo?: number;
@@ -38,7 +40,7 @@ export const TaskItem = (props: TaskItemProps) => {
         <div className="flex">
           <div>
             <Typography variant="large">
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 {props.task.nextTimeInDays != null &&
                   props.daysToGo == null && <RotateCw size={16} />}
                 {props.task.title}
@@ -52,6 +54,7 @@ export const TaskItem = (props: TaskItemProps) => {
             )}
           </div>
         </div>
+        <AssigneeSelector houseId={props.houseId} task={props.task} />
       </div>
     </>
   );

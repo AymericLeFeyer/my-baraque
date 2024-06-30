@@ -1,6 +1,5 @@
 "use client";
 
-import type { House, Project, User } from "@prisma/client";
 import { Crown, FolderPlus, Users } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ProjectCard } from "./_components/project-card";
@@ -10,17 +9,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
 import Link from "next/link";
+import { useHouseStore } from "./_stores/house.store";
 
-export type HouseDetailsProps = {
-  house: House;
-  owner: User;
-  users: User[];
-  projects: Project[];
-};
+export type HouseDetailsProps = {};
 
 export const HouseDetails = async (props: HouseDetailsProps) => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
+  const { house, users, owner, projects } = useHouseStore();
 
   return (
     <>
@@ -28,22 +24,24 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
         <div className="mr-2">
           <Crown />
         </div>
-        <div>{props.owner.name}</div>
+        <div>{owner?.name}</div>
       </div>
       <div className="flex items-center">
         <div className="mr-2">
           <Users />
         </div>
         <div className="flex items-center gap-1">
-          {props.users.map((user) => (
+          {users.map((user) => (
             <Avatar key={user.id}>
               <AvatarFallback>{user.name?.[0] ?? "A"}</AvatarFallback>
               <AvatarImage src={user.image!} alt="avatar" />
             </Avatar>
           ))}
-          <Link href={`/houses/${props.house.id}/addUser`}>
+          <Link href={`/houses/${house?.id}/addUser`}>
             <Avatar>
-              <AvatarFallback>+</AvatarFallback>
+              <AvatarFallback className="transition-colors hover:bg-primary">
+                +
+              </AvatarFallback>
             </Avatar>
           </Link>
         </div>
@@ -55,7 +53,7 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
         </Typography>
         <Button
           variant="outline"
-          onClick={() => router.push(`/houses/${props.house.id}/projects/new`)}
+          onClick={() => router.push(`/houses/${house?.id}/projects/new`)}
           className="flex gap-2 "
         >
           <FolderPlus size={24} />
@@ -64,7 +62,7 @@ export const HouseDetails = async (props: HouseDetailsProps) => {
       </div>
 
       <div className="mt-3 flex flex-col gap-3">
-        {props.projects.map((project) => (
+        {projects.map((project) => (
           <div key={project.id}>
             <ProjectCard project={project} />
           </div>
