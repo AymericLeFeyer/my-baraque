@@ -19,10 +19,10 @@ export type AssigneeSelectorProps = {
   task: Task;
 };
 
-export const AssigneeSelector = async (props: AssigneeSelectorProps) => {
+export const AssigneeSelector = (props: AssigneeSelectorProps) => {
   const [assignee, setAssignee] = useState<User | null>(null);
   const { updateAssignee } = useTaskStore();
-  const { house, users } = useHouseStore();
+  const { users } = useHouseStore();
 
   useEffect(() => {
     if (props.task.assigneeId) {
@@ -30,7 +30,7 @@ export const AssigneeSelector = async (props: AssigneeSelectorProps) => {
         setAssignee(user);
       });
     }
-  }, []);
+  }, [props.task.assigneeId]);
 
   const UserTile = (props: { user: User | null }) => {
     return (

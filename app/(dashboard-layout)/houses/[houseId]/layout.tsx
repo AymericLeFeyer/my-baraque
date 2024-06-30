@@ -1,10 +1,23 @@
-import type { LayoutParams } from "@/types/next";
-import type { ReactNode } from "react";
+"use client";
 
-export default async function RouteLayout({
+import type { LayoutParams } from "@/types/next";
+import { useParams } from "next/navigation";
+import { useEffect, type ReactNode } from "react";
+import { useHouseStore } from "./_stores/house.store";
+
+export default function RouteLayout({
   children,
   addUserModal,
 }: LayoutParams<{}> & { addUserModal?: ReactNode }) {
+  const params = useParams<{ houseId: string }>();
+  const { fetchHouse } = useHouseStore();
+
+  useEffect(() => {
+    if (params.houseId) {
+      fetchHouse(params.houseId);
+    }
+  }, [params.houseId, fetchHouse]);
+
   return (
     <>
       {children}

@@ -13,7 +13,7 @@ import { useHouseStore } from "./_stores/house.store";
 
 export type HouseDetailsProps = {};
 
-export const HouseDetails = async (props: HouseDetailsProps) => {
+export const HouseDetails = (props: HouseDetailsProps) => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
   const { house, users, owner, projects } = useHouseStore();
