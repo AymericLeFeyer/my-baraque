@@ -1,32 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-"use client";
-
-import { useHouseStore } from "./_stores/house.store";
-import {
-  LayoutContent,
-  LayoutHeader,
-  LayoutTitle,
-  Layout,
-} from "@/features/page/layout";
-import { DeleteHouse } from "./_components/delete-house";
+import HouseActions from "./_components/house-actions";
 import { HouseDetails } from "./house-details";
 
-export default function RoutePage() {
-  const { house } = useHouseStore();
-
-  const canDelete = true; // TODO
-
+export default async function RoutePage({
+  params,
+}: {
+  params: { houseId: string };
+}) {
   return (
     <div>
-      <Layout>
-        <LayoutHeader className="flex flex-row justify-between">
-          <LayoutTitle>{house!.name}</LayoutTitle>
-          {canDelete && <DeleteHouse houseId={house!.id} />}
-        </LayoutHeader>
-        <LayoutContent>
-          <HouseDetails />
-        </LayoutContent>
-      </Layout>
+      <HouseDetails>
+        <HouseActions houseId={params.houseId} />
+      </HouseDetails>
     </div>
   );
 }

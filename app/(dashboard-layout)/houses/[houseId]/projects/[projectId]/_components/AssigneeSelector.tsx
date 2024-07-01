@@ -1,6 +1,4 @@
-import { AvatarFallback, Avatar, AvatarImage } from "@/components/ui/avatar";
-import type { Task, User } from "@prisma/client";
-import { User as UserIcon } from "lucide-react";
+import type { Task } from "@prisma/client";
 
 import {
   Select,
@@ -12,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import useTaskStore from "../_stores/tasks.store";
 import { useHouseStore } from "../../../_stores/house.store";
+import { UserTile } from "./UserTile";
 
 export type AssigneeSelectorProps = {
   task: Task;
@@ -20,32 +19,6 @@ export type AssigneeSelectorProps = {
 export const AssigneeSelector = (props: AssigneeSelectorProps) => {
   const { updateAssignee } = useTaskStore();
   const { users } = useHouseStore();
-
-  const UserTile = (props: { user: User | null; concise: boolean }) => {
-    return (
-      <div className="flex items-center gap-2">
-        {" "}
-        {props.user ? (
-          <>
-            <Avatar>
-              {props.user.image && <AvatarImage src={props.user.image} />}
-              <AvatarFallback>{props.user.name?.[0] ?? "A"}</AvatarFallback>
-            </Avatar>
-            {props.concise && <p>{props.user.name}</p>}
-          </>
-        ) : (
-          <>
-            <Avatar>
-              <AvatarFallback>
-                <UserIcon size={16} />
-              </AvatarFallback>
-            </Avatar>
-            <p>No assignee</p>
-          </>
-        )}
-      </div>
-    );
-  };
 
   return (
     <>

@@ -9,6 +9,7 @@ import {
 } from "@/features/page/layout";
 import { ProjectDetails } from "./project-details";
 import { DeleteProject } from "./_components/DeleteProject";
+import { UpdateProject } from "./_components/UpdateProject";
 
 export default async function RoutePage({
   params,
@@ -32,7 +33,10 @@ export default async function RoutePage({
         <LayoutHeader className="flex flex-row justify-between">
           <LayoutTitle>{project.name}</LayoutTitle>
           {(await canUserDeleteHouse(house.id)) && (
-            <DeleteProject houseId={house.id} projectId={project.id} />
+            <div className="flex gap-2">
+              <UpdateProject project={project} />
+              <DeleteProject houseId={house.id} projectId={project.id} />
+            </div>
           )}
         </LayoutHeader>
         <LayoutContent>

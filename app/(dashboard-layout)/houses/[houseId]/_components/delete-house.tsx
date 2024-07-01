@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import { deleteHouse } from "../_actions/delete-house";
 import { useRouter } from "next/navigation";
+import { Trash } from "lucide-react";
 
 export type DeleteHouseProps = {
   houseId: string;
@@ -16,7 +17,12 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
 
   return (
     <>
-      <Button variant="destructive" onClick={() => setModalDeleteHouse(true)}>
+      <Button
+        variant="destructive"
+        onClick={() => setModalDeleteHouse(true)}
+        className="flex gap-2"
+      >
+        <Trash size={16} />
         Delete baraque
       </Button>
       <Dialog
@@ -27,6 +33,12 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
           <h1>Are you sure you want to delete this baraque?</h1>
           <div className="flex gap-2">
             <Button
+              variant="secondary"
+              onClick={() => setModalDeleteHouse(false)}
+            >
+              Cancel
+            </Button>
+            <Button
               variant="destructive"
               onClick={() => {
                 deleteHouse(props.houseId);
@@ -36,12 +48,6 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
               }}
             >
               Delete
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => setModalDeleteHouse(false)}
-            >
-              Cancel
             </Button>
           </div>
         </DialogContent>
