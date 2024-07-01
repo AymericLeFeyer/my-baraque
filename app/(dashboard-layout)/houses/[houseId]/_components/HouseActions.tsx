@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth/helper";
 import { UpdateHouse } from "./UpdateHouse";
-import { DeleteHouse } from "./delete-house";
+import { DeleteHouse } from "./DeleteHouse";
 import { getHouseById } from "../_actions/get-house";
 
 export type HouseActionsProps = {

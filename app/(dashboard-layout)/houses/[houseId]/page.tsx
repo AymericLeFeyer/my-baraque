@@ -1,5 +1,5 @@
-import HouseActions from "./_components/house-actions";
-import { HouseDetails } from "./house-details";
+import HouseActions from "./_components/HouseActions";
+import { HouseDetails } from "./HouseDetails";
 
 export default async function RoutePage({
   params,

@@ -2,7 +2,7 @@
 
 import { Crown, FolderPlus, Users } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ProjectCard } from "./_components/project-card";
+import { ProjectCard } from "./_components/ProjectCard";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
