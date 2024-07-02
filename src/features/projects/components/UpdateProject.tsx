@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Pen } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { SubmitButton } from "@/features/form/SubmitButton";
 import type { Project } from "@prisma/client";
@@ -64,13 +64,17 @@ export const UpdateProject = (props: UpdateProjectProps) => {
         open={modalUpdateProject}
         onOpenChange={(a) => setModalUpdateProject(a)}
       >
-        <DialogContent>
-          <h1>Let's update </h1>
+        <DialogContent className="items-center justify-center bg-card  py-8">
+          <DialogTitle className="text-xl">
+            Let's update{" "}
+            <span className="text-primary">{props.project.name}</span>
+          </DialogTitle>
           <div className="flex gap-2">
             <Form
               form={form}
               onSubmit={async (v) => updateHouseMutation.mutateAsync(v)}
               disabled={updateHouseMutation.isPending}
+              className="flex w-full flex-col gap-4"
             >
               <FormField
                 control={form.control}

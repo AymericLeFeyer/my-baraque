@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Pen } from "lucide-react";
@@ -73,20 +73,24 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
         open={modalUpdateHouse}
         onOpenChange={(a) => setModalUpdateHouse(a)}
       >
-        <DialogContent>
-          <h1>Let's update </h1>
+        <DialogContent className="items-center justify-center bg-card  py-8">
+          <DialogTitle className="text-xl">
+            Let's update{" "}
+            <span className="text-primary">{props.house.name}</span>
+          </DialogTitle>
           <div className="flex gap-2">
             <Form
               form={form}
               onSubmit={async (v) => updateHouseMutation.mutateAsync(v)}
               disabled={updateHouseMutation.isPending}
+              className="flex flex-col gap-4"
             >
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>House name</FormLabel>
+                    <FormLabel>Baraque name</FormLabel>
                     <FormControl>
                       <Input {...field} value={field.value ?? ""} />
                     </FormControl>
@@ -112,10 +116,10 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectLabel>Owner</SelectLabel>
+                          <SelectLabel>Pick a new owner</SelectLabel>
                           {users.map((user) => (
                             <SelectItem key={user.id} value={user.id}>
-                              <UserTile concise user={user} />{" "}
+                              <UserTile concise={false} user={user} />{" "}
                             </SelectItem>
                           ))}
                         </SelectGroup>
