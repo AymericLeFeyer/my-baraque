@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { deleteProject } from "../../../_actions/delete-project";
+import { deleteProject } from "../actions/delete-project.action";
 
 export type DeleteProjectProps = {
   projectId: string;

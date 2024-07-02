@@ -16,8 +16,8 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
-import { addUserInHouse } from "./_actions/add-user-in-house";
-import { sendEmailToUser } from "./_actions/send-mail-to-user";
+import { addUserInHouse } from "../actions/add-user-in-house.action";
+import { sendEmailToUser } from "../actions/send-mail-to-user.action";
 import type { House } from "@prisma/client";
 import type { User } from "next-auth";
 

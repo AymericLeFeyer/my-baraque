@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
-import { createHouse } from "../../../houses/_actions/create-house";
+import { createHouse } from "../../../../../src/features/houses/actions/create-house.action";
 
 export function CreateHouse() {
   const createHouseSchema = z.object({

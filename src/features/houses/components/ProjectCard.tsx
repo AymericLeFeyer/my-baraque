@@ -1,9 +1,8 @@
 "use client";
 
 import type { Project } from "@prisma/client";
-import { Folder, Trash } from "lucide-react";
+import { Folder } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { deleteProject } from "../_actions/delete-project";
 
 export type ProjectCardProps = {
   project: Project;

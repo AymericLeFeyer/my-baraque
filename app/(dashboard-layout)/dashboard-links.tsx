@@ -1,6 +1,6 @@
 import type { NavigationLinkGroups } from "@/features/navigation/navigation.type";
 import { Folder, Home } from "lucide-react";
-import { getHousesAndProjects } from "./houses/_actions/get-houses-and-projects";
+import { getHousesAndProjects } from "../../src/features/houses/actions/get-houses-and-projects.action";
 
 export const buildLayout: () => Promise<NavigationLinkGroups[]> = async () => {
   const links: NavigationLinkGroups[] = [];

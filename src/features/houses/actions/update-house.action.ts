@@ -1,7 +1,7 @@
 "use server";
 
 import { authAction } from "@/lib/server-actions/safe-actions";
-import { UpdateHouseSchema } from "../_schemas/update-house.schema";
+import { UpdateHouseSchema } from "../update-house.schema";
 import { prisma } from "@/lib/prisma";
 
 export const updateHouseAction = authAction(

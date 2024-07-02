@@ -1,15 +1,15 @@
-import { canUserDeleteHouse } from "../../_actions/delete-house";
-import { getHouseById } from "../../_actions/get-house";
-import { getProjectById } from "./_actions/get-project";
+import { canUserDeleteHouse } from "../../../../../../src/features/houses/actions/delete-house.action";
+import { getHouseById } from "../../../../../../src/features/houses/actions/get-house.action";
+import { getProjectById } from "../../../../../../src/features/projects/actions/get-project.action";
 import {
   LayoutContent,
   LayoutHeader,
   LayoutTitle,
   Layout,
 } from "@/features/page/layout";
-import { ProjectDetails } from "./project-details";
-import { DeleteProject } from "./_components/DeleteProject";
-import { UpdateProject } from "./_components/UpdateProject";
+import { ProjectDetails } from "../../../../../../src/features/projects/components/ProjectDetails";
+import { DeleteProject } from "@/features/projects/components/DeleteProject";
+import { UpdateProject } from "@/features/projects/components/UpdateProject";
 
 export default async function RoutePage({
   params,

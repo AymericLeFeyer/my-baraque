@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
-import { deleteHouse } from "../_actions/delete-house";
 import { useRouter } from "next/navigation";
 import { Trash } from "lucide-react";
+import { deleteHouse } from "../actions/delete-house.action";
 
 export type DeleteHouseProps = {
   houseId: string;

@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import type { Project, Task } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { createTask } from "../_actions/create-task";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -28,6 +27,7 @@ import {
 } from "@/components/ui/select";
 import { scheduleChoices } from "@/features/tasks/schedule-choices";
 import { ListPlus } from "lucide-react";
+import { createTask } from "@/features/tasks/actions/create-task.action";
 
 export const createTaskSchema = z.object({
   title: z.string().min(3, {

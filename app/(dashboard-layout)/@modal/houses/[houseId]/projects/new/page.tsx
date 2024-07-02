@@ -1,4 +1,4 @@
-import { getHouseById } from "../../../../../houses/[houseId]/_actions/get-house";
+import { getHouseById } from "../../../../../../../src/features/houses/actions/get-house.action";
 import { CreateProject } from "./CreateProject";
 
 export default async function RoutePage({

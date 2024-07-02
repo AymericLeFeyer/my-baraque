@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import type { House, Project, User } from "@prisma/client";
-import { getHouseById } from "../_actions/get-house";
-import { getUsersFromHouse } from "../_actions/get-users";
-import { getUserById } from "../../_actions/get-user";
-import { getProjectsFromHouse } from "../_actions/get-projects";
+import { getHouseById } from "./actions/get-house.action";
+import { getUsersByHouse } from "./actions/get-users-by-house.action";
+import { getUserById } from "../users/actions/get-user.action.action";
+import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
 
 type HouseState = {
   house: House | null;
@@ -24,7 +24,7 @@ export const useHouseStore = create<HouseState>((set) => ({
       set({ house: null, users: [], owner: null, projects: [] });
       return;
     }
-    const users = await getUsersFromHouse(houseId);
+    const users = await getUsersByHouse(houseId);
     const owner = await getUserById(house.ownerId);
     const projects = await getProjectsFromHouse(house.id);
     set({ house, users, owner, projects });

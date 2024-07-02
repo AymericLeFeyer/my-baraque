@@ -3,7 +3,7 @@
 import { auth } from "@/lib/auth/helper";
 import { UpdateHouse } from "./UpdateHouse";
 import { DeleteHouse } from "./DeleteHouse";
-import { getHouseById } from "../_actions/get-house";
+import { getHouseById } from "../actions/get-house.action";
 
 export type HouseActionsProps = {
   houseId: string;

@@ -2,8 +2,8 @@
 
 import type { Task } from "@prisma/client";
 import { create } from "zustand";
-import { updateTask } from "../_actions/update-task";
-import { rescheduleTask } from "../_actions/reschedule-task";
+import { updateTask } from "./actions/update-task.action";
+import { rescheduleTask } from "./actions/reschedule-task.action";
 import { toast } from "sonner";
 
 type TaskStore = {

@@ -2,10 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { UpdateProjectSchema } from "../_schemas/update-project.schema";
 import type { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
-import { updateProjectAction } from "../_actions/update-project";
 import { toast } from "sonner";
 import {
   Form,
@@ -21,6 +19,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { SubmitButton } from "@/features/form/SubmitButton";
 import type { Project } from "@prisma/client";
+import { UpdateProjectSchema } from "../update-project.schema";
+import { updateProjectAction } from "../actions/update-project.action";
 
 export type UpdateProjectProps = {
   project: Project;

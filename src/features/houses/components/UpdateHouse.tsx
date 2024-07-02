@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Pen } from "lucide-react";
 import type { House } from "@prisma/client";
-import { UpdateHouseSchema } from "../_schemas/update-house.schema";
 import {
   Form,
   FormControl,
@@ -17,11 +16,9 @@ import {
 } from "@/components/ui/form";
 import { useMutation } from "@tanstack/react-query";
 import type { z } from "zod";
-import { updateHouseAction } from "../_actions/update-house";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { SubmitButton } from "@/features/form/SubmitButton";
-import { useHouseStore } from "../_stores/house.store";
 import { Select } from "@radix-ui/react-select";
 import {
   SelectContent,
@@ -30,7 +27,10 @@ import {
   SelectLabel,
   SelectTrigger,
 } from "@/components/ui/select";
-import { UserTile } from "../projects/[projectId]/_components/UserTile";
+import { useHouseStore } from "../house.store";
+import { UpdateHouseSchema } from "../update-house.schema";
+import { updateHouseAction } from "../actions/update-house.action";
+import { UserTile } from "@/features/projects/components/UserTile";
 
 export type UpdateHouseProps = {
   house: House;

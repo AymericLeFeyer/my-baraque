@@ -1,17 +1,16 @@
 "use client";
 
-import type { House, Project, Task, User } from "@prisma/client";
-import { CreateTaskDialog } from "./_components/CreateTask";
-import { getTasksByProjectId } from "./_actions/get-tasks";
-import useTaskStore from "./_stores/tasks.store";
-import { useEffect, useState } from "react";
-import { TaskItem } from "./_components/TaskItem";
+import type { House, Project, Task } from "@prisma/client";
+import { getTasksByProjectId } from "../../tasks/actions/get-tasks.action";
+import useTaskStore from "../../tasks/tasks.store";
+import { useEffect } from "react";
 import { Typography } from "@/components/ui/typography";
 import { CalendarClock, Check, List } from "lucide-react";
 import { Divider } from "@/components/ui/divider";
 import { Accordion, AccordionTrigger } from "@/components/ui/accordion";
 import { AccordionContent, AccordionItem } from "@radix-ui/react-accordion";
-import { getUsersFromHouse } from "../../_actions/get-users";
+import { CreateTaskDialog } from "./CreateTask";
+import { TaskItem } from "./TaskItem";
 
 export type ProjectDetailsProps = {
   house: House;

@@ -1,6 +1,6 @@
 import { requiredAuth } from "@/lib/auth/helper";
-import { getHouseById } from "../../_actions/get-house";
-import { AddUser } from "./AddUser";
+import { getHouseById } from "../../../../../../src/features/houses/actions/get-house.action";
+import { AddUser } from "../../../../../../src/features/houses/components/AddUser";
 
 export default async function RoutePage({
   params,

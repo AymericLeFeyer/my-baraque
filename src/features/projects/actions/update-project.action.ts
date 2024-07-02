@@ -2,7 +2,7 @@
 
 import { authAction } from "@/lib/server-actions/safe-actions";
 import { prisma } from "@/lib/prisma";
-import { UpdateProjectSchema } from "../_schemas/update-project.schema";
+import { UpdateProjectSchema } from "../update-project.schema";
 
 export const updateProjectAction = authAction(
   UpdateProjectSchema,

@@ -2,20 +2,20 @@
 
 import { Crown, FolderPlus, Users } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ProjectCard } from "./_components/ProjectCard";
 import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
 import Link from "next/link";
-import { useHouseStore } from "./_stores/house.store";
+import { useHouseStore } from "../house.store";
 import {
   LayoutContent,
   LayoutHeader,
   LayoutTitle,
   Layout,
 } from "@/features/page/layout";
+import { ProjectCard } from "./ProjectCard";
 
 export type HouseDetailsProps = {
   children: React.ReactNode;

@@ -8,8 +8,8 @@ import {
   SelectLabel,
   SelectTrigger,
 } from "@/components/ui/select";
-import useTaskStore from "../_stores/tasks.store";
-import { useHouseStore } from "../../../_stores/house.store";
+import useTaskStore from "@/features/tasks/tasks.store";
+import { useHouseStore } from "@/features/houses/house.store";
 import { UserTile } from "./UserTile";
 
 export type AssigneeSelectorProps = {
