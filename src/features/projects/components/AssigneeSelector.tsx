@@ -30,7 +30,7 @@ export const AssigneeSelector = (props: AssigneeSelectorProps) => {
       >
         <SelectTrigger className="h-[50px] w-auto">
           <UserTile
-            concise={false}
+            concise
             user={users.find((v) => v.id == props.task.assigneeId)!}
           />
         </SelectTrigger>
@@ -39,7 +39,7 @@ export const AssigneeSelector = (props: AssigneeSelectorProps) => {
             <SelectLabel>Assignee</SelectLabel>
             {users.map((user) => (
               <SelectItem key={user.id} value={user.id}>
-                <UserTile concise user={user} />{" "}
+                <UserTile concise={false} user={user} />{" "}
               </SelectItem>
             ))}
           </SelectGroup>

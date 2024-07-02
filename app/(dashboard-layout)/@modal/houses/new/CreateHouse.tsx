@@ -17,8 +17,11 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
 import { createHouse } from "../../../../../src/features/houses/actions/create-house.action";
+import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export function CreateHouse() {
+  const { setHouse } = useCurrentHouseStore();
+
   const createHouseSchema = z.object({
     name: z.string().min(3, {
       message: "House name must be at least 3 characters long",
@@ -38,12 +41,7 @@ export function CreateHouse() {
 
       close();
 
-      setTimeout(() => {
-        router.push(`/houses/${house.id}`);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      }, 100);
+      setHouse(house);
     });
   }
 

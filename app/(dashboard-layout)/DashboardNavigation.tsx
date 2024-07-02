@@ -20,9 +20,30 @@ import type { PropsWithChildren } from "react";
 import { DesktopVerticalMenu } from "../../src/features/navigation/DesktopVerticalMenu";
 import { MobileDropdownMenu } from "../../src/features/navigation/MobileDropdownMenu";
 import { buildLayout } from "./dashboard-links";
+import { notFound } from "next/navigation";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
   const user = await auth();
+
+  if (user == null) {
+    return (
+      <Layout>
+        <LayoutHeader>
+          <LayoutTitle>
+            Sorry, you need to be authenticated to access this resource.
+          </LayoutTitle>
+        </LayoutHeader>
+        <LayoutContent className="flex gap-4">
+          <SignInButton />
+          <ContactSupportDialog>
+            <Button variant="secondary" size="sm">
+              Contact support
+            </Button>
+          </ContactSupportDialog>
+        </LayoutContent>
+      </Layout>
+    );
+  }
 
   return (
     <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
@@ -40,21 +61,19 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
           </Link>
         </div>
         <div className="h-10" />
-        <DesktopVerticalMenu links={await buildLayout()} house={true} />
+        <DesktopVerticalMenu links={await buildLayout()} user={user} />
         <div className="flex-1" />
-        {user ? (
-          <UserDropdown>
-            <Button variant="outline" size="sm">
-              <Avatar className="mr-2 size-6">
-                <AvatarFallback>
-                  {user.email ? user.email.slice(0, 2) : "??"}
-                </AvatarFallback>
-                {user.image && <AvatarImage src={user.image} />}
-              </Avatar>
-              <span className="max-lg:hidden">{user.name}</span>
-            </Button>
-          </UserDropdown>
-        ) : null}
+        <UserDropdown>
+          <Button variant="outline" size="sm">
+            <Avatar className="mr-2 size-6">
+              <AvatarFallback>
+                {user.email ? user.email.slice(0, 2) : "??"}
+              </AvatarFallback>
+              {user.image && <AvatarImage src={user.image} />}
+            </Avatar>
+            <span className="max-lg:hidden">{user.name}</span>
+          </Button>
+        </UserDropdown>
       </div>
       {/* Main container */}
       <div className="flex-1">
@@ -95,25 +114,7 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
 
         {/* Content of the page */}
         <main className="py-4 lg:max-h-[calc(100vh_-_64px)] lg:flex-1 lg:overflow-auto lg:py-8">
-          {user ? (
-            props.children
-          ) : (
-            <Layout>
-              <LayoutHeader>
-                <LayoutTitle>
-                  Sorry, you need to be authenticated to access this resource.
-                </LayoutTitle>
-              </LayoutHeader>
-              <LayoutContent className="flex gap-4">
-                <SignInButton />
-                <ContactSupportDialog>
-                  <Button variant="secondary" size="sm">
-                    Contact support
-                  </Button>
-                </ContactSupportDialog>
-              </LayoutContent>
-            </Layout>
-          )}
+          {props.children}
         </main>
       </div>
     </div>
