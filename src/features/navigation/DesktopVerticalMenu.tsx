@@ -20,6 +20,8 @@ import { Divider } from "@/components/ui/divider";
 import { getHouses } from "../houses/actions/get-houses.action";
 import { useProjectsStore } from "../projects/projects.store";
 import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
+import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
+import { useUserStore } from "../users/user.store";
 
 const useCurrentHouse = () => {
   const currentPath = usePathname();
@@ -41,11 +43,14 @@ export const DesktopVerticalMenu = ({
   user: User;
 }) => {
   const currentPath = usePathname();
-  const { house, houses, setHouse, setHouses } = useCurrentHouseStore();
+  const { house, houses, setHouse, setHouses, setOwner, setUsers } =
+    useCurrentHouseStore();
   const { projects, setProjects } = useProjectsStore();
+  const { setUser } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
+    setUser(user);
     getHouses(user.id!).then((h) => {
       setHouses(h);
       if (!house && h.length > 0) {
@@ -62,6 +67,11 @@ export const DesktopVerticalMenu = ({
     getProjectsFromHouse(house.id).then((projs) => {
       setProjects(projs);
     });
+
+    getUsersByHouse(house.id).then((users) => {
+      setUsers(users);
+      setOwner(users.find((u) => u.id === house.ownerId)!);
+    });
   }, [house]);
 
   return (
@@ -70,7 +80,7 @@ export const DesktopVerticalMenu = ({
         <Select
           onValueChange={(v) => {
             setHouse(houses.find((h) => h.id == v)!);
-            router.push(`/houses/${v}`);
+            router.push(`/houses`);
           }}
         >
           <SelectTrigger>{house?.name}</SelectTrigger>
@@ -95,7 +105,7 @@ export const DesktopVerticalMenu = ({
             >
               <HousePlus className="size-4 " />
               <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">
-                Nouvelle baraque
+                New baraque
               </Typography>
             </Link>
           </SelectContent>
@@ -105,13 +115,13 @@ export const DesktopVerticalMenu = ({
       </div>
       <div className="flex">
         <Link
-          href={`/houses/${house?.id}`}
+          href={`/houses`}
           className={cn(
             "flex h-8 grow items-center gap-2 rounded-md px-2 text-sm transition-colors",
             "hover:bg-card",
             {
               "bg-accent/50 hover:bg-accent/80":
-                house && currentPath === `/houses/${house.id}`,
+                house && currentPath === `/houses`,
             },
             // {
             //   "text-primary": house && currentHouse === section.url.split("/")[2],

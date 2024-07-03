@@ -20,7 +20,6 @@ import type { PropsWithChildren } from "react";
 import { DesktopVerticalMenu } from "../../src/features/navigation/DesktopVerticalMenu";
 import { MobileDropdownMenu } from "../../src/features/navigation/MobileDropdownMenu";
 import { buildLayout } from "./dashboard-links";
-import { notFound } from "next/navigation";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
   const user = await auth();

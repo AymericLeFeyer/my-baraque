@@ -13,11 +13,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
   return (
     <div
       className="flex cursor-pointer items-center justify-between rounded-lg border  p-4 transition-colors duration-300 hover:bg-primary-foreground"
-      onClick={() =>
-        router.push(
-          `/houses/${props.project.houseId}/projects/${props.project.id}`,
-        )
-      }
+      onClick={() => router.push(`/projects/${props.project.id}`)}
     >
       <div>
         <div className="flex gap-2">

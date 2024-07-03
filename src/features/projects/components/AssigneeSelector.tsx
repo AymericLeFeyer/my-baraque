@@ -9,8 +9,8 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import useTaskStore from "@/features/tasks/tasks.store";
-import { useHouseStore } from "@/features/houses/house.store";
 import { UserTile } from "./UserTile";
+import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export type AssigneeSelectorProps = {
   task: Task;
@@ -18,7 +18,7 @@ export type AssigneeSelectorProps = {
 
 export const AssigneeSelector = (props: AssigneeSelectorProps) => {
   const { updateAssignee } = useTaskStore();
-  const { users } = useHouseStore();
+  const { users } = useCurrentHouseStore();
 
   return (
     <>

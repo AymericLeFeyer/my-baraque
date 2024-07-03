@@ -15,9 +15,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { createProjectInHouse } from "../../../../../../../src/features/projects/actions/create-project.action";
 import type { House } from "@prisma/client";
 import { Info } from "lucide-react";
+import { createProjectInHouse } from "@/features/projects/actions/create-project.action";
 
 export function CreateProject({ house }: { house: House }) {
   const createProjectSchema = z.object({

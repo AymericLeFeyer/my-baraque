@@ -27,10 +27,10 @@ import {
   SelectLabel,
   SelectTrigger,
 } from "@/components/ui/select";
-import { useHouseStore } from "../house.store";
 import { UpdateHouseSchema } from "../update-house.schema";
 import { updateHouseAction } from "../actions/update-house.action";
 import { UserTile } from "@/features/projects/components/UserTile";
+import { useCurrentHouseStore } from "../current-house.store";
 
 export type UpdateHouseProps = {
   house: House;
@@ -38,7 +38,7 @@ export type UpdateHouseProps = {
 
 export const UpdateHouse = (props: UpdateHouseProps) => {
   const [modalUpdateHouse, setModalUpdateHouse] = useState(false);
-  const { users } = useHouseStore();
+  const { users } = useCurrentHouseStore();
   const router = useRouter();
 
   const form = useZodForm({

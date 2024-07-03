@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
 import Link from "next/link";
-import { useHouseStore } from "../house.store";
 import {
   LayoutContent,
   LayoutHeader,
@@ -16,6 +15,8 @@ import {
   Layout,
 } from "@/features/page/layout";
 import { ProjectCard } from "./ProjectCard";
+import { useCurrentHouseStore } from "../current-house.store";
+import { useProjectsStore } from "@/features/projects/projects.store";
 
 export type HouseDetailsProps = {
   children: React.ReactNode;
@@ -24,7 +25,8 @@ export type HouseDetailsProps = {
 export const HouseDetails = (props: HouseDetailsProps) => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
-  const { house, users, owner, projects } = useHouseStore();
+  const { house, owner, users } = useCurrentHouseStore();
+  const { projects } = useProjectsStore();
 
   return (
     <>
@@ -51,7 +53,7 @@ export const HouseDetails = (props: HouseDetailsProps) => {
                   <AvatarImage src={user.image!} alt="avatar" />
                 </Avatar>
               ))}
-              <Link href={`/houses/${house?.id}/addUser`}>
+              <Link href={`/houses/add-user`}>
                 <Avatar>
                   <AvatarFallback className="transition-colors hover:bg-primary">
                     +
@@ -67,7 +69,7 @@ export const HouseDetails = (props: HouseDetailsProps) => {
             </Typography>
             <Button
               variant="outline"
-              onClick={() => router.push(`/houses/${house?.id}/projects/new`)}
+              onClick={() => router.push(`/projects/new`)}
               className="flex gap-2 "
             >
               <FolderPlus size={24} />
