@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
 import { addUserInHouse } from "../actions/add-user-in-house.action";
 import { sendEmailToUser } from "../actions/send-mail-to-user.action";
@@ -23,7 +23,7 @@ import { useUserStore } from "@/features/users/user.store";
 
 export function AddUser() {
   const house = useCurrentHouseStore((s) => s.house);
-  const user = useUserStore((s) => s.user);
+  const user = useUserStore((s) => s.userApp);
 
   const addUserSchema = z.object({
     email: z.string().email(),

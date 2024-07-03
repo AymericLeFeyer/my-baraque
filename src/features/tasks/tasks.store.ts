@@ -11,6 +11,7 @@ type TaskStore = {
   setTasks: (tasks: Task[]) => void;
   addTask: (task: Task) => void;
   setCompleted: (completed: boolean, task: Task) => void;
+  editTask: (task: Task) => void;
   updateAssignee: (assigneeId: string, task: Task) => void;
 };
 
@@ -32,6 +33,7 @@ const useTaskStore = create<TaskStore>((set) => ({
         if (updatedTask.nextTimeInDays !== null) {
           rescheduleTask(updatedTask).then((newTask) => {
             toast.success("Task rescheduled");
+
             state.addTask(newTask);
           });
         }
@@ -44,6 +46,22 @@ const useTaskStore = create<TaskStore>((set) => ({
     set((state) => {
       const updatedTasks = state.tasks.map((t) =>
         t.id === task.id ? { ...t, assigneeId } : t,
+      );
+
+      const updatedTask = updatedTasks.find((t) => t.id === task.id);
+
+      if (updatedTask) {
+        updateTask(updatedTask);
+      }
+
+      return { tasks: updatedTasks };
+    });
+  },
+
+  editTask: (task) => {
+    set((state) => {
+      const updatedTasks = state.tasks.map((t) =>
+        t.id === task.id ? task : t,
       );
 
       const updatedTask = updatedTasks.find((t) => t.id === task.id);

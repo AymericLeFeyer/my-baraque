@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import type { Task } from "@prisma/client";
 import { RotateCw } from "lucide-react";
 import { AssigneeSelector } from "../../tasks/components/AssigneeSelector";
+import { TaskActions } from "./TaskActions";
 
 export type TaskItemProps = {
   task: Task;
@@ -32,7 +33,7 @@ export const TaskItem = (props: TaskItemProps) => {
           },
         )}
       >
-        <div className="flex items-center  gap-2">
+        <div className="flex grow items-center gap-2">
           <Checkbox
             checked={props.task.isComplete}
             onCheckedChange={(v) =>
@@ -57,7 +58,12 @@ export const TaskItem = (props: TaskItemProps) => {
             </div>
           </div>
         </div>
-        <AssigneeSelector task={props.task} />
+        <div className="flex-none">
+          <AssigneeSelector task={props.task} />
+        </div>
+        <div className="flex-none pt-1">
+          <TaskActions task={props.task} />
+        </div>
       </div>
     </>
   );

@@ -1,13 +1,13 @@
 import type { Task } from "@prisma/client";
 
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuGroup,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import useTaskStore from "@/features/tasks/tasks.store";
 import { UserTile } from "../../users/UserTile";
 import { useCurrentHouseStore } from "@/features/houses/current-house.store";
@@ -22,29 +22,29 @@ export const AssigneeSelector = (props: AssigneeSelectorProps) => {
 
   return (
     <>
-      <Select
-        onValueChange={(v) => {
-          updateAssignee(v, props.task);
-          props.task.assigneeId = v;
-        }}
-      >
-        <SelectTrigger className="h-[50px] w-auto">
+      <DropdownMenu>
+        <DropdownMenuTrigger className="h-[50px] w-auto">
           <UserTile
             concise
             user={users.find((v) => v.id == props.task.assigneeId)!}
           />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Assignee</SelectLabel>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuGroup>
             {users.map((user) => (
-              <SelectItem key={user.id} value={user.id}>
+              <DropdownMenuItem
+                key={user.id}
+                onClick={() => {
+                  updateAssignee(user.id, props.task);
+                  props.task.assigneeId = user.id;
+                }}
+              >
                 <UserTile concise={false} user={user} />{" "}
-              </SelectItem>
+              </DropdownMenuItem>
             ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </>
   );
 };

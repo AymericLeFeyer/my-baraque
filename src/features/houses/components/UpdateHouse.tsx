@@ -29,8 +29,8 @@ import {
 } from "@/components/ui/select";
 import { UpdateHouseSchema } from "../update-house.schema";
 import { updateHouseAction } from "../actions/update-house.action";
-import { UserTile } from "@/features/projects/components/UserTile";
 import { useCurrentHouseStore } from "../current-house.store";
+import { UserTile } from "@/features/users/UserTile";
 
 export type UpdateHouseProps = {
   house: House;
