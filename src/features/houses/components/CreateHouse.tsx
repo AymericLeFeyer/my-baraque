@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
-import { createHouse } from "../../../../../src/features/houses/actions/create-house.action";
+import { createHouse } from "../actions/create-house.action";
 import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export function CreateHouse() {
