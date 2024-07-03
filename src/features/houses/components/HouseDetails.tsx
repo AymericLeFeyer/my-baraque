@@ -17,12 +17,9 @@ import {
 import { ProjectCard } from "./ProjectCard";
 import { useCurrentHouseStore } from "../current-house.store";
 import { useProjectsStore } from "@/features/projects/projects.store";
+import HouseActions from "./HouseActions";
 
-export type HouseDetailsProps = {
-  children: React.ReactNode;
-};
-
-export const HouseDetails = (props: HouseDetailsProps) => {
+export const HouseDetails = () => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
   const { house, owner, users } = useCurrentHouseStore();
@@ -33,7 +30,7 @@ export const HouseDetails = (props: HouseDetailsProps) => {
       <Layout>
         <LayoutHeader className="flex flex-row justify-between">
           <LayoutTitle>{house?.name}</LayoutTitle>
-          {props.children}
+          <HouseActions />
         </LayoutHeader>
         <LayoutContent>
           <div className="mb-2 flex items-center">

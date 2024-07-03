@@ -1,23 +1,23 @@
-"use server";
+"use client";
 
-import { auth } from "@/lib/auth/helper";
 import { UpdateHouse } from "./UpdateHouse";
 import { DeleteHouse } from "./DeleteHouse";
-import { getHouseById } from "../actions/get-house.action";
+import { useUserStore } from "@/features/users/user.store";
+import { useCurrentHouseStore } from "../current-house.store";
 
-export type HouseActionsProps = {
-  houseId: string;
-};
-
-export default async function HouseActions(props: HouseActionsProps) {
-  const user = await auth();
-  const house = await getHouseById(props.houseId);
+export default function HouseActions() {
+  const user = useUserStore((s) => s.user);
+  const house = useCurrentHouseStore((s) => s.house);
 
   if (!user) {
     return null;
   }
 
   if (user.id !== house?.ownerId) {
+    return null;
+  }
+
+  if (!house) {
     return null;
   }
 
