@@ -9,10 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Typography } from "@/components/ui/typography";
 import type { Task } from "@prisma/client";
-import { MoreHorizontal, Pencil, Trash } from "lucide-react";
+import { CalendarCheck2, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import { deleteTask } from "../actions/delete-task.action";
 import { EditTaskDialog } from "./EditTaskDialog";
+import { activeTaskNow } from "../actions/active-task.action";
+import useTaskStore from "../tasks.store";
 
 export type TaskActionsProps = {
   task: Task;
@@ -21,6 +23,8 @@ export type TaskActionsProps = {
 export const TaskActions = (props: TaskActionsProps) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const { editTask } = useTaskStore();
 
   return (
     <>
@@ -37,6 +41,26 @@ export const TaskActions = (props: TaskActionsProps) => {
             <Typography variant="small">Edit</Typography>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {props.task.effectiveDate &&
+            props.task.effectiveDate > new Date() && (
+              <>
+                <DropdownMenuLabel
+                  className="flex cursor-pointer gap-2 rounded-md hover:bg-muted"
+                  onClick={() => {
+                    activeTaskNow(props.task);
+                    const updatedTask = {
+                      ...props.task,
+                      effectiveDate: new Date(),
+                    };
+                    editTask(updatedTask);
+                  }}
+                >
+                  <CalendarCheck2 size={16} />
+                  <Typography variant="small">Active Now</Typography>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+              </>
+            )}
           <DropdownMenuLabel
             className="flex cursor-pointer gap-2 rounded-md text-destructive hover:bg-muted"
             onClick={() => setDeleteModalOpen(true)}
