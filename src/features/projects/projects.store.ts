@@ -6,6 +6,7 @@ type ProjectsState = {
   setProjects: (projects: Project[]) => void;
   addProject: (project: Project) => void;
   removeProject: (projectId: string) => void;
+  updateProject: (projectId: string, project: Project) => void;
 };
 
 export const useProjectsStore = create<ProjectsState>((set) => ({
@@ -19,6 +20,11 @@ export const useProjectsStore = create<ProjectsState>((set) => ({
   removeProject: (projectId) => {
     set((state) => ({
       projects: state.projects.filter((p) => p.id !== projectId),
+    }));
+  },
+  updateProject: (projectId, project) => {
+    set((state) => ({
+      projects: state.projects.map((p) => (p.id === projectId ? project : p)),
     }));
   },
 }));

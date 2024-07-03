@@ -15,6 +15,7 @@ export const rescheduleTask = async (task: Task) => {
       content: task.content,
       nextTimeInDays: task.nextTimeInDays,
       isComplete: false,
+      assigneeId: task.assigneeId,
       effectiveDate: new Date(
         Date.now() + task.nextTimeInDays * 24 * 60 * 60 * 1000,
       ),

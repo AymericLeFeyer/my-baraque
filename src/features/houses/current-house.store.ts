@@ -10,6 +10,7 @@ type CurrentHouseState = {
   setHouses: (houses: House[]) => void;
   setOwner: (owner: User) => void;
   setUsers: (users: User[]) => void;
+  deleteHouse: (houseId: string) => void;
 };
 
 export const useCurrentHouseStore = create<CurrentHouseState>((set) => ({
@@ -28,5 +29,14 @@ export const useCurrentHouseStore = create<CurrentHouseState>((set) => ({
   },
   setUsers: (users) => {
     set({ users });
+  },
+  deleteHouse: (houseId) => {
+    set((state) => ({
+      houses: state.houses.filter((house) => house.id !== houseId),
+    }));
+    // House become the next one
+    set((state) => ({
+      house: state.houses.find((house) => house.id !== houseId) || null,
+    }));
   },
 }));

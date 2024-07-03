@@ -28,6 +28,7 @@ import {
 import { scheduleChoices } from "@/features/tasks/schedule-choices";
 import { ListPlus } from "lucide-react";
 import { createTask } from "@/features/tasks/actions/create-task.action";
+import { useUserStore } from "@/features/users/user.store";
 
 export const createTaskSchema = z.object({
   title: z.string().min(3, {
@@ -44,8 +45,14 @@ export function CreateTaskDialog({
   project: Project;
   addTaskCallback: (task: Task) => void;
 }) {
+  const { userApp } = useUserStore();
+
   const form = useForm<z.infer<typeof createTaskSchema>>({
     resolver: zodResolver(createTaskSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+    },
   });
 
   const close = () => {
@@ -53,13 +60,17 @@ export function CreateTaskDialog({
   };
 
   function onSubmit(data: z.infer<typeof createTaskSchema>) {
-    createTask(project.id, data.title, data.content, data.nextTimeInDays).then(
-      (task) => {
-        toast.success("Task created");
-        addTaskCallback(task);
-        close();
-      },
-    );
+    createTask(
+      project.id,
+      data.title,
+      data.content,
+      data.nextTimeInDays,
+      userApp?.id,
+    ).then((task) => {
+      toast.success("Task created");
+      addTaskCallback(task);
+      close();
+    });
   }
 
   const [showNewTaskModal, setShowNewTaskModal] = useState(false);

@@ -5,7 +5,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Trash } from "lucide-react";
-import { deleteHouse } from "../actions/delete-house.action";
+import { deleteHouse as removeHouse } from "../actions/delete-house.action";
+import { useCurrentHouseStore } from "../current-house.store";
 
 export type DeleteHouseProps = {
   houseId: string;
@@ -13,6 +14,7 @@ export type DeleteHouseProps = {
 
 export const DeleteHouse = (props: DeleteHouseProps) => {
   const [modalDeleteHouse, setModalDeleteHouse] = useState(false);
+  const { deleteHouse } = useCurrentHouseStore();
   const router = useRouter();
 
   return (
@@ -34,17 +36,20 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
           <div className="flex gap-2">
             <Button
               variant="secondary"
-              onClick={() => setModalDeleteHouse(false)}
+              onClick={() => {
+                setModalDeleteHouse(false);
+              }}
             >
               Cancel
             </Button>
             <Button
               variant="destructive"
               onClick={() => {
-                deleteHouse(props.houseId);
-                setModalDeleteHouse(false);
-                router.refresh();
-                router.push("/houses");
+                removeHouse(props.houseId).then(() => {
+                  setModalDeleteHouse(false);
+                  deleteHouse(props.houseId);
+                  router.push("/houses");
+                });
               }}
             >
               Delete

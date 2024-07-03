@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { Fragment, cloneElement, useEffect } from "react";
 import type { NavigationLinkGroups } from "./navigation.type";
 import { Folder, FolderPlus, House, HousePlus } from "lucide-react";
@@ -22,6 +22,7 @@ import { useProjectsStore } from "../projects/projects.store";
 import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
 import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
 import { useUserStore } from "../users/user.store";
+import { getUserById } from "../users/actions/get-user.action.action";
 
 const useCurrentHouse = () => {
   const currentPath = usePathname();
@@ -46,15 +47,22 @@ export const DesktopVerticalMenu = ({
   const { house, houses, setHouse, setHouses, setOwner, setUsers } =
     useCurrentHouseStore();
   const { projects, setProjects } = useProjectsStore();
-  const { setUser } = useUserStore();
+  const { setUserAuth, setUserApp } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
-    setUser(user);
+    setUserAuth(user);
+
+    getUserById(user.id!).then((u) => {
+      setUserApp(u!);
+    });
+
     getHouses(user.id!).then((h) => {
       setHouses(h);
       if (!house && h.length > 0) {
         setHouse(h[0]);
+      } else {
+        router.push("/houses/new");
       }
     });
   }, []);
@@ -123,9 +131,6 @@ export const DesktopVerticalMenu = ({
               "bg-accent/50 hover:bg-accent/80":
                 house && currentPath === `/houses`,
             },
-            // {
-            //   "text-primary": house && currentHouse === section.url.split("/")[2],
-            // },
           )}
         >
           <>
@@ -166,8 +171,8 @@ export const DesktopVerticalMenu = ({
               <Link
                 href={`/projects/${project.id}`}
                 key={project.id}
-                className={cn("flex hover:bg-card p-1 rounded-sm", {
-                  "text-primary hover:bg-card  rounded-sm":
+                className={cn("flex hover:text-primary p-1 rounded-sm group", {
+                  "text-primary  rounded-sm":
                     currentPath === `/projects/${project.id}`,
                 })}
               >
@@ -176,7 +181,7 @@ export const DesktopVerticalMenu = ({
                 })}
                 <Typography
                   variant="muted"
-                  className={cn("px-2", {
+                  className={cn("px-2 group-hover:text-primary", {
                     "text-primary": currentPath === `/projects/${project.id}`,
                   })}
                 >

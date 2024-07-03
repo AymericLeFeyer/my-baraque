@@ -6,18 +6,14 @@ import { useUserStore } from "@/features/users/user.store";
 import { useCurrentHouseStore } from "../current-house.store";
 
 export default function HouseActions() {
-  const user = useUserStore((s) => s.user);
+  const userApp = useUserStore((s) => s.userApp);
   const house = useCurrentHouseStore((s) => s.house);
 
-  if (!user) {
+  if (!userApp) {
     return null;
   }
 
-  if (user.id !== house?.ownerId) {
-    return null;
-  }
-
-  if (!house) {
+  if (userApp.id !== house?.ownerId) {
     return null;
   }
 

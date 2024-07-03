@@ -38,7 +38,7 @@ export type UpdateHouseProps = {
 
 export const UpdateHouse = (props: UpdateHouseProps) => {
   const [modalUpdateHouse, setModalUpdateHouse] = useState(false);
-  const { users } = useCurrentHouseStore();
+  const { users, setHouse } = useCurrentHouseStore();
   const router = useRouter();
 
   const form = useZodForm({
@@ -58,6 +58,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
       if (data) {
         toast.success("House updated");
         setModalUpdateHouse(false);
+        setHouse(data);
         router.refresh();
       }
     },

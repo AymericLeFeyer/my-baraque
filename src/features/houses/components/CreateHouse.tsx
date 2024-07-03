@@ -18,9 +18,12 @@ import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
 import { createHouse } from "../actions/create-house.action";
 import { useCurrentHouseStore } from "@/features/houses/current-house.store";
+import { useUserStore } from "@/features/users/user.store";
 
 export function CreateHouse() {
-  const { setHouse } = useCurrentHouseStore();
+  const { setHouse, setHouses, houses, setOwner, setUsers } =
+    useCurrentHouseStore();
+  const { userApp } = useUserStore();
 
   const createHouseSchema = z.object({
     name: z.string().min(3, {
@@ -30,6 +33,9 @@ export function CreateHouse() {
 
   const form = useForm<z.infer<typeof createHouseSchema>>({
     resolver: zodResolver(createHouseSchema),
+    defaultValues: {
+      name: "",
+    },
   });
 
   function onSubmit(data: z.infer<typeof createHouseSchema>) {
@@ -42,6 +48,9 @@ export function CreateHouse() {
       close();
 
       setHouse(house);
+      setHouses(houses.concat(house));
+      setOwner(userApp!);
+      setUsers([userApp!]);
     });
   }
 
@@ -56,7 +65,11 @@ export function CreateHouse() {
       <Dialog
         open={true}
         onOpenChange={() => {
-          close();
+          if (houses.length == 0) {
+            toast.error("You need to create a house");
+          } else {
+            close();
+          }
         }}
       >
         <DialogContent className="items-center justify-center bg-card  py-8">

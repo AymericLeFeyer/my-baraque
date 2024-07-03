@@ -1,5 +1,5 @@
 import { getHouseById } from "@/features/houses/actions/get-house.action";
-import { CreateProject } from "./CreateProject";
+import { CreateProject } from "../../../../../src/features/projects/components/CreateProject";
 
 export default async function RoutePage({
   params,

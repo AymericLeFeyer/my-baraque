@@ -13,5 +13,5 @@ export const getHouses = async (userId: string) => {
     },
   });
 
-  return houses;
+  return houses.sort((a, b) => a.name.localeCompare(b.name));
 };

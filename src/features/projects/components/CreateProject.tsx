@@ -18,8 +18,11 @@ import { useRouter } from "next/navigation";
 import type { House } from "@prisma/client";
 import { Info } from "lucide-react";
 import { createProjectInHouse } from "@/features/projects/actions/create-project.action";
+import { useProjectsStore } from "@/features/projects/projects.store";
 
 export function CreateProject({ house }: { house: House }) {
+  const { projects, setProjects } = useProjectsStore();
+
   const createProjectSchema = z.object({
     name: z.string().min(3, {
       message: "Project name must be at least 3 characters long",
@@ -29,6 +32,10 @@ export function CreateProject({ house }: { house: House }) {
 
   const form = useForm<z.infer<typeof createProjectSchema>>({
     resolver: zodResolver(createProjectSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+    },
   });
 
   const close = () => {
@@ -40,13 +47,11 @@ export function CreateProject({ house }: { house: House }) {
     createProjectInHouse(house.id, data.name, data.description).then(
       (project) => {
         toast.success("Project created");
+        setProjects([...projects, project]);
         close();
 
         setTimeout(() => {
-          router.push(`/houses/${house.id}/projects/${project.id}`);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          router.push(`/projects/${project.id}`);
         }, 100);
       },
     );

@@ -25,11 +25,15 @@ export const HouseDetails = () => {
   const { house, owner, users } = useCurrentHouseStore();
   const { projects } = useProjectsStore();
 
+  if (house == null) {
+    return <p>Create a house baby</p>;
+  }
+
   return (
     <>
       <Layout>
         <LayoutHeader className="flex flex-row justify-between">
-          <LayoutTitle>{house?.name}</LayoutTitle>
+          <LayoutTitle>{house.name}</LayoutTitle>
           <HouseActions />
         </LayoutHeader>
         <LayoutContent>

@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { deleteProject } from "../actions/delete-project.action";
+import { useProjectsStore } from "../projects.store";
 
 export type DeleteProjectProps = {
   projectId: string;
@@ -14,6 +15,7 @@ export type DeleteProjectProps = {
 export const DeleteProject = (props: DeleteProjectProps) => {
   const [modalDeleteProject, setModalDeleteProject] = useState(false);
   const router = useRouter();
+  const { projects, setProjects } = useProjectsStore();
 
   return (
     <>
@@ -32,8 +34,8 @@ export const DeleteProject = (props: DeleteProjectProps) => {
               onClick={() => {
                 deleteProject(props.projectId);
                 setModalDeleteProject(false);
-                router.refresh();
-                router.push(`/houses/${props.houseId}`);
+                setProjects(projects.filter((p) => p.id !== props.projectId));
+                router.push(`/houses`);
               }}
             >
               Delete

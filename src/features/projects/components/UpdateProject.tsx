@@ -21,6 +21,7 @@ import { SubmitButton } from "@/features/form/SubmitButton";
 import type { Project } from "@prisma/client";
 import { UpdateProjectSchema } from "../update-project.schema";
 import { updateProjectAction } from "../actions/update-project.action";
+import { useProjectsStore } from "../projects.store";
 
 export type UpdateProjectProps = {
   project: Project;
@@ -28,6 +29,7 @@ export type UpdateProjectProps = {
 
 export const UpdateProject = (props: UpdateProjectProps) => {
   const [modalUpdateProject, setModalUpdateProject] = useState(false);
+  const { updateProject } = useProjectsStore();
   const router = useRouter();
 
   const form = useZodForm({
@@ -47,6 +49,7 @@ export const UpdateProject = (props: UpdateProjectProps) => {
       if (data) {
         toast.success("Project updated");
         setModalUpdateProject(false);
+        updateProject(data.id, data);
         router.refresh();
       }
     },

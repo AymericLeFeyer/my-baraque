@@ -7,6 +7,7 @@ export const createTask = async (
   title: string,
   content?: string,
   nextTimeInDays?: number,
+  assigneeId?: string,
 ) => {
   return prisma.task.create({
     data: {
@@ -14,6 +15,7 @@ export const createTask = async (
       title: title,
       content: content,
       nextTimeInDays: nextTimeInDays,
+      assigneeId: assigneeId,
     },
   });
 };
