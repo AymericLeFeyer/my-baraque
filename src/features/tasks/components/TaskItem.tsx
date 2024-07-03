@@ -6,7 +6,7 @@ import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import type { Task } from "@prisma/client";
 import { RotateCw } from "lucide-react";
-import { AssigneeSelector } from "./AssigneeSelector";
+import { AssigneeSelector } from "../../tasks/components/AssigneeSelector";
 
 export type TaskItemProps = {
   task: Task;

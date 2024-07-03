@@ -9,7 +9,7 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import useTaskStore from "@/features/tasks/tasks.store";
-import { UserTile } from "./UserTile";
+import { UserTile } from "../../users/UserTile";
 import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export type AssigneeSelectorProps = {

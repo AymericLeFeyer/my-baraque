@@ -9,8 +9,8 @@ import { CalendarClock, Check, List } from "lucide-react";
 import { Divider } from "@/components/ui/divider";
 import { Accordion, AccordionTrigger } from "@/components/ui/accordion";
 import { AccordionContent, AccordionItem } from "@radix-ui/react-accordion";
-import { CreateTaskDialog } from "./CreateTask";
-import { TaskItem } from "./TaskItem";
+import { CreateTaskDialog } from "../../tasks/components/CreateTask";
+import { TaskItem } from "@/features/tasks/components/TaskItem";
 
 export type ProjectDetailsProps = {
   house: House;
