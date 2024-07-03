@@ -11,25 +11,24 @@ export const Hero = () => {
     <main className="relative m-auto my-12 flex min-h-[700px] w-full max-w-7xl items-center gap-4 px-8 max-lg:flex-col">
       <div className="relative flex flex-1 flex-col items-start gap-4 lg:gap-6 xl:gap-8">
         <Typography variant="h1" className="!leading-tight">
-          Write the best content and{" "}
+          Take part to your house tasks{" "}
           <span className="inline-block -rotate-2 bg-foreground text-background">
-            Grow your{" "}
+            by being{" "}
             <span className="relative inline-block">
-              <span>business</span>
+              <span>organized</span>
               <CircleSvg className="fill-primary" />
             </span>
           </span>
         </Typography>
         <Typography variant="large">
-          Build for Thread, create, schedule and publish your content to your
-          account with AI.
+          Build for those who have a home and want to take care of it
         </Typography>
 
         <Link
           href="#pricing"
           className={cn(buttonVariants({ size: "lg", variant: "default" }))}
         >
-          <Rocket size={20} className="mr-2" /> Rejoins maintenant
+          <Rocket size={20} className="mr-2" /> Join now
         </Link>
 
         <ReviewSmall

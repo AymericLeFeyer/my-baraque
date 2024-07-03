@@ -16,7 +16,7 @@ export const Maker = () => {
           Made by{" "}
           <Link
             className="font-extrabold text-blue-500 hover:underline"
-            href="https://melvynx.com"
+            href="https://aymeric.lefeyer.fr"
           >
             {SiteConfig.maker.name}
           </Link>

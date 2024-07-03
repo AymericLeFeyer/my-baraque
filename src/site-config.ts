@@ -6,7 +6,7 @@ export const SiteConfig = {
   appIcon: "/images/icon.png",
   company: {
     name: "Aymeric Le Feyer",
-    address: "Bailleul",
+    address: "France",
   },
   brand: {
     primary: "#00A1FF",
