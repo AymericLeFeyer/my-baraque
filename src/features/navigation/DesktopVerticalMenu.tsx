@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Fragment, cloneElement, useEffect } from "react";
 import type { NavigationLinkGroups } from "./navigation.type";
 import { Folder, FolderPlus, House, HousePlus } from "lucide-react";
@@ -24,18 +24,7 @@ import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
 import { useUserStore } from "../users/user.store";
 import { getUserById } from "../users/actions/get-user.action.action";
 
-const useCurrentHouse = () => {
-  const currentPath = usePathname();
-  const pathSegments = currentPath.split("/");
-  if (pathSegments.length >= 2) {
-    return pathSegments[2];
-  }
-
-  return null;
-};
-
 export const DesktopVerticalMenu = ({
-  links,
   className,
   user,
 }: {
