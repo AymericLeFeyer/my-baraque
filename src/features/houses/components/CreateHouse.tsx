@@ -44,6 +44,7 @@ export function CreateHouse() {
         return;
       }
       toast.success("House created");
+      form.reset();
 
       close();
 

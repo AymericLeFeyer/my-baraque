@@ -48,6 +48,7 @@ export function CreateProject({ house }: { house: House }) {
       (project) => {
         toast.success("Project created");
         setProjects([...projects, project]);
+        form.reset();
         close();
 
         setTimeout(() => {

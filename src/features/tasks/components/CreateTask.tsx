@@ -69,6 +69,7 @@ export function CreateTaskDialog({
     ).then((task) => {
       toast.success("Task created");
       addTaskCallback(task);
+      form.reset();
       close();
     });
   }
