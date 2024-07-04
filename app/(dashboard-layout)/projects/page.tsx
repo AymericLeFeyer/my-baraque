@@ -1,5 +1,6 @@
+import { ProjectsList } from "@/features/projects/components/ProjectsList";
 import type { PageParams } from "@/types/next";
 
 export default async function RoutePage(props: PageParams<{}>) {
-  return <div>Page projects</div>;
+  return <ProjectsList />;
 }
