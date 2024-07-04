@@ -61,17 +61,13 @@ export const AccountNavigation = async (props: PropsWithChildren) => {
           <nav className="flex flex-1 items-center justify-end space-x-1">
             <AuthButton />
             <ThemeToggle />
-            <MobileDropdownMenu className="lg:hidden" links={ACCOUNT_LINKS} />
+            <MobileDropdownMenu className="lg:hidden" user={user} />
           </nav>
         </div>
       </header>
       {/* Desktop ONLY Navigation bar */}
       <Layout className="flex flex-row items-start gap-4">
-        <DesktopVerticalMenu
-          links={ACCOUNT_LINKS}
-          className="max-lg:hidden"
-          user={user}
-        />
+        <DesktopVerticalMenu className="max-lg:hidden" user={user} />
         <Separator className="max-lg:hidden" orientation="vertical" />
         <main className="flex-1">{props.children}</main>
       </Layout>

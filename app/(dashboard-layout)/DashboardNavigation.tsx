@@ -20,6 +20,7 @@ import type { PropsWithChildren } from "react";
 import { DesktopVerticalMenu } from "../../src/features/navigation/DesktopVerticalMenu";
 import { MobileDropdownMenu } from "../../src/features/navigation/MobileDropdownMenu";
 import { buildLayout } from "./dashboard-links";
+import { HouseSelector } from "@/features/navigation/HouseSelector";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
   const user = await auth();
@@ -60,7 +61,7 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
           </Link>
         </div>
         <div className="h-10" />
-        <DesktopVerticalMenu links={await buildLayout()} user={user} />
+        <DesktopVerticalMenu user={user} />
         <div className="flex-1" />
         <UserDropdown>
           <Button variant="outline" size="sm">
@@ -94,9 +95,12 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
             <div className="flex flex-1 items-center justify-end space-x-4">
               {/* Mobile header */}
               <nav className="flex items-center space-x-1 lg:hidden">
+                <div className="mr-2">
+                  <HouseSelector />
+                </div>
                 <AuthButton />
                 <ThemeToggle />
-                <MobileDropdownMenu links={await buildLayout()} />
+                <MobileDropdownMenu user={user} />
               </nav>
               {/* Desktop header */}
               <nav className="flex items-center space-x-1 max-lg:hidden">

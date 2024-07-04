@@ -23,17 +23,17 @@ import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
 import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
 import { useUserStore } from "../users/user.store";
 import { getUserById } from "../users/actions/get-user.action.action";
+import { HouseSelector } from "./HouseSelector";
 
 export const DesktopVerticalMenu = ({
   className,
   user,
 }: {
-  links: NavigationLinkGroups[];
   className?: string;
   user: User;
 }) => {
   const currentPath = usePathname();
-  const { house, houses, setHouse, setHouses, setOwner, setUsers } =
+  const { house, setHouse, setHouses, setOwner, setUsers } =
     useCurrentHouseStore();
   const { projects, setProjects } = useProjectsStore();
   const { setUserAuth, setUserApp } = useUserStore();
@@ -74,39 +74,7 @@ export const DesktopVerticalMenu = ({
   return (
     <nav className={cn("flex flex-col gap-2", className)}>
       <div className="flex flex-col gap-4">
-        <Select
-          onValueChange={(v) => {
-            setHouse(houses.find((h) => h.id == v)!);
-            router.push(`/houses`);
-          }}
-        >
-          <SelectTrigger>{house?.name}</SelectTrigger>
-          <SelectContent>
-            {houses.map((house) => (
-              <SelectItem key={house.id} value={house.id}>
-                {house.name}
-              </SelectItem>
-            ))}
-            <Divider className="my-2" />
-            <Link
-              key="/"
-              className={cn(
-                "flex h-8 items-center rounded-md  text-sm transition-colors justify-center ",
-                "hover:bg-accent ",
-                {
-                  "bg-accent/50 hover:bg-accent/80":
-                    currentPath === "/houses/new",
-                },
-              )}
-              href="/houses/new"
-            >
-              <HousePlus className="size-4 " />
-              <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">
-                New baraque
-              </Typography>
-            </Link>
-          </SelectContent>
-        </Select>
+        <HouseSelector />
 
         <Separator />
       </div>
