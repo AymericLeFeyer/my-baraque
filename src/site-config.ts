@@ -1,8 +1,8 @@
 export const SiteConfig = {
   title: "Baraque",
   description: "A simple app for managing your home tasks",
-  prodUrl: "https://my-baraque.vercel.app/",
-  domain: "demo.nowts.app",
+  prodUrl: "https://baraque.app/",
+  domain: "baraque.app",
   appIcon: "/images/icon.png",
   company: {
     name: "Aymeric Le Feyer",
@@ -12,7 +12,7 @@ export const SiteConfig = {
     primary: "#00A1FF",
   },
   email: {
-    from: "Aymeric <aymeric@baraque.aymeric.lefeyer.fr>",
+    from: "Aymeric <aymeric@mails.baraque.app>",
     contact: "lefeyer.aymeric@gmail.com",
   },
   maker: {
