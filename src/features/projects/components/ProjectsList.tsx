@@ -7,7 +7,6 @@ import {
   Layout,
 } from "@/features/page/layout";
 import { useProjectsStore } from "../projects.store";
-import { Typography } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { FolderPlus } from "lucide-react";
 import { ProjectCard } from "@/features/houses/components/ProjectCard";
