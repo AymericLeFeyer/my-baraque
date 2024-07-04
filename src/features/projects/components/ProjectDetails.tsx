@@ -7,8 +7,12 @@ import { useEffect } from "react";
 import { Typography } from "@/components/ui/typography";
 import { CalendarClock, Check, List } from "lucide-react";
 import { Divider } from "@/components/ui/divider";
-import { Accordion, AccordionTrigger } from "@/components/ui/accordion";
-import { AccordionContent, AccordionItem } from "@radix-ui/react-accordion";
+import {
+  Accordion,
+  AccordionTrigger,
+  AccordionContent,
+  AccordionItem,
+} from "@/components/ui/accordion";
 import { CreateTaskDialog } from "../../tasks/components/CreateTask";
 import { TaskItem } from "@/features/tasks/components/TaskItem";
 

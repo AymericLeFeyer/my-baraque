@@ -13,6 +13,7 @@ import type { ReactNode } from "react";
 import "./code-theme.scss";
 import "./globals.scss";
 import { Providers } from "./providers";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: SiteConfig.title,
@@ -49,6 +50,7 @@ export default function RootLayout({
             <TailwindIndicator />
             <FloatingLegalFooter />
           </Providers>
+          <Analytics />
         </body>
       </html>
     </>
