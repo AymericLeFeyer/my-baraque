@@ -39,12 +39,15 @@ import { toast } from "sonner";
 import { useInvitationsStore } from "../invitations/invitations.store";
 import { NoHouse } from "./NoHouse";
 import { LeaveHouse } from "./LeaveHouse";
+import { setOwner } from "../actions/set-owner.action";
+import { kickUser } from "../actions/kick-user.action";
+import { House } from "@prisma/client";
 
 export const HouseDetails = () => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
   const [pendingDialogOpen, setPendingDialogOpen] = useState(false);
-  const { house, owner, users } = useCurrentHouseStore();
+  const { house, owner, users, setUsers, setHouse } = useCurrentHouseStore();
   const { projects } = useProjectsStore();
   const userApp = useUserStore((s) => s.userApp);
 
@@ -115,13 +118,38 @@ export const HouseDetails = () => {
                   {isOwner && user.id != userApp?.id && (
                     <DropdownMenuContent>
                       <DropdownMenuItem>
-                        <div className="flex gap-1">
+                        <div
+                          className="flex gap-1"
+                          onClick={() =>
+                            setOwner(house!.id, user.id, userApp!.id).then(
+                              () => {
+                                toast.success("Owner changed");
+                                setHouse({
+                                  ownerId: user.id,
+                                  id: house!.id,
+                                  name: house!.name,
+                                });
+                                setIsOwner(false);
+                              },
+                            )
+                          }
+                        >
                           <Crown className="mr-2 size-4" />
                           Set as owner
                         </div>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <div className="flex gap-1">
+                        <div
+                          className="flex gap-1"
+                          onClick={() =>
+                            kickUser(house!.id, user.id, userApp!.id).then(
+                              () => {
+                                toast.success("User kicked");
+                                setUsers(users.filter((u) => u.id != user.id));
+                              },
+                            )
+                          }
+                        >
                           <UserX className="mr-2 size-4" />
                           Remove
                         </div>

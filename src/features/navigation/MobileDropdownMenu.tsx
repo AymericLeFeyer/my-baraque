@@ -9,7 +9,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Typography } from "@/components/ui/typography";
-import { Folder, FolderPlus, House, HousePlus, Menu, X } from "lucide-react";
+import {
+  Folder,
+  FolderPlus,
+  House,
+  HousePlus,
+  Menu,
+  MenuSquareIcon,
+  ShoppingCart,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { Fragment, cloneElement, useEffect, useState } from "react";
 import type { User } from "@prisma/client";
@@ -23,6 +32,7 @@ import { getHouses } from "../houses/actions/get-houses.action";
 import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
 import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 export const MobileDropdownMenu = ({
   className,
@@ -126,6 +136,38 @@ export const MobileDropdownMenu = ({
                 Projects
               </>
             </Link>
+          </div>
+        </div>
+
+        <div className="">
+          <div
+            className={cn(
+              "flex flex-col text-muted-foreground items-center gap-2 rounded-md p-2 text-sm transition-colors",
+            )}
+          >
+            <>
+              <div className="flex gap-2">
+                <ShoppingCart size={16} />
+                <Badge variant={"outline"}>soon</Badge>
+              </div>
+              Shopping list
+            </>
+          </div>
+        </div>
+
+        <div className="">
+          <div
+            className={cn(
+              "flex flex-col text-muted-foreground items-center gap-2 rounded-md p-2 text-sm transition-colors",
+            )}
+          >
+            <>
+              <div className="flex gap-2">
+                <MenuSquareIcon size={16} />
+                <Badge variant={"outline"}>soon</Badge>
+              </div>
+              Menus
+            </>
           </div>
         </div>
       </DropdownMenuContent>

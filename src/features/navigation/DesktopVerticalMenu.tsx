@@ -6,7 +6,13 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, cloneElement, useEffect } from "react";
-import { Folder, FolderPlus, House } from "lucide-react";
+import {
+  Folder,
+  FolderPlus,
+  House,
+  MenuSquareIcon,
+  ShoppingCart,
+} from "lucide-react";
 import { useCurrentHouseStore } from "../houses/current-house.store";
 import type { User } from "next-auth";
 import { getHouses } from "../houses/actions/get-houses.action";
@@ -16,6 +22,7 @@ import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
 import { useUserStore } from "../users/user.store";
 import { getUserById } from "../users/actions/get-user.action.action";
 import { HouseSelector } from "./HouseSelector";
+import { Badge } from "@/components/ui/badge";
 
 export const DesktopVerticalMenu = ({
   className,
@@ -142,6 +149,30 @@ export const DesktopVerticalMenu = ({
             );
           })}
         </div>
+      </div>
+
+      <div
+        className={cn(
+          "flex h-8 grow items-center text-muted-foreground gap-2 rounded-md px-2 text-sm transition-colors ",
+        )}
+      >
+        <>
+          <ShoppingCart size={16} />
+          <div className="flex grow">Shopping List</div>
+          <Badge variant={"outline"}>soon</Badge>
+        </>
+      </div>
+
+      <div
+        className={cn(
+          "flex h-8 grow items-center text-muted-foreground gap-2 rounded-md px-2 text-sm transition-colors",
+        )}
+      >
+        <>
+          <MenuSquareIcon size={16} />
+          <div className="flex grow">Menus</div>
+          <Badge variant={"outline"}>soon</Badge>
+        </>
       </div>
     </nav>
   );
