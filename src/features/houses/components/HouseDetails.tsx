@@ -38,6 +38,7 @@ import { cancelInvitation } from "../invitations/actions/cancel-invitation.actio
 import { toast } from "sonner";
 import { useInvitationsStore } from "../invitations/invitations.store";
 import { NoHouse } from "./NoHouse";
+import { LeaveHouse } from "./LeaveHouse";
 
 export const HouseDetails = () => {
   const router = useRouter();
@@ -85,13 +86,18 @@ export const HouseDetails = () => {
               <DeleteHouse houseId={house!.id} />
             </div>
           )}
+          {!isOwner && (
+            <div className="flex gap-2">
+              <LeaveHouse houseId={house!.id} />
+            </div>
+          )}
         </LayoutHeader>
         <LayoutContent>
           <div className="mb-2 flex items-center">
             <div className="mr-2">
               <Crown />
             </div>
-            <div>{owner?.name}</div>
+            <div>{owner?.name ?? owner?.email.split("@")[0]}</div>
           </div>
           <div className="flex items-center gap-1">
             <div className="mr-2">
@@ -106,7 +112,7 @@ export const HouseDetails = () => {
                       <AvatarImage src={user.image!} alt="avatar" />
                     </Avatar>
                   </DropdownMenuTrigger>
-                  {user.id != userApp?.id && (
+                  {isOwner && user.id != userApp?.id && (
                     <DropdownMenuContent>
                       <DropdownMenuItem>
                         <div className="flex gap-1">
