@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/accordion";
 import { CreateTaskDialog } from "../../tasks/components/CreateTask";
 import { TaskItem } from "@/features/tasks/components/TaskItem";
-import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export type ProjectDetailsProps = {
   house: House;
@@ -23,8 +22,7 @@ export type ProjectDetailsProps = {
 };
 
 export const ProjectDetails = (props: ProjectDetailsProps) => {
-  const { tasks, setTasks, addTask, setCompleted } = useTaskStore();
-  const { house } = useCurrentHouseStore();
+  const { tasks, setTasks, addTask } = useTaskStore();
 
   const organizedTasks = {
     todo: tasks.filter(
@@ -74,13 +72,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
           <Typography variant="code">To do</Typography>
         </div>
         {organizedTasks.todo.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onDelete={() => {}}
-            setCompleted={setCompleted}
-            houseId={props.house.id}
-          />
+          <TaskItem key={task.id} task={task} houseId={props.house.id} />
         ))}
         <Divider className="mt-4" />
         <div className="flex items-center gap-2">
@@ -95,8 +87,6 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
             <TaskItem
               key={task.id}
               task={task}
-              onDelete={() => {}}
-              setCompleted={setCompleted}
               daysToGo={getDaysToGo(task)}
               houseId={props.house.id}
             />
@@ -113,13 +103,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-2">
               {organizedTasks.complete.map((task) => (
-                <TaskItem
-                  key={task.id}
-                  task={task}
-                  onDelete={() => {}}
-                  setCompleted={setCompleted}
-                  houseId={props.house.id}
-                />
+                <TaskItem key={task.id} task={task} houseId={props.house.id} />
               ))}
             </AccordionContent>
           </AccordionItem>

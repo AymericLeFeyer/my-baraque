@@ -8,16 +8,19 @@ import type { Task } from "@prisma/client";
 import { RotateCw } from "lucide-react";
 import { AssigneeSelector } from "../../tasks/components/AssigneeSelector";
 import { TaskActions } from "./TaskActions";
+import useTaskStore from "../tasks.store";
+import { updateTask } from "../actions/update-task.action";
+import { rescheduleTask } from "../actions/reschedule-task.action";
+import { toast } from "sonner";
 
 export type TaskItemProps = {
   task: Task;
   houseId: string;
-  onDelete: () => void;
-  setCompleted: (completed: boolean, task: Task) => void;
   daysToGo?: number;
 };
 
 export const TaskItem = (props: TaskItemProps) => {
+  const { addTask, setCompleted } = useTaskStore();
   const isLaterTask = props.daysToGo !== undefined && props.daysToGo > 0;
 
   return (
@@ -36,9 +39,19 @@ export const TaskItem = (props: TaskItemProps) => {
         <div className="flex grow items-center gap-2">
           <Checkbox
             checked={props.task.isComplete}
-            onCheckedChange={(v) =>
-              props.setCompleted(v as boolean, props.task)
-            }
+            onCheckedChange={(v) => {
+              if (v == true) {
+                updateTask(props.task).then((updatedTask) => {
+                  setCompleted(true, updatedTask);
+                  if (updatedTask.nextTimeInDays !== null) {
+                    rescheduleTask(updatedTask).then((newTask) => {
+                      toast.success("Task rescheduled");
+                      addTask(newTask);
+                    });
+                  }
+                });
+              }
+            }}
             disabled={props.task.isComplete || isLaterTask}
           />
           <div className="flex">

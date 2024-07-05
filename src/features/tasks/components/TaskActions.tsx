@@ -15,6 +15,7 @@ import { deleteTask } from "../actions/delete-task.action";
 import { EditTaskDialog } from "./EditTaskDialog";
 import { activeTaskNow } from "../actions/active-task.action";
 import useTaskStore from "../tasks.store";
+import { updateTask } from "../actions/update-task.action";
 
 export type TaskActionsProps = {
   task: Task;
@@ -52,7 +53,9 @@ export const TaskActions = (props: TaskActionsProps) => {
                       ...props.task,
                       effectiveDate: new Date(),
                     };
-                    editTask(updatedTask);
+                    updateTask(updatedTask).then(() => {
+                      editTask(updatedTask);
+                    });
                   }}
                 >
                   <CalendarCheck2 size={16} />

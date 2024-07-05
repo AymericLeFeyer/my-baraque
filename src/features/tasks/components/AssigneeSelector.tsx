@@ -10,6 +10,7 @@ import {
 import useTaskStore from "@/features/tasks/tasks.store";
 import { UserTile } from "../../users/UserTile";
 import { useCurrentHouseStore } from "@/features/houses/current-house.store";
+import { updateTask } from "../actions/update-task.action";
 
 export type AssigneeSelectorProps = {
   task: Task;
@@ -34,8 +35,11 @@ export const AssigneeSelector = (props: AssigneeSelectorProps) => {
               <DropdownMenuItem
                 key={user.id}
                 onClick={() => {
-                  updateAssignee(user.id, props.task);
                   props.task.assigneeId = user.id;
+
+                  updateTask(props.task).then(() => {
+                    updateAssignee(user.id, props.task);
+                  });
                 }}
               >
                 <UserTile concise={false} user={user} />{" "}
