@@ -1,5 +1,5 @@
 import type { NavigationLinkGroups } from "@/features/navigation/navigation.type";
-import { AlertCircle, Coins, Mail, User2 } from "lucide-react";
+import { AlertCircle, Mail, User2 } from "lucide-react";
 
 export const ACCOUNT_LINKS: NavigationLinkGroups[] = [
   {
@@ -11,7 +11,6 @@ export const ACCOUNT_LINKS: NavigationLinkGroups[] = [
         title: "Delete profile",
         icon: <AlertCircle />,
       },
-      { url: "/account/billing", title: "Billing", icon: <Coins /> },
     ],
     url: "",
     icon: <User2 />,

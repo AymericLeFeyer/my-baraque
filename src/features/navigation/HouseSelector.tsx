@@ -14,15 +14,19 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { HousePlus } from "lucide-react";
 import { Typography } from "@/components/ui/typography";
+import { useState } from "react";
 
 export const HouseSelector = () => {
   const currentPath = usePathname();
   const { house, houses, setHouse } = useCurrentHouseStore();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   return (
     <>
       <Select
+        onOpenChange={(v) => setOpen(v)}
+        open={open}
         onValueChange={(v) => {
           setHouse(houses.find((h) => h.id == v)!);
           router.push(`/houses`);
@@ -39,7 +43,7 @@ export const HouseSelector = () => {
           <Link
             key="/"
             className={cn(
-              "flex h-8 items-center rounded-md text-sm  transition-colors justify-center ",
+              "flex h-8 items-center rounded-md text-sm  transition-colors  pl-1 gap-1",
               "hover:bg-accent ",
               {
                 "bg-accent/50 hover:bg-accent/80":
@@ -47,6 +51,7 @@ export const HouseSelector = () => {
               },
             )}
             href="/houses/new"
+            onClick={() => setOpen(false)}
           >
             <HousePlus className="size-4 pl-1 " />
             <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">

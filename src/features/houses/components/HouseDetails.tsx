@@ -26,7 +26,7 @@ export const HouseDetails = () => {
   const { projects } = useProjectsStore();
 
   if (house == null) {
-    return <p>Create a house baby</p>;
+    return null;
   }
 
   return (

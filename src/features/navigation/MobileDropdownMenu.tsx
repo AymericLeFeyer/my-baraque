@@ -22,28 +22,22 @@ import { getUserById } from "../users/actions/get-user.action.action";
 import { getHouses } from "../houses/actions/get-houses.action";
 import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
 import { getUsersByHouse } from "../houses/actions/get-users-by-house.action";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
-import { Divider } from "@/components/ui/divider";
 import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
 
 export const MobileDropdownMenu = ({
   className,
   user,
+  forceHouse,
 }: {
   className?: string;
   user: User;
+  forceHouse: boolean;
 }) => {
   const [open, setOpen] = useState(false);
   const currentPath = usePathname();
-  const { house, houses, setHouse, setHouses, setOwner, setUsers } =
+  const { house, setHouse, setHouses, setOwner, setUsers } =
     useCurrentHouseStore();
-  const { projects, setProjects } = useProjectsStore();
+  const { setProjects } = useProjectsStore();
   const { setUserAuth, setUserApp } = useUserStore();
   const router = useRouter();
 
@@ -54,14 +48,16 @@ export const MobileDropdownMenu = ({
       setUserApp(u!);
     });
 
-    getHouses(user.id!).then((h) => {
-      setHouses(h);
-      if (!house && h.length > 0) {
-        setHouse(h[0]);
-      } else {
-        router.push("/houses/new");
-      }
-    });
+    if (forceHouse == true) {
+      getHouses(user.id!).then((h) => {
+        setHouses(h);
+        if (h.length > 0) {
+          setHouse(h[0]);
+        } else {
+          router.push("/houses/new");
+        }
+      });
+    }
   }, []);
 
   useEffect(() => {

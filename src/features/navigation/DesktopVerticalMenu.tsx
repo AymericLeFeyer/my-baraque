@@ -6,17 +6,9 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, cloneElement, useEffect } from "react";
-import type { NavigationLinkGroups } from "./navigation.type";
-import { Folder, FolderPlus, House, HousePlus } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
+import { Folder, FolderPlus, House } from "lucide-react";
 import { useCurrentHouseStore } from "../houses/current-house.store";
 import type { User } from "next-auth";
-import { Divider } from "@/components/ui/divider";
 import { getHouses } from "../houses/actions/get-houses.action";
 import { useProjectsStore } from "../projects/projects.store";
 import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
@@ -28,9 +20,11 @@ import { HouseSelector } from "./HouseSelector";
 export const DesktopVerticalMenu = ({
   className,
   user,
+  forceHouse,
 }: {
   className?: string;
   user: User;
+  forceHouse: boolean;
 }) => {
   const currentPath = usePathname();
   const { house, setHouse, setHouses, setOwner, setUsers } =
@@ -46,14 +40,16 @@ export const DesktopVerticalMenu = ({
       setUserApp(u!);
     });
 
-    getHouses(user.id!).then((h) => {
-      setHouses(h);
-      if (!house && h.length > 0) {
-        setHouse(h[0]);
-      } else {
-        router.push("/houses/new");
-      }
-    });
+    if (forceHouse == true) {
+      getHouses(user.id!).then((h) => {
+        setHouses(h);
+        if (h.length > 0) {
+          setHouse(h[0]);
+        } else {
+          router.push("/houses/new");
+        }
+      });
+    }
   }, []);
 
   useEffect(() => {

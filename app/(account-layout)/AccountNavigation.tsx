@@ -11,13 +11,13 @@ import { SiteConfig } from "@/site-config";
 import Image from "next/image";
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
-import { DesktopVerticalMenu } from "../../src/features/navigation/DesktopVerticalMenu";
 import { MobileDropdownMenu } from "../../src/features/navigation/MobileDropdownMenu";
 import { ACCOUNT_LINKS } from "./account-links";
 import { auth } from "@/lib/auth/helper";
 import { SignInButton } from "@/features/auth/SignInButton";
 import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
 import { Button } from "@/components/ui/button";
+import { LinksVerticalMenu } from "@/features/navigation/LinksVerticalMenu";
 
 export const AccountNavigation = async (props: PropsWithChildren) => {
   const user = await auth();
@@ -53,7 +53,7 @@ export const AccountNavigation = async (props: PropsWithChildren) => {
               width={32}
               height={32}
             />
-            <Link href="/" className="text-lg font-bold ">
+            <Link href="/houses" className="text-lg font-bold ">
               {SiteConfig.title}
             </Link>
           </div>
@@ -61,13 +61,17 @@ export const AccountNavigation = async (props: PropsWithChildren) => {
           <nav className="flex flex-1 items-center justify-end space-x-1">
             <AuthButton />
             <ThemeToggle />
-            <MobileDropdownMenu className="lg:hidden" user={user} />
+            <MobileDropdownMenu
+              className="lg:hidden"
+              user={user}
+              forceHouse={false}
+            />
           </nav>
         </div>
       </header>
       {/* Desktop ONLY Navigation bar */}
       <Layout className="flex flex-row items-start gap-4">
-        <DesktopVerticalMenu className="max-lg:hidden" user={user} />
+        <LinksVerticalMenu className="max-lg:hidden" links={ACCOUNT_LINKS} />
         <Separator className="max-lg:hidden" orientation="vertical" />
         <main className="flex-1">{props.children}</main>
       </Layout>
