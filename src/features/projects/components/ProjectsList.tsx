@@ -11,12 +11,18 @@ import { Button } from "@/components/ui/button";
 import { FolderPlus } from "lucide-react";
 import { ProjectCard } from "@/features/houses/components/ProjectCard";
 import { useRouter } from "next/navigation";
+import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export type ProjectsListProps = {};
 
 export const ProjectsList = (props: ProjectsListProps) => {
   const { projects } = useProjectsStore();
+  const { house } = useCurrentHouseStore();
   const router = useRouter();
+
+  if (house == null) {
+    return null;
+  }
 
   return (
     <Layout>

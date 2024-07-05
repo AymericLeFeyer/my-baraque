@@ -45,8 +45,6 @@ export const DesktopVerticalMenu = ({
         setHouses(h);
         if (h.length > 0) {
           setHouse(h[0]);
-        } else {
-          router.push("/houses/new");
         }
       });
     }

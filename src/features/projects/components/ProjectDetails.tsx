@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { CreateTaskDialog } from "../../tasks/components/CreateTask";
 import { TaskItem } from "@/features/tasks/components/TaskItem";
+import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
 export type ProjectDetailsProps = {
   house: House;
@@ -23,6 +24,7 @@ export type ProjectDetailsProps = {
 
 export const ProjectDetails = (props: ProjectDetailsProps) => {
   const { tasks, setTasks, addTask, setCompleted } = useTaskStore();
+  const { house } = useCurrentHouseStore();
 
   const organizedTasks = {
     todo: tasks.filter(

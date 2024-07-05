@@ -66,11 +66,7 @@ export function CreateHouse() {
       <Dialog
         open={true}
         onOpenChange={() => {
-          if (houses.length == 0) {
-            toast.error("You need to create a house");
-          } else {
-            close();
-          }
+          close();
         }}
       >
         <DialogContent className="items-center justify-center bg-card  py-8">

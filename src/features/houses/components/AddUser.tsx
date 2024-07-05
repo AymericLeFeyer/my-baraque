@@ -17,13 +17,19 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
 import { addUserInHouse } from "../actions/add-user-in-house.action";
-import { sendEmailToUser } from "../actions/send-mail-to-user.action";
 import { useCurrentHouseStore } from "../current-house.store";
 import { useUserStore } from "@/features/users/user.store";
+import { inviteUser } from "../invitations/actions/invite-user.action";
+import { sendEmailToUser } from "../actions/send-mail-to-user.action";
+import { useInvitationsStore } from "../invitations/invitations.store";
 
 export function AddUser() {
   const house = useCurrentHouseStore((s) => s.house);
   const user = useUserStore((s) => s.userApp);
+  const {
+    invitations: pendingInvitations,
+    addInvitation: addPendingInvitation,
+  } = useInvitationsStore();
 
   const addUserSchema = z.object({
     email: z.string().email(),
@@ -34,15 +40,17 @@ export function AddUser() {
   });
 
   function onSubmit(data: z.infer<typeof addUserSchema>) {
-    addUserInHouse(data.email, house!.id)
-      .then(() => {
-        toast.success("User added");
-        sendEmailToUser(data.email, house!.name, user!.name ?? "Baraque");
-        close();
-      })
-      .catch((e) => {
-        toast.error(e.message);
-      });
+    if (pendingInvitations.some((i) => i.email === data.email)) {
+      toast.error("User already invited");
+      return;
+    }
+    inviteUser(data.email, house!, user!).then((invitation) => {
+      // send email
+      sendEmailToUser(data.email, house!.name, user!.name!);
+      addPendingInvitation(invitation);
+    });
+    toast.success("User invited");
+    close();
   }
 
   const close = () => {

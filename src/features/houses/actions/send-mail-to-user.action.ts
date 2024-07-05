@@ -10,7 +10,7 @@ export const sendEmailToUser = async (
 ) => {
   await sendEmail({
     to: email,
-    subject: `🎉 You have been added to ${houseName}`,
+    subject: `🎉 You have been invited to ${houseName}`,
     react: InvitationEmail({ userName, houseName }),
   });
 };

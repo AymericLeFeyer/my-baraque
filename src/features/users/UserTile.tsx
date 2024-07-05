@@ -10,9 +10,13 @@ export const UserTile = (props: { user: User | null; concise: boolean }) => {
         <>
           <Avatar>
             <AvatarImage src={props.user.image!} />
-            <AvatarFallback>{props.user.name?.[0] ?? "A"}</AvatarFallback>
+            <AvatarFallback>
+              {props.user.name?.[0] ?? props.user.email[0]}
+            </AvatarFallback>
           </Avatar>
-          {!props.concise && <p>{props.user.name}</p>}
+          {!props.concise && (
+            <p>{props.user.name ?? props.user.email.split("@")[0]}</p>
+          )}
         </>
       ) : (
         <>
