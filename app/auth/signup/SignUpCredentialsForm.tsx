@@ -36,7 +36,7 @@ export const SignUpCredentialsForm = () => {
         email: values.email,
         password: values.password,
 
-        callbackUrl: `${window.location.origin}/`,
+        callbackUrl: `${window.location.origin}/houses/`,
       });
     },
   });

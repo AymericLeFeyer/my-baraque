@@ -34,8 +34,10 @@ export const HouseSelector = () => {
         onOpenChange={(v) => setOpen(v)}
         open={open}
         onValueChange={(v) => {
-          setHouse(houses!.find((h) => h.id == v)!);
           router.push(`/houses`);
+          setTimeout(() => {
+            setHouse(houses!.find((h) => h.id == v)!);
+          }, 100);
         }}
       >
         <SelectTrigger>

@@ -18,7 +18,7 @@ export default function NewUserPage(props: PageParams) {
   const callbackUrl =
     typeof props.searchParams.callbackUrl === "string"
       ? props.searchParams.callbackUrl
-      : "/";
+      : "/houses";
 
   redirect(callbackUrl);
 
