@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { deleteProject } from "../actions/delete-project.action";
 import { useProjectsStore } from "../projects.store";
+import { Trash } from "lucide-react";
+import { useState } from "react";
 
 export type DeleteProjectProps = {
   projectId: string;
@@ -19,8 +20,13 @@ export const DeleteProject = (props: DeleteProjectProps) => {
 
   return (
     <>
-      <Button variant="destructive" onClick={() => setModalDeleteProject(true)}>
-        Delete project
+      <Button
+        className="flex gap-2"
+        variant="destructive"
+        onClick={() => setModalDeleteProject(true)}
+      >
+        <Trash size={16} />
+        Delete
       </Button>
       <Dialog
         open={modalDeleteProject}

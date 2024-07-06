@@ -48,7 +48,7 @@ export const HouseDetails = () => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
   const [pendingDialogOpen, setPendingDialogOpen] = useState(false);
-  const { house, owner, users, setUsers, setHouse, isFetching, houses } =
+  const { house, owner, users, setUsers, setHouse, houses } =
     useCurrentHouseStore();
   const { projects } = useProjectsStore();
   const userApp = useUserStore((s) => s.userApp);
@@ -90,7 +90,7 @@ export const HouseDetails = () => {
         <LayoutHeader className="flex flex-row justify-between">
           <LayoutTitle>{house.name}</LayoutTitle>
           {isOwner && (
-            <div className="flex gap-2">
+            <div className="flex gap-2 max-lg:flex-col">
               <UpdateHouse house={house} />
               <DeleteHouse houseId={house!.id} />
             </div>

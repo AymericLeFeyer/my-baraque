@@ -102,7 +102,12 @@ const Header = (user: User) => {
             width={32}
             height={32}
           />
-          <Link href="/" className="text-lg font-bold ">
+          <div className="lg:hidden">
+            <div className="mr-2">
+              <HouseSelector />
+            </div>
+          </div>
+          <Link href="/" className="text-lg font-bold max-lg:hidden ">
             {SiteConfig.title}
           </Link>
         </div>
@@ -110,9 +115,6 @@ const Header = (user: User) => {
         <div className="flex flex-1 items-center justify-end space-x-4">
           {/* Mobile header */}
           <nav className="flex items-center space-x-1 lg:hidden">
-            <div className="mr-2">
-              <HouseSelector />
-            </div>
             <AuthButton />
             <ThemeToggle />
             <MobileDropdownMenu user={user} forceHouse />

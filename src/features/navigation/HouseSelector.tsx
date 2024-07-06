@@ -38,7 +38,9 @@ export const HouseSelector = () => {
           router.push(`/houses`);
         }}
       >
-        <SelectTrigger>{house?.name}</SelectTrigger>
+        <SelectTrigger>
+          <div className="line-clamp-1">{house?.name}</div>
+        </SelectTrigger>
         <SelectContent className="">
           {houses?.map((house) => (
             <SelectItem

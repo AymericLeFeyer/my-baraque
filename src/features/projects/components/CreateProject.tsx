@@ -15,13 +15,14 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import type { House } from "@prisma/client";
 import { Info } from "lucide-react";
 import { createProjectInHouse } from "@/features/projects/actions/create-project.action";
 import { useProjectsStore } from "@/features/projects/projects.store";
+import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 
-export function CreateProject({ house }: { house: House }) {
+export function CreateProject() {
   const { projects, setProjects } = useProjectsStore();
+  const { house } = useCurrentHouseStore();
 
   const createProjectSchema = z.object({
     name: z.string().min(3, {
@@ -44,6 +45,9 @@ export function CreateProject({ house }: { house: House }) {
   };
 
   function onSubmit(data: z.infer<typeof createProjectSchema>) {
+    if (house == null) {
+      return null;
+    }
     createProjectInHouse(house.id, data.name, data.description).then(
       (project) => {
         toast.success("Project created");
@@ -59,6 +63,10 @@ export function CreateProject({ house }: { house: House }) {
   }
 
   const router = useRouter();
+
+  if (house == null) {
+    return null;
+  }
 
   return (
     <>

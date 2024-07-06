@@ -25,7 +25,7 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
         className="flex gap-2"
       >
         <Trash size={16} />
-        Delete baraque
+        Delete
       </Button>
       <Dialog
         open={modalDeleteHouse}
