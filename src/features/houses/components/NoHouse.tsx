@@ -9,9 +9,11 @@ import { useUserStore } from "@/features/users/user.store";
 import { Dialog } from "@radix-ui/react-dialog";
 import { PendingInvitationsDialog } from "../invitations/components/PendingInvitationsDialog";
 import { usePendingsInvitationsStore } from "../invitations/pendings-invitations.store";
+import { Badge } from "@/components/ui/badge";
 
 export const NoHouse = () => {
-  const { setPendingInvitations } = usePendingsInvitationsStore();
+  const { pendingInvitations, setPendingInvitations } =
+    usePendingsInvitationsStore();
   const userApp = useUserStore((s) => s.userApp);
   const [pendingDialogOpen, setPendingDialogOpen] = useState(false);
 
@@ -37,7 +39,7 @@ export const NoHouse = () => {
             <Link
               key="/"
               href="/houses/new"
-              className="flex w-1/3 flex-col items-center justify-center rounded-xl bg-card p-12 transition-colors hover:bg-muted hover:text-primary"
+              className="flex w-[300px] flex-col items-center justify-center rounded-xl bg-card p-12 transition-colors hover:bg-muted hover:text-primary max-sm:w-full"
             >
               <HousePlus className="mb-2 size-12" />
               <p>
@@ -46,10 +48,17 @@ export const NoHouse = () => {
             </Link>
             or
             <div
-              className="flex w-1/3 cursor-pointer flex-col items-center justify-center rounded-xl bg-card p-12 transition-colors hover:bg-muted hover:text-primary"
+              className="flex w-[300px] cursor-pointer flex-col items-center justify-center rounded-xl bg-card p-12 transition-colors hover:bg-muted hover:text-primary max-sm:w-full"
               onClick={() => setPendingDialogOpen(true)}
             >
-              <HousePlus className="mb-2 size-12" />
+              <div className="relative">
+                {pendingInvitations.length > 0 && (
+                  <Badge className="absolute right-[-20px] top-[-15px]">
+                    {pendingInvitations.length}
+                  </Badge>
+                )}
+                <HousePlus className="mb-2 size-12" />
+              </div>
               <p>
                 <strong>Join</strong> a baraque
               </p>
