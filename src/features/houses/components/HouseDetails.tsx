@@ -42,12 +42,14 @@ import { LeaveHouse } from "./LeaveHouse";
 import { setOwner } from "../actions/set-owner.action";
 import { kickUser } from "../actions/kick-user.action";
 import { House } from "@prisma/client";
+import RouteLoading from "../../../../app/(dashboard-layout)/houses/loading";
 
 export const HouseDetails = () => {
   const router = useRouter();
   const [addUserDialogOpen, setAddUserDialogOpen] = useState(false);
   const [pendingDialogOpen, setPendingDialogOpen] = useState(false);
-  const { house, owner, users, setUsers, setHouse } = useCurrentHouseStore();
+  const { house, owner, users, setUsers, setHouse, isFetching, houses } =
+    useCurrentHouseStore();
   const { projects } = useProjectsStore();
   const userApp = useUserStore((s) => s.userApp);
 
@@ -75,7 +77,11 @@ export const HouseDetails = () => {
   }, [house]);
 
   if (house == null) {
-    return <NoHouse />;
+    if (houses?.length == 0) {
+      return <NoHouse />;
+    } else {
+      return <RouteLoading />;
+    }
   }
 
   return (

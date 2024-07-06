@@ -11,8 +11,7 @@ import { PendingInvitationsDialog } from "../invitations/components/PendingInvit
 import { usePendingsInvitationsStore } from "../invitations/pendings-invitations.store";
 
 export const NoHouse = () => {
-  const { setPendingInvitations, pendingInvitations } =
-    usePendingsInvitationsStore();
+  const { setPendingInvitations } = usePendingsInvitationsStore();
   const userApp = useUserStore((s) => s.userApp);
   const [pendingDialogOpen, setPendingDialogOpen] = useState(false);
 

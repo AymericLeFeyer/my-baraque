@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 type CurrentHouseState = {
   house: House | null;
-  houses: House[];
+  houses: House[] | null;
   owner: User | null;
   users: User[];
   setHouse: (house: House) => void;
@@ -11,13 +11,19 @@ type CurrentHouseState = {
   setOwner: (owner: User) => void;
   setUsers: (users: User[]) => void;
   deleteHouse: (houseId: string) => void;
+  isFetching: boolean;
+  setIsFetching: (isFetching: boolean) => void;
 };
 
 export const useCurrentHouseStore = create<CurrentHouseState>((set) => ({
   house: null,
-  houses: [],
+  houses: null,
   owner: null,
   users: [],
+  isFetching: false,
+  setIsFetching: (isFetching) => {
+    set({ isFetching });
+  },
   setHouse: (house) => {
     set({ house });
   },
@@ -32,11 +38,11 @@ export const useCurrentHouseStore = create<CurrentHouseState>((set) => ({
   },
   deleteHouse: (houseId) => {
     set((state) => ({
-      houses: state.houses.filter((house) => house.id !== houseId),
+      houses: state.houses?.filter((house) => house.id !== houseId),
     }));
     // House become the next one
     set((state) => ({
-      house: state.houses.find((house) => house.id !== houseId) || null,
+      house: state.houses?.find((house) => house.id !== houseId) || null,
     }));
   },
 }));

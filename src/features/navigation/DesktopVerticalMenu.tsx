@@ -23,6 +23,7 @@ import { useUserStore } from "../users/user.store";
 import { getUserById } from "../users/actions/get-user.action.action";
 import { HouseSelector } from "./HouseSelector";
 import { Badge } from "@/components/ui/badge";
+import { set } from "nprogress";
 
 export const DesktopVerticalMenu = ({
   className,
@@ -34,13 +35,13 @@ export const DesktopVerticalMenu = ({
   forceHouse: boolean;
 }) => {
   const currentPath = usePathname();
-  const { house, setHouse, setHouses, setOwner, setUsers } =
+  const { house, setHouse, setHouses, setOwner, setUsers, setIsFetching } =
     useCurrentHouseStore();
   const { projects, setProjects } = useProjectsStore();
   const { setUserAuth, setUserApp } = useUserStore();
-  const router = useRouter();
 
   useEffect(() => {
+    setIsFetching(true);
     setUserAuth(user);
 
     getUserById(user.id!).then((u) => {
@@ -55,6 +56,7 @@ export const DesktopVerticalMenu = ({
         }
       });
     }
+    setIsFetching(false);
   }, []);
 
   useEffect(() => {

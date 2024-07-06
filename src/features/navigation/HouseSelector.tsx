@@ -34,13 +34,13 @@ export const HouseSelector = () => {
         onOpenChange={(v) => setOpen(v)}
         open={open}
         onValueChange={(v) => {
-          setHouse(houses.find((h) => h.id == v)!);
+          setHouse(houses!.find((h) => h.id == v)!);
           router.push(`/houses`);
         }}
       >
         <SelectTrigger>{house?.name}</SelectTrigger>
         <SelectContent className="">
-          {houses.map((house) => (
+          {houses?.map((house) => (
             <SelectItem
               key={house.id}
               value={house.id}

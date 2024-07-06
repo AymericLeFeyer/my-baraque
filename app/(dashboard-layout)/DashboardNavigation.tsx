@@ -50,7 +50,7 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
     <HouseMandatoryNavigation content={MinifiedLayout(user, props.children)}>
       <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
         {/* Main container */}
-        <DesktopNavbar {...user} />
+        <DesktopNavbar user={user} showNavbar={true} />
         <div className="flex-1">
           {/* Header */}
           <Header {...user} />
@@ -64,7 +64,7 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
   );
 };
 
-const DesktopNavbar = (user: User) => {
+const DesktopNavbar = (props: { user: User; showNavbar: boolean }) => {
   return (
     <div className="flex size-full max-w-[240px] flex-col border-r border-border px-2 py-4 max-lg:hidden">
       <div className="flex items-center gap-2">
@@ -74,17 +74,17 @@ const DesktopNavbar = (user: User) => {
         </Link>
       </div>
       <div className="h-10" />
-      <DesktopVerticalMenu user={user} forceHouse />
+      {props.showNavbar && <DesktopVerticalMenu user={props.user} forceHouse />}
       <div className="flex-1" />
       <UserDropdown>
         <Button variant="outline" size="sm">
           <Avatar className="mr-2 size-6">
             <AvatarFallback>
-              {user.email ? user.email.slice(0, 2) : "??"}
+              {props.user.email ? props.user.email.slice(0, 2) : "??"}
             </AvatarFallback>
-            {user.image && <AvatarImage src={user.image} />}
+            {props.user.image && <AvatarImage src={props.user.image} />}
           </Avatar>
-          <span className="max-lg:hidden">{user.name}</span>
+          <span className="max-lg:hidden">{props.user.name}</span>
         </Button>
       </UserDropdown>
     </div>
@@ -134,10 +134,15 @@ const Header = (user: User) => {
 
 const MinifiedLayout = (user: User, children: ReactNode) => {
   return (
-    <div className="flex-1">
-      {/* Main container */}
-      <Header {...user} />
-      <div className="p-4">{children}</div>
-    </div>
+    <>
+      <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
+        <DesktopNavbar user={user} showNavbar={false} />
+        <div className="flex-1">
+          {/* Main container */}
+          <Header {...user} />
+          <div className="p-4">{children}</div>
+        </div>
+      </div>
+    </>
   );
 };

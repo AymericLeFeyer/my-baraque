@@ -45,13 +45,14 @@ export const MobileDropdownMenu = ({
 }) => {
   const [open, setOpen] = useState(false);
   const currentPath = usePathname();
-  const { house, setHouse, setHouses, setOwner, setUsers } =
+  const { house, setHouse, setHouses, setOwner, setUsers, setIsFetching } =
     useCurrentHouseStore();
   const { setProjects } = useProjectsStore();
   const { setUserAuth, setUserApp } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
+    setIsFetching(true);
     setUserAuth(user);
 
     getUserById(user.id!).then((u) => {
@@ -66,6 +67,7 @@ export const MobileDropdownMenu = ({
         }
       });
     }
+    setIsFetching(false);
   }, []);
 
   useEffect(() => {

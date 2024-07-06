@@ -49,7 +49,7 @@ export function CreateHouse() {
       close();
 
       setHouse(house);
-      setHouses(houses.concat(house));
+      setHouses(houses ? houses.concat(house) : [house]);
       setOwner(userApp!);
       setUsers([userApp!]);
     });
