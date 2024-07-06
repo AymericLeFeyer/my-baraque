@@ -13,6 +13,7 @@ import {
 import { UpdateProject } from "./UpdateProject";
 import { DeleteProject } from "./DeleteProject";
 import { ProjectDetails } from "./ProjectDetails";
+import { useRouter } from "next/navigation";
 
 export type ProjectPageProps = {
   projectId: string;
@@ -24,6 +25,7 @@ export const ProjectPage = (props: ProjectPageProps) => {
   const project = projects.find((p) => p.id === props.projectId);
   const userApp = useUserStore((s) => s.userApp);
   const [isOwner, setIsOwner] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (userApp != null && userApp.id == house?.ownerId) {
@@ -32,11 +34,11 @@ export const ProjectPage = (props: ProjectPageProps) => {
   }, [userApp, house]);
 
   if (!house) {
-    throw new Error("House not found");
+    return null;
   }
 
   if (!project) {
-    throw new Error("Project not found");
+    return router.push("/projects");
   }
 
   return (

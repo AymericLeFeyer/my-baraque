@@ -24,6 +24,8 @@ import { getUserById } from "../users/actions/get-user.action.action";
 import { HouseSelector } from "./HouseSelector";
 import { Badge } from "@/components/ui/badge";
 import { set } from "nprogress";
+import useTaskStore from "../tasks/tasks.store";
+import { getTaskNumber } from "../projects/actions/get-tasks-number.action";
 
 export const DesktopVerticalMenu = ({
   className,
@@ -37,9 +39,12 @@ export const DesktopVerticalMenu = ({
   const currentPath = usePathname();
   const { house, setHouse, setHouses, setOwner, setUsers, setIsFetching } =
     useCurrentHouseStore();
-  const { projects, setProjects } = useProjectsStore();
-  const { setUserAuth, setUserApp } = useUserStore();
+  const { projects, setProjects, setNumberOfTasks, numberOfTasks } =
+    useProjectsStore();
+  const { setUserAuth, setUserApp, userApp } = useUserStore();
+  const { tasks } = useTaskStore();
 
+  // Fetch user data
   useEffect(() => {
     setIsFetching(true);
     setUserAuth(user);
@@ -59,6 +64,7 @@ export const DesktopVerticalMenu = ({
     setIsFetching(false);
   }, []);
 
+  // Fetch projects data
   useEffect(() => {
     if (house == null) {
       return;
@@ -66,6 +72,7 @@ export const DesktopVerticalMenu = ({
 
     getProjectsFromHouse(house.id).then((projs) => {
       setProjects(projs);
+      refreshNumberTasks();
     });
 
     getUsersByHouse(house.id).then((users) => {
@@ -73,6 +80,19 @@ export const DesktopVerticalMenu = ({
       setOwner(users.find((u) => u.id === house.ownerId)!);
     });
   }, [house]);
+
+  // Set number of tasks for each project
+  useEffect(() => {
+    refreshNumberTasks();
+  }, [tasks]);
+
+  const refreshNumberTasks = () => {
+    projects.forEach((project) => {
+      getTaskNumber(project.id, userApp!.id).then((number) => {
+        setNumberOfTasks(project.id, number);
+      });
+    });
+  };
 
   return (
     <nav className={cn("flex flex-col gap-2", className)}>
@@ -131,22 +151,33 @@ export const DesktopVerticalMenu = ({
               <Link
                 href={`/projects/${project.id}`}
                 key={project.id}
-                className={cn("flex hover:text-primary p-1 rounded-sm group", {
-                  "text-primary  rounded-sm":
-                    currentPath === `/projects/${project.id}`,
-                })}
+                className={cn(
+                  "flex hover:text-primary p-1 rounded-sm group justify-between",
+                  {
+                    "text-primary  rounded-sm":
+                      currentPath === `/projects/${project.id}`,
+                  },
+                )}
               >
-                {cloneElement(<Folder />, {
-                  className: "h-3 w-3 mt-1",
-                })}
-                <Typography
-                  variant="muted"
-                  className={cn("px-2 group-hover:text-primary", {
-                    "text-primary": currentPath === `/projects/${project.id}`,
+                <div className="flex">
+                  {cloneElement(<Folder />, {
+                    className: "h-3 w-3 mt-1",
                   })}
-                >
-                  {project.name}
-                </Typography>
+                  <Typography
+                    variant="muted"
+                    className={cn("px-2 group-hover:text-primary", {
+                      "text-primary": currentPath === `/projects/${project.id}`,
+                    })}
+                  >
+                    {project.name}
+                  </Typography>
+                </div>
+                {numberOfTasks.get(project.id) != undefined &&
+                  numberOfTasks.get(project.id)! > 0 && (
+                    <Badge variant={"secondary"}>
+                      {numberOfTasks.get(project.id) ?? 0}
+                    </Badge>
+                  )}
               </Link>
             );
           })}

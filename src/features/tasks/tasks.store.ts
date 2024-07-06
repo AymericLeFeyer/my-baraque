@@ -10,6 +10,7 @@ type TaskStore = {
   setCompleted: (completed: boolean, task: Task) => void;
   editTask: (task: Task) => void;
   updateAssignee: (assigneeId: string, task: Task) => void;
+  removeTask: (task: Task) => void;
 };
 
 const useTaskStore = create<TaskStore>((set) => ({
@@ -39,6 +40,13 @@ const useTaskStore = create<TaskStore>((set) => ({
       const updatedTasks = state.tasks.map((t) =>
         t.id === task.id ? task : t,
       );
+      return { tasks: updatedTasks };
+    });
+  },
+
+  removeTask: (task) => {
+    set((state) => {
+      const updatedTasks = state.tasks.filter((t) => t.id !== task.id);
       return { tasks: updatedTasks };
     });
   },

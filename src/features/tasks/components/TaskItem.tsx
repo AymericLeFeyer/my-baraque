@@ -41,6 +41,7 @@ export const TaskItem = (props: TaskItemProps) => {
             checked={props.task.isComplete}
             onCheckedChange={(v) => {
               if (v == true) {
+                props.task.isComplete = true;
                 updateTask(props.task).then((updatedTask) => {
                   setCompleted(true, updatedTask);
                   if (updatedTask.nextTimeInDays !== null) {

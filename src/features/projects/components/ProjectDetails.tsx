@@ -49,6 +49,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
 
   // Get tasks from db
   useEffect(() => {
+    setTasks([]);
     const fetchTasks = async () => {
       const rawTasks = await getTasksByProjectId(props.project.id);
       setTasks(rawTasks);

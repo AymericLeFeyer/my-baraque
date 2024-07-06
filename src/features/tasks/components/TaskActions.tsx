@@ -25,7 +25,7 @@ export const TaskActions = (props: TaskActionsProps) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const { editTask } = useTaskStore();
+  const { editTask, removeTask } = useTaskStore();
 
   return (
     <>
@@ -94,6 +94,7 @@ export const TaskActions = (props: TaskActionsProps) => {
               variant="destructive"
               onClick={() => {
                 deleteTask(props.task.id);
+                removeTask(props.task);
                 setDeleteModalOpen(false);
               }}
             >
