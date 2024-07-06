@@ -14,6 +14,7 @@ import { UpdateProject } from "./UpdateProject";
 import { DeleteProject } from "./DeleteProject";
 import { ProjectDetails } from "./ProjectDetails";
 import { useRouter } from "next/navigation";
+import RouteLoading from "../../../../app/(dashboard-layout)/loading";
 
 export type ProjectPageProps = {
   projectId: string;
@@ -25,7 +26,6 @@ export const ProjectPage = (props: ProjectPageProps) => {
   const project = projects.find((p) => p.id === props.projectId);
   const userApp = useUserStore((s) => s.userApp);
   const [isOwner, setIsOwner] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     if (userApp != null && userApp.id == house?.ownerId) {
@@ -33,12 +33,8 @@ export const ProjectPage = (props: ProjectPageProps) => {
     }
   }, [userApp, house]);
 
-  if (!house) {
-    return null;
-  }
-
-  if (!project) {
-    return router.push("/projects");
+  if (!house || !project) {
+    return <RouteLoading />;
   }
 
   return (
