@@ -6,13 +6,13 @@ export default function manifest(): MetadataRoute.Manifest {
     name: SiteConfig.title,
     short_name: SiteConfig.title,
     description: SiteConfig.description,
-    start_url: "/",
+    start_url: "/houses",
     display: "standalone",
     background_color: "#fff",
     theme_color: SiteConfig.brand.primary,
     icons: [
       {
-        src: "/favicon.ico",
+        src: "/apple-icon.png",
         sizes: "any",
         type: "image/x-icon",
       },
