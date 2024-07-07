@@ -1,8 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { AuthButton } from "@/features/auth/AuthButton";
 import { SignInButton } from "@/features/auth/SignInButton";
-import { UserDropdown } from "@/features/auth/UserDropdown";
 import { ContactFeedbackPopover } from "@/features/contact/feedback/ContactFeedbackPopover";
 import {
   Layout,
@@ -15,14 +13,11 @@ import { auth } from "@/lib/auth/helper";
 import { SiteConfig } from "@/site-config";
 import Image from "next/image";
 import Link from "next/link";
-import type { PropsWithChildren, ReactNode } from "react";
-import { DesktopVerticalMenu } from "../../src/features/navigation/DesktopVerticalMenu";
+import type { PropsWithChildren } from "react";
 import { MobileDropdownMenu } from "../../src/features/navigation/MobileDropdownMenu";
 import { HouseSelector } from "@/features/navigation/HouseSelector";
-import { HouseMandatoryNavigation } from "./HouseMandatoryNavigation";
 import type { User } from "@prisma/client";
 import { BackButton } from "@/features/navigation/BackButton";
-import { useCurrentHouseStore } from "@/features/houses/current-house.store";
 import { DesktopNavbar } from "@/features/navigation/DesktopNavbar";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
@@ -41,8 +36,8 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
           <LayoutContent className="flex gap-4">
             <SignInButton />
             <Link href={"/"}>
-              <Button variant="secondary" size="sm">
-                Back to content
+              <Button variant="invert" size="sm">
+                Go back home
               </Button>
             </Link>
           </LayoutContent>

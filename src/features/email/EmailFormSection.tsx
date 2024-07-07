@@ -13,21 +13,19 @@ export const EmailFormSection = () => {
           variant="small"
           className="font-extrabold uppercase text-primary"
         >
-          Be the first to use Threader
+          Be alerted about news
         </Typography>
         <Typography variant="h2" className="text-center text-4xl lg:text-5xl">
-          Join the waiting list of{" "}
+          Join the newsletter of{" "}
           <span className="text-gradient bg-gradient-to-r from-orange-600 via-red-400 to-yellow-400 font-mono font-extrabold uppercase">
-            Threader
+            Baraque
           </span>
         </Typography>
-        <Typography variant="h3">
-          Get early access, exclusive content and more.
-        </Typography>
+
         <div className="mx-auto mt-6 w-full max-w-md">
           <EmailForm
             submitButtonLabel="Join"
-            successMessage="Thank you for joining the waiting list"
+            successMessage="Thank you for joining the newsletter"
           />
         </div>
       </div>
