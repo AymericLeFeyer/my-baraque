@@ -4,23 +4,18 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Typography } from "@/components/ui/typography";
 import {
   Folder,
-  FolderPlus,
   House,
-  HousePlus,
   Menu,
   MenuSquareIcon,
   ShoppingCart,
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { Fragment, cloneElement, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import type { User } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import { useCurrentHouseStore } from "../houses/current-house.store";
@@ -49,7 +44,6 @@ export const MobileDropdownMenu = ({
     useCurrentHouseStore();
   const { setProjects } = useProjectsStore();
   const { setUserAuth, setUserApp } = useUserStore();
-  const router = useRouter();
 
   useEffect(() => {
     setIsFetching(true);
