@@ -30,6 +30,8 @@ export default function RootLayout({
       <html lang="en" className="h-full" suppressHydrationWarning>
         <head>
           <PlausibleProvider domain={SiteConfig.domain} />
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/icons/apple-icon.png" />
         </head>
         <body
           suppressHydrationWarning
