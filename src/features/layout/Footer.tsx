@@ -7,7 +7,7 @@ import { Maker } from "../maker/Maker";
 export const Footer = () => {
   return (
     <footer className="bg-card">
-      <Layout className="mt-24 py-24">
+      <Layout className="mt-4 py-4">
         <LayoutContent className="flex justify-between max-lg:flex-col">
           <div className="flex flex-col gap-4">
             <div className="space-y-1">

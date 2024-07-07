@@ -12,9 +12,10 @@ import {
 import { Loader } from "@/components/ui/loader";
 import { Typography } from "@/components/ui/typography";
 import { useMutation } from "@tanstack/react-query";
-import { LayoutDashboard, LogOut, Settings } from "lucide-react";
+import { House, LayoutDashboard, LogOut, Settings } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { PropsWithChildren } from "react";
 
 export const UserDropdown = ({ children }: PropsWithChildren) => {
@@ -22,6 +23,7 @@ export const UserDropdown = ({ children }: PropsWithChildren) => {
     mutationFn: () => signOut(),
   });
   const session = useSession();
+  const router = useRouter();
 
   return (
     <DropdownMenu>
@@ -34,7 +36,7 @@ export const UserDropdown = ({ children }: PropsWithChildren) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/houses">
-            <LayoutDashboard className="mr-2 size-4" />
+            <House className="mr-2 size-4" />
             Baraques
           </Link>
         </DropdownMenuItem>

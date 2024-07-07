@@ -4,7 +4,6 @@ import { AuthButton } from "@/features/auth/AuthButton";
 import { SignInButton } from "@/features/auth/SignInButton";
 import { UserDropdown } from "@/features/auth/UserDropdown";
 import { ContactFeedbackPopover } from "@/features/contact/feedback/ContactFeedbackPopover";
-import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
 import {
   Layout,
   LayoutContent,
@@ -23,6 +22,8 @@ import { HouseSelector } from "@/features/navigation/HouseSelector";
 import { HouseMandatoryNavigation } from "./HouseMandatoryNavigation";
 import type { User } from "@prisma/client";
 import { BackButton } from "@/features/navigation/BackButton";
+import { useCurrentHouseStore } from "@/features/houses/current-house.store";
+import { DesktopNavbar } from "@/features/navigation/DesktopNavbar";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
   const user = await auth();
@@ -51,46 +52,17 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
   }
 
   return (
-    <HouseMandatoryNavigation content={MinifiedLayout(user, props.children)}>
-      <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
-        {/* Main container */}
-        <DesktopNavbar user={user} showNavbar={true} />
-        <div className="flex-1">
-          {/* Header */}
-          <Header user={user} />
-          {/* Content of the page */}
-          <main className="py-4 lg:max-h-[calc(100vh_-_64px)] lg:flex-1 lg:overflow-auto lg:py-8">
-            {props.children}
-          </main>
-        </div>
+    <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
+      {/* Main container */}
+      <DesktopNavbar user={user} />
+      <div className="flex-1">
+        {/* Header */}
+        <Header user={user} />
+        {/* Content of the page */}
+        <main className="py-4 lg:max-h-[calc(100vh_-_64px)] lg:flex-1 lg:overflow-auto lg:py-8">
+          {props.children}
+        </main>
       </div>
-    </HouseMandatoryNavigation>
-  );
-};
-
-const DesktopNavbar = (props: { user: User; showNavbar: boolean }) => {
-  return (
-    <div className="flex size-full max-w-[240px] flex-col border-r border-border px-2 py-4 max-lg:hidden">
-      <div className="ml-2 flex items-center gap-2">
-        <Image src={SiteConfig.appIcon} alt="app logo" width={24} height={24} />
-        <Link href="/houses" className="text-xl font-bold">
-          {SiteConfig.title}
-        </Link>
-      </div>
-      <div className="h-10" />
-      {props.showNavbar && <DesktopVerticalMenu user={props.user} forceHouse />}
-      <div className="flex-1" />
-      <UserDropdown>
-        <Button variant="outline" size="sm">
-          <Avatar className="mr-2 size-6">
-            <AvatarFallback>
-              {props.user.email ? props.user.email.slice(0, 2) : "??"}
-            </AvatarFallback>
-            {props.user.image && <AvatarImage src={props.user.image} />}
-          </Avatar>
-          <span className="max-lg:hidden">{props.user.name}</span>
-        </Button>
-      </UserDropdown>
     </div>
   );
 };
@@ -136,20 +108,5 @@ const Header = (props: { user: User | null }) => {
         </div>
       </div>
     </header>
-  );
-};
-
-const MinifiedLayout = (user: User, children: ReactNode) => {
-  return (
-    <>
-      <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
-        <DesktopNavbar user={user} showNavbar={false} />
-        <div className="flex-1">
-          {/* Main container */}
-          <Header user={user} />
-          <div className="p-4">{children}</div>
-        </div>
-      </div>
-    </>
   );
 };
