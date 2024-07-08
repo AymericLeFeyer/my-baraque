@@ -41,7 +41,7 @@
   ],
   "theme_color": "#2563eb",
   "background_color": "#FFFFFF",
-  "start_url": "/houses/",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "portrait"
 }
