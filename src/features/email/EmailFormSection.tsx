@@ -24,8 +24,8 @@ export const EmailFormSection = () => {
 
         <div className="mx-auto mt-6 w-full max-w-md">
           <EmailForm
-            submitButtonLabel="Join"
-            successMessage="Thank you for joining the newsletter"
+            submitButtonLabel="Rejoindre"
+            successMessage="Merci pour ton inscription !"
           />
         </div>
       </div>
