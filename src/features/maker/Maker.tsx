@@ -15,6 +15,7 @@ export const Maker = () => {
         <Typography variant="large">
           Créé par{" "}
           <Link
+            target="_blank"
             className="font-extrabold text-blue-500 hover:underline"
             href="https://aymeric.lefeyer.fr"
           >
@@ -22,6 +23,7 @@ export const Maker = () => {
           </Link>
         </Typography>
         <Link
+          target="_blank"
           href={SiteConfig.maker.youtube}
           className="text-xs text-muted-foreground transition-colors hover:text-foreground hover:underline"
         >
