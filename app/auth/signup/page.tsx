@@ -38,7 +38,7 @@ export default async function AuthSignInPage() {
       <div className="flex flex-1 items-center justify-center">
         <Card className="w-full max-w-md">
           <CardHeader className="flex flex-col items-center justify-center">
-            <CardTitle>Sign up</CardTitle>
+            <CardTitle>Inscris-toi</CardTitle>
           </CardHeader>
           <CardContent>
             <Suspense fallback={<Loader />}>
@@ -46,9 +46,9 @@ export default async function AuthSignInPage() {
             </Suspense>
 
             <Typography variant="small" className="mt-4">
-              You already have an account?{" "}
+              Tu as déjà un compte?{" "}
               <Typography variant="link" as={Link} href="/auth/signin">
-                Sign in
+                Connecte-toi
               </Typography>
             </Typography>
           </CardContent>

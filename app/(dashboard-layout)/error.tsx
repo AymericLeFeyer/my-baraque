@@ -21,17 +21,17 @@ export default function RouteError({ error, reset }: ErrorParams) {
   return (
     <Layout>
       <LayoutHeader>
-        <LayoutTitle>Error</LayoutTitle>
+        <LayoutTitle>Erreur</LayoutTitle>
       </LayoutHeader>
       <LayoutContent>
         <Card variant="error">
           <CardHeader>
             <CardTitle>
-              Sorry, something went wrong. Please try again later.
+              Désolé, une erreur est survenue. Retente ta chance ultérieurement.
             </CardTitle>
           </CardHeader>
           <CardFooter>
-            <Button onClick={reset}>Try again</Button>
+            <Button onClick={reset}>Réessayer</Button>
           </CardFooter>
         </Card>
       </LayoutContent>

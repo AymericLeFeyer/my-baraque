@@ -71,7 +71,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
                   <Input type="password" {...field} />
                 </FormControl>
@@ -90,7 +90,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
             setIsUsingCredentials(true);
           }}
         >
-          Use password
+          Utilise ton mot de passe
         </Typography>
       )}
 
@@ -100,7 +100,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
 
       {isUsingCredentials && (
         <Typography variant="small">
-          Forgot password ?{" "}
+          Mot de passe oublié ?{" "}
           <Typography
             variant="link"
             as="button"
@@ -109,7 +109,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
               setIsUsingCredentials(false);
             }}
           >
-            Login with magic link
+            Connecte-toi via ton email
           </Typography>
         </Typography>
       )}

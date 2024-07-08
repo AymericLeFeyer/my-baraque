@@ -44,7 +44,7 @@ export const SignUpCredentialsForm = () => {
   async function onSubmit(values: LoginCredentialsFormType) {
     if (values.password !== values.verifyPassword) {
       form.setError("verifyPassword", {
-        message: "Password does not match",
+        message: "Les mots de passe ne correspondent pas.",
       });
       return;
     }
@@ -65,7 +65,7 @@ export const SignUpCredentialsForm = () => {
         name="name"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Name</FormLabel>
+            <FormLabel>Nom</FormLabel>
             <FormControl>
               <Input placeholder="John Doe" {...field} />
             </FormControl>
@@ -91,7 +91,7 @@ export const SignUpCredentialsForm = () => {
         name="password"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Password</FormLabel>
+            <FormLabel>Mot de passe</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -104,7 +104,7 @@ export const SignUpCredentialsForm = () => {
         name="verifyPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Verify Password</FormLabel>
+            <FormLabel>Confirme ton mot de passe</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -114,7 +114,7 @@ export const SignUpCredentialsForm = () => {
       />
 
       <Button type="submit" className="w-full">
-        Submit
+        Envoyer
       </Button>
     </Form>
   );

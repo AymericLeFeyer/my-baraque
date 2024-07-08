@@ -22,7 +22,7 @@ export const SignInProviders = () => {
       <div className="flex flex-col gap-4">
         <Skeleton className="h-3 w-12" />
         <Skeleton className="h-9" />
-        <Divider>or</Divider>
+        <Divider>ou</Divider>
         <Skeleton className="h-11" />
       </div>
     );
@@ -51,16 +51,16 @@ export const SignInProviders = () => {
     <div className="flex flex-col gap-4">
       {providers.resend && !providers.credentials ? (
         <>
-          <Typography variant="small">Magic link ✨</Typography>
+          <Typography variant="small">Email ✨</Typography>
           <MagicLinkForm />
-          <Divider>or</Divider>
+          <Divider>ou</Divider>
         </>
       ) : null}
 
       {providers.credentials ? (
         <>
           <SignInCredentialsAndMagicLinkForm />
-          <Divider>or</Divider>
+          <Divider>ou</Divider>
         </>
       ) : null}
 
@@ -72,9 +72,9 @@ export const SignInProviders = () => {
 
       {providers.credentials ? (
         <Typography variant="small">
-          You don't have an account?{" "}
+          Pas encore de compte?{" "}
           <Typography variant="link" as={Link} href="/auth/signup">
-            Sign up
+            Inscris-toi
           </Typography>
         </Typography>
       ) : null}

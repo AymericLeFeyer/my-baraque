@@ -5,7 +5,7 @@ export default async function RouteLoading() {
   return (
     <Dialog open={true}>
       <DialogContent className="flex items-center justify-center bg-card px-4 py-8">
-        <DialogTitle>Loading...</DialogTitle>
+        <DialogTitle>Chargement...</DialogTitle>
         <Loader />
       </DialogContent>
     </Dialog>

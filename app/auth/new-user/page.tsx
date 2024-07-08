@@ -27,12 +27,14 @@ export default function NewUserPage(props: PageParams) {
       <Header />
       <Layout>
         <LayoutHeader>
-          <LayoutTitle>Successfully login</LayoutTitle>
-          <LayoutDescription>You can now use the app</LayoutDescription>
+          <LayoutTitle>Connecté</LayoutTitle>
+          <LayoutDescription>
+            Tu peux désormais utiliser Baraque !
+          </LayoutDescription>
         </LayoutHeader>
         <LayoutContent>
           <Link href="/" className={buttonVariants({ size: "lg" })}>
-            Get Started
+            Commencer
           </Link>
         </LayoutContent>
       </Layout>

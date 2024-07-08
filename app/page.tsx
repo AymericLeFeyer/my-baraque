@@ -19,24 +19,24 @@ export default function HomePage() {
         <FAQSection
           faq={[
             {
-              question: "What is Baraque?",
+              question: "Qu'est-ce que Baraque ?",
               answer:
-                "Baraque is a platform that allows you to create projects and tasks about your own house. You can create reschedulable tasks for your house yearly maintenance for example.",
+                "Baraque est une plateforme qui vous permet de créer des projets et des tâches pour votre maison. Vous pouvez créer des tâches récurrentes pour l'entretien annuel de votre maison, par exemple.",
             },
             {
-              question: "How many projects can I create?",
+              question: "Combien de projets puis-je créer ?",
               answer:
-                "You can create as many projects as you want. There is no limit to the number of projects you can create.",
+                "Vous pouvez créer autant de projets que vous le souhaitez. Il n'y a pas de limite au nombre de projets que vous pouvez créer.",
             },
             {
-              question: "How to know who needs to do what?",
+              question: "Comment savoir qui doit faire quoi ?",
               answer:
-                "Good question, you can assign tasks to your family members or roommates. They will receive a notification and an email to remind them of the task.",
+                "Bonne question ! Vous pouvez assigner des tâches à vos membres de famille ou colocataires. Ils recevront une notification et un email pour leur rappeler la tâche.",
             },
             {
-              question: "What is the price of Baraque?",
+              question: "Quel est le prix de Baraque ?",
               answer:
-                "Baraque is free to use. You can create as many projects as you want and assign as many tasks as you want. We are planning to add a premium plan in the future.",
+                "Baraque est gratuit. Vous pouvez créer autant de projets que vous le souhaitez et assigner autant de tâches que vous le souhaitez. Nous prévoyons d'ajouter un plan premium à l'avenir.",
             },
           ]}
         />

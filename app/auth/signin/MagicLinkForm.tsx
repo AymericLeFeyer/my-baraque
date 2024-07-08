@@ -55,7 +55,7 @@ export const MagicLinkForm = () => {
           )}
         />
         <LoadingButton loading={mutation.isPending} type="submit" size="sm">
-          Sign in
+          Se connecter
         </LoadingButton>
       </Form>
     </>

@@ -26,7 +26,7 @@ export default async function AuthErrorPage(props: PageParams<{}>) {
       <HeaderBase />
       <Layout>
         <LayoutHeader>
-          <LayoutTitle>Authentification Error</LayoutTitle>
+          <LayoutTitle>Erreur de connexion</LayoutTitle>
         </LayoutHeader>
         <LayoutContent>
           <Card variant="error">
@@ -36,7 +36,7 @@ export default async function AuthErrorPage(props: PageParams<{}>) {
             </CardHeader>
             <CardFooter className="flex items-center gap-2">
               <Link href="/" className={buttonVariants({ size: "sm" })}>
-                Home
+                Accueil
               </Link>
               <ContactSupportDialog />
             </CardFooter>

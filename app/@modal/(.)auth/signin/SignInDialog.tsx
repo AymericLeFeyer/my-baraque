@@ -10,7 +10,7 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { SignInProviders } from "../../../auth/signin/SignInProviders";
 
-export  function SignInDialog() {
+export function SignInDialog() {
   const router = useRouter();
   const path = usePathname();
 
@@ -26,7 +26,7 @@ export  function SignInDialog() {
       <DialogContent className="bg-card">
         <DialogHeader className="flex flex-col items-center justify-center gap-2">
           <LogoSvg />
-          <DialogTitle>Sign in to your account</DialogTitle>
+          <DialogTitle>Connecte-toi</DialogTitle>
         </DialogHeader>
         <SignInProviders />
       </DialogContent>

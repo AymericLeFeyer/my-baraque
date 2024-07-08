@@ -30,14 +30,14 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
         <Layout>
           <LayoutHeader>
             <LayoutTitle>
-              Sorry, you need to be authenticated to access this resource.
+              Tu dois être authentifié pour accéder à cette ressource.
             </LayoutTitle>
           </LayoutHeader>
           <LayoutContent className="flex gap-4">
             <SignInButton />
             <Link href={"/"}>
               <Button variant="invert" size="sm">
-                Go back home
+                Retourner à l'accueil
               </Button>
             </Link>
           </LayoutContent>
