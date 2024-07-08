@@ -32,8 +32,8 @@ export const Video = () => {
         <iframe
           width={screenWidth}
           height={screenHeight}
-          src="https://www.youtube.com/embed/kFRf-h4eMb4?si=ZqYTULYfdb7OQQVj"
-          title="Baraque Trailer"
+          src="https://www.youtube.com/embed/Z0C9oIXlla4?si=zahqe5xUTQthhOaG"
+          title="Baraque - Organise tes tâches domestique"
           allowFullScreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
