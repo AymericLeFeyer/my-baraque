@@ -12,7 +12,7 @@ export const VerifyEmailButton = () => {
       toast.error(serverError);
     },
     onSuccess: () => {
-      toast.success("Email sent");
+      toast.success("Email envoyé");
     },
   });
   return (
@@ -24,7 +24,7 @@ export const VerifyEmailButton = () => {
     >
       {status === "hasErrored" ? <X size={16} className="mr-2" /> : null}
       {status === "hasSucceeded" ? <Check size={16} className="mr-2" /> : null}
-      Verify Email
+      Verification Email
     </LoadingButton>
   );
 };

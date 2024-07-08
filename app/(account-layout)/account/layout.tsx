@@ -11,9 +11,9 @@ export default async function RouteLayout(props: LayoutParams<{}>) {
     <>
       {isEmailNotVerified ? (
         <Alert className="mb-4">
-          <AlertTitle>Email not verified</AlertTitle>
+          <AlertTitle>Email non vérifié</AlertTitle>
           <AlertDescription>
-            Please verify your email to access your account.
+            Merci de vérifier ton email pour accéder à ton compte.
           </AlertDescription>
           <VerifyEmailButton />
         </Alert>

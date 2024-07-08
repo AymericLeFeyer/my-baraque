@@ -16,11 +16,11 @@ export default function DeleteProfilePage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Delete your profile</CardTitle>
+        <CardTitle>Supprime ton profil</CardTitle>
         <CardDescription>
-          Deleting your account means that all your personal data will be
-          permanently erased and your ongoing subscription will be terminated.
-          Please be aware that this action is irreversible.
+          Supprimer ton compte signifie que toutes tes données personnelles
+          seront définitivement effacées et que ton abonnement en cours sera
+          résilié. Veuillez noter que cette action est irréversible.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -28,19 +28,19 @@ export default function DeleteProfilePage() {
           variant="destructive"
           onClick={() => {
             enqueueDialog({
-              title: "Delete your profile",
-              description: "Are you sure you want to delete your profile?",
+              title: "Supprime ton profil",
+              description: "Es-tu sûr de vouloir supprimer ton profil ?",
               action: {
                 label: "Delete",
                 onClick: async () => {
                   await deleteAccountAction(null);
-                  toast.success("Your profile has been deleted.");
+                  toast.success("Ton profil a été supprimé.");
                 },
               },
             });
           }}
         >
-          Delete
+          Supprimer
         </Button>
       </CardContent>
     </Card>

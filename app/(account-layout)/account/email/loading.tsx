@@ -11,9 +11,10 @@ export default function PageLoading() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Mail settings</CardTitle>
+        <CardTitle>Paramètres des mails</CardTitle>
         <CardDescription>
-          Update your email notifications settings to match your preferences.
+          Mets à jour les paramètres de tes notifications par email pour qu'ils
+          correspondent à tes préférences.
         </CardDescription>
       </CardHeader>
       <CardContent>

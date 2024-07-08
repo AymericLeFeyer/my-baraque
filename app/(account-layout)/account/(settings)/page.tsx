@@ -39,7 +39,7 @@ export default async function EditProfilePage() {
         <>
           <Card>
             <CardHeader>
-              <CardTitle>Change Password</CardTitle>
+              <CardTitle>Changer le mot de passe</CardTitle>
             </CardHeader>
             <CardContent>
               <EditPasswordForm />

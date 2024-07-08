@@ -5,7 +5,7 @@ export default function PageLoading() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit your profile</CardTitle>
+        <CardTitle>Modifie ton profil</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
         <Skeleton className="h-8 w-full" />

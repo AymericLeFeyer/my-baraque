@@ -47,19 +47,19 @@ export const editPasswordAction = authAction(
     });
 
     if (input.newPassword !== input.confirmPassword) {
-      throw new ActionError("Passwords do not match");
+      throw new ActionError("Les mots de passe ne correspondent pas");
     }
 
     if (
       hashStringWithSalt(input.currentPassword, env.NEXTAUTH_SECRET) !==
       passwordHash
     ) {
-      throw new ActionError("Invalid current password");
+      throw new ActionError("Le mot de passe actuel est incorrect");
     }
 
     if (!validatePassword(input.newPassword)) {
       throw new ActionError(
-        "Invalid new password. Must be at least 8 characters, and contain at least one letter and one number",
+        "Nouveau mot de passe invalide. Doit contenir au moins 8 caractères, et contenir au moins une lettre et un chiffre",
       );
     }
 

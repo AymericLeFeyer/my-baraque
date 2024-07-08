@@ -27,7 +27,7 @@ export const EditPasswordForm = () => {
       toast.error(serverError);
       return;
     }
-    toast.success("Password updated");
+    toast.success("Mot de passe actualisé");
   };
 
   return (
@@ -41,7 +41,7 @@ export const EditPasswordForm = () => {
         name="currentPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Current Password</FormLabel>
+            <FormLabel>Mot de passe actuel</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -55,7 +55,7 @@ export const EditPasswordForm = () => {
         name="newPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>New Password</FormLabel>
+            <FormLabel>Nouveau mot de passe</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -69,7 +69,7 @@ export const EditPasswordForm = () => {
         name="confirmPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Confirm new Password</FormLabel>
+            <FormLabel>Confirme le mot de passe</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -79,7 +79,7 @@ export const EditPasswordForm = () => {
         )}
       />
 
-      <SubmitButton className="w-fit self-end">Save</SubmitButton>
+      <SubmitButton className="w-fit self-end">Sauvegarder</SubmitButton>
     </Form>
   );
 };
