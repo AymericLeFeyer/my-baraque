@@ -1,6 +1,7 @@
 "use client";
 
 import { EmailFormSection } from "@/features/email/EmailFormSection";
+import { CTASectionCard } from "@/features/landing/cta/CTACardSection";
 import { FAQSection } from "@/features/landing/FAQSection";
 import { LandingHeader } from "@/features/landing/LandingHeader";
 import { SectionDivider } from "@/features/landing/SectionDivider";
@@ -16,6 +17,8 @@ export default function HomePage() {
         <LandingHeader />
 
         <Video />
+
+        <CTASectionCard />
 
         <FAQSection
           faq={[
