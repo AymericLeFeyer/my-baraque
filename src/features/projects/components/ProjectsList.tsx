@@ -27,14 +27,14 @@ export const ProjectsList = (props: ProjectsListProps) => {
   return (
     <Layout>
       <LayoutHeader className="flex flex-row justify-between">
-        <LayoutTitle>Projects</LayoutTitle>
+        <LayoutTitle>Projets</LayoutTitle>
         <Button
           variant="outline"
           onClick={() => router.push(`/projects/new`)}
           className="flex gap-2 "
         >
           <FolderPlus size={24} />
-          <p className="font-bold">Create project</p>
+          <p className="font-bold">Créer un projet</p>
         </Button>
       </LayoutHeader>
       <LayoutContent>

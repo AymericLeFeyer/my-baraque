@@ -26,7 +26,7 @@ export function CreateProject() {
 
   const createProjectSchema = z.object({
     name: z.string().min(3, {
-      message: "Project name must be at least 3 characters long",
+      message: "Le nom du projet doit comporter au moins 3 caractères.",
     }),
     description: z.string().optional(),
   });
@@ -50,7 +50,7 @@ export function CreateProject() {
     }
     createProjectInHouse(house.id, data.name, data.description).then(
       (project) => {
-        toast.success("Project created");
+        toast.success("Projet créé");
         setProjects([...projects, project]);
         form.reset();
         close();
@@ -78,13 +78,13 @@ export function CreateProject() {
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Create a new project in{" "}
+            Créé un nouveau projet dans{" "}
             <span className="text-primary">{house.name}</span>
           </DialogTitle>
 
           <div className="flex items-center gap-2 text-muted-foreground">
             <Info className="size-5" />
-            <p className="text-sm ">A project is a bundle of tasks ...</p>
+            <p className="text-sm ">Un projet est un ensemble de tâches ...</p>
           </div>
 
           <Form form={form} onSubmit={onSubmit} className="flex flex-col gap-2">
@@ -94,7 +94,7 @@ export function CreateProject() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl autoFocus={true}>
-                    <Input placeholder="Name" {...field} />
+                    <Input placeholder="Nom" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,7 +107,7 @@ export function CreateProject() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Description ?"
+                      placeholder="Description"
                       {...field}
                       value={field.value ?? ""}
                     />
@@ -117,7 +117,7 @@ export function CreateProject() {
               )}
             ></FormField>
             <Button type="submit" className="mt-4">
-              Create Project
+              Créer
             </Button>
           </Form>
         </DialogContent>

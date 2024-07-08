@@ -42,7 +42,7 @@ export const UserDropdown = ({ children }: PropsWithChildren) => {
         <DropdownMenuItem asChild>
           <Link href="/account">
             <Settings className="mr-2 size-4" />
-            Settings
+            Paramètres
           </Link>
         </DropdownMenuItem>
 
@@ -61,7 +61,7 @@ export const UserDropdown = ({ children }: PropsWithChildren) => {
             ) : (
               <LogOut className="mr-2 size-4" />
             )}
-            <span>Logout</span>
+            <span>Se déconnecter</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

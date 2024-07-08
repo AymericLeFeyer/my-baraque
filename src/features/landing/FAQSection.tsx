@@ -30,7 +30,7 @@ export const FAQSection = (props: FeaturesPreviewProps) => {
           FAQ
         </Typography>
         <Typography variant="h2" className="text-5xl">
-          Frequently Asked Questions
+          Foire Aux Questions
         </Typography>
       </div>
       <div className="flex-1">

@@ -16,7 +16,6 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
-import { addUserInHouse } from "../actions/add-user-in-house.action";
 import { useCurrentHouseStore } from "../current-house.store";
 import { useUserStore } from "@/features/users/user.store";
 import { inviteUser } from "../invitations/actions/invite-user.action";
@@ -41,7 +40,7 @@ export function AddUser() {
 
   function onSubmit(data: z.infer<typeof addUserSchema>) {
     if (pendingInvitations.some((i) => i.email === data.email)) {
-      toast.error("User already invited");
+      toast.error("L'utilisateur a déjà été invité");
       return;
     }
     inviteUser(data.email, house!, user!).then((invitation) => {
@@ -49,7 +48,7 @@ export function AddUser() {
       sendEmailToUser(data.email, house!.name, user!.name!);
       addPendingInvitation(invitation);
     });
-    toast.success("User invited");
+    toast.success("Utilisateur invité");
     close();
   }
 
@@ -69,14 +68,14 @@ export function AddUser() {
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Invite a new <span className="text-primary">user</span>
+            Invite un nouvel <span className="text-primary">utilisateur</span>
           </DialogTitle>
 
           <div className="flex items-center gap-2 text-muted-foreground">
             <Info className="size-5" />
             <p className="text-sm ">
-              This user will be able to see all projects and tasks in your
-              house.
+              Cet utilisateur pourra voir tous les projets et tâches dans ta
+              maison.
             </p>
           </div>
 
@@ -94,7 +93,7 @@ export function AddUser() {
               )}
             ></FormField>
             <Button type="submit" className="mt-4">
-              Invite user
+              Inviter
             </Button>
           </Form>
         </DialogContent>

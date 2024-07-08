@@ -27,7 +27,7 @@ export function CreateHouse() {
 
   const createHouseSchema = z.object({
     name: z.string().min(3, {
-      message: "House name must be at least 3 characters long",
+      message: "Le nom de la baraque doit comporter au moins 3 caractères.",
     }),
   });
 
@@ -43,7 +43,7 @@ export function CreateHouse() {
       if (!house) {
         return;
       }
-      toast.success("House created");
+      toast.success("Baraque créée");
       form.reset();
 
       close();
@@ -71,12 +71,12 @@ export function CreateHouse() {
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Create a new <span className="text-primary">baraque</span>
+            Créé une nouvelle <span className="text-primary">baraque</span>
           </DialogTitle>
 
           <div className="flex items-center gap-2 text-muted-foreground">
             <Info className="size-5" />
-            <p className="text-sm ">A baraque is a bundle of projects</p>
+            <p className="text-sm ">Une baraque est un ensemble de projets</p>
           </div>
 
           <Form form={form} onSubmit={onSubmit} className="flex flex-col gap-2">
@@ -93,7 +93,7 @@ export function CreateHouse() {
               )}
             ></FormField>
             <Button type="submit" className="mt-4">
-              Create House
+              Créer
             </Button>
           </Form>
         </DialogContent>

@@ -13,10 +13,10 @@ export const EmailFormSection = () => {
           variant="small"
           className="font-extrabold uppercase text-primary"
         >
-          Be alerted about news
+          Sois alerté(e) des nouveautés
         </Typography>
         <Typography variant="h2" className="text-center text-4xl lg:text-5xl">
-          Join the newsletter of{" "}
+          Rejoins la newsletter de{" "}
           <span className="text-gradient bg-gradient-to-r from-orange-600 via-red-400 to-yellow-400 font-mono font-extrabold uppercase">
             Baraque
           </span>

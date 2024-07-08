@@ -26,14 +26,14 @@ export const DeleteProject = (props: DeleteProjectProps) => {
         onClick={() => setModalDeleteProject(true)}
       >
         <Trash size={16} />
-        Delete
+        Supprimer
       </Button>
       <Dialog
         open={modalDeleteProject}
         onOpenChange={(a) => setModalDeleteProject(a)}
       >
         <DialogContent>
-          <h1>Are you sure you want to delete this project?</h1>
+          <h1>Es-tu sûr de vouloir supprimer ce projet ?</h1>
           <div className="flex gap-2">
             <Button
               variant="destructive"
@@ -44,13 +44,13 @@ export const DeleteProject = (props: DeleteProjectProps) => {
                 router.push(`/houses`);
               }}
             >
-              Delete
+              Supprimer
             </Button>
             <Button
               variant="secondary"
               onClick={() => setModalDeleteProject(false)}
             >
-              Cancel
+              Annuler
             </Button>
           </div>
         </DialogContent>

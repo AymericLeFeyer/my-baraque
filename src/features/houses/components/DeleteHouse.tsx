@@ -25,14 +25,14 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
         className="flex gap-2"
       >
         <Trash size={16} />
-        Delete
+        Supprimer
       </Button>
       <Dialog
         open={modalDeleteHouse}
         onOpenChange={(a) => setModalDeleteHouse(a)}
       >
         <DialogContent>
-          <h1>Are you sure you want to delete this baraque?</h1>
+          <h1>Es-tu sûr(e) de vouloir supprimer cette baraque ?</h1>
           <div className="flex gap-2">
             <Button
               variant="secondary"
@@ -40,7 +40,7 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
                 setModalDeleteHouse(false);
               }}
             >
-              Cancel
+              Annuler
             </Button>
             <Button
               variant="destructive"
@@ -52,7 +52,7 @@ export const DeleteHouse = (props: DeleteHouseProps) => {
                 });
               }}
             >
-              Delete
+              Supprimer
             </Button>
           </div>
         </DialogContent>

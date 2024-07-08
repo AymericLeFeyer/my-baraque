@@ -116,7 +116,7 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
               )}
             />
             <Button type="submit" variant="outline">
-              Send
+              Envoyer
             </Button>
           </div>
         </Form>
@@ -129,22 +129,22 @@ const ReviewInputItems = [
   {
     value: "1",
     icon: Angry,
-    tooltip: "Extremely Dissatisfied",
+    tooltip: "Extrêmement mécontent",
   },
   {
     value: "2",
     icon: Frown,
-    tooltip: "Somewhat Dissatisfied",
+    tooltip: "Quelque peu mécontent",
   },
   {
     value: "3",
     icon: Meh,
-    tooltip: "Neutral",
+    tooltip: "Neutre",
   },
   {
     value: "4",
     icon: SmilePlus,
-    tooltip: "Satisfied",
+    tooltip: "Satisfait",
   },
 ];
 

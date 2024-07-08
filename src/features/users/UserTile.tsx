@@ -25,7 +25,7 @@ export const UserTile = (props: { user: User | null; concise: boolean }) => {
               <UserIcon size={16} />
             </AvatarFallback>
           </Avatar>
-          <p>No assignee</p>
+          <p>Pas de responsable</p>
         </>
       )}
     </div>

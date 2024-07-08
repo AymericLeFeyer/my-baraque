@@ -63,7 +63,7 @@ export const HouseSelector = () => {
           >
             <Mail className="size-4 pl-1 " />
             <Typography className="flex h-8 grow items-center gap-2 rounded-md px-2  text-sm  ">
-              Check invitations
+              Vérifier les invitations
             </Typography>
             {pendingInvitations.length > 0 && (
               <Badge className="mr-2">{pendingInvitations.length}</Badge>
@@ -85,7 +85,7 @@ export const HouseSelector = () => {
           >
             <HousePlus className="size-4 pl-1 " />
             <Typography className="flex h-8 items-center gap-2 rounded-md px-2 text-sm    ">
-              New baraque
+              Nouvelle baraque
             </Typography>
           </Link>
         </SelectContent>

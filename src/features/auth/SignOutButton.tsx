@@ -23,7 +23,7 @@ export const SignOutButton = () => {
       ) : (
         <LogOut className="mr-2 size-4" />
       )}
-      Logout
+      Se déconnecter
     </Button>
   );
 };

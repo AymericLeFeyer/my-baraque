@@ -47,7 +47,7 @@ export const UpdateProject = (props: UpdateProjectProps) => {
       }
 
       if (data) {
-        toast.success("Project updated");
+        toast.success("Projet mis à jour");
         setModalUpdateProject(false);
         updateProject(data.id, data);
         router.refresh();
@@ -61,7 +61,7 @@ export const UpdateProject = (props: UpdateProjectProps) => {
         onClick={() => setModalUpdateProject(true)}
       >
         <Pen size={16} />
-        Update
+        Modifier
       </Button>
       <Dialog
         open={modalUpdateProject}
@@ -69,7 +69,7 @@ export const UpdateProject = (props: UpdateProjectProps) => {
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Let's update{" "}
+            Modifications de{" "}
             <span className="text-primary">{props.project.name}</span>
           </DialogTitle>
           <div className="flex gap-2">
@@ -84,7 +84,7 @@ export const UpdateProject = (props: UpdateProjectProps) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Project title</FormLabel>
+                    <FormLabel>Titre</FormLabel>
                     <FormControl>
                       <Input {...field} value={field.value ?? ""} />
                     </FormControl>
@@ -96,7 +96,7 @@ export const UpdateProject = (props: UpdateProjectProps) => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Project description</FormLabel>
+                    <FormLabel>Description</FormLabel>
                     <FormControl>
                       <Input {...field} value={field.value ?? ""} />
                     </FormControl>
@@ -105,7 +105,9 @@ export const UpdateProject = (props: UpdateProjectProps) => {
               ></FormField>
 
               <SubmitButton>
-                {updateHouseMutation.isPending ? "Updating..." : "Update"}
+                {updateHouseMutation.isPending
+                  ? "Modifications en cours..."
+                  : "Modifié"}
               </SubmitButton>
             </Form>
           </div>

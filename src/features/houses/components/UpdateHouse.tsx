@@ -56,7 +56,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
       }
 
       if (data) {
-        toast.success("House updated");
+        toast.success("Baraque modifiée");
         setModalUpdateHouse(false);
         setHouse(data);
         router.refresh();
@@ -68,7 +68,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
     <>
       <Button className="flex gap-2" onClick={() => setModalUpdateHouse(true)}>
         <Pen size={16} />
-        Update
+        Modifier
       </Button>
       <Dialog
         open={modalUpdateHouse}
@@ -76,7 +76,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Let's update{" "}
+            Modifications de{" "}
             <span className="text-primary">{props.house.name}</span>
           </DialogTitle>
           <div className="flex gap-2">
@@ -91,7 +91,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Baraque name</FormLabel>
+                    <FormLabel>Nom de la baraque</FormLabel>
                     <FormControl>
                       <Input {...field} value={field.value ?? ""} />
                     </FormControl>
@@ -103,7 +103,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
                 name="ownerId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Owner</FormLabel>
+                    <FormLabel>Propriétaire</FormLabel>
                     <Select
                       onValueChange={(v) => {
                         form.setValue("ownerId", v);
@@ -117,7 +117,7 @@ export const UpdateHouse = (props: UpdateHouseProps) => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectLabel>Pick a new owner</SelectLabel>
+                          <SelectLabel>Change le propriétaire</SelectLabel>
                           {users.map((user) => (
                             <SelectItem key={user.id} value={user.id}>
                               <UserTile concise={false} user={user} />{" "}

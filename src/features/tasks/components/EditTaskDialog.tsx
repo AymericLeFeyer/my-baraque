@@ -31,7 +31,7 @@ import useTaskStore from "../tasks.store";
 
 export const editTaskSchema = z.object({
   title: z.string().min(3, {
-    message: "Task title must be at least 3 characters long",
+    message: "Le titre de la tâche doit comporter au moins 3 caractères.",
   }),
   content: z.string().optional(),
   nextTimeInDays: z.number().optional(),
@@ -58,7 +58,7 @@ export function EditTaskDialog({
   function onSubmit(data: z.infer<typeof editTaskSchema>) {
     edit(task.id, data.title, data.content, data.nextTimeInDays).then(
       (task) => {
-        toast.success("Task updated");
+        toast.success("Tâche modifiée");
         editTask(task);
         close();
       },
@@ -84,7 +84,7 @@ export function EditTaskDialog({
     <>
       <DialogContent className="items-center justify-center bg-card  py-8">
         <DialogTitle className="text-xl">
-          Update <span className="text-primary">{task.title}</span>
+          Modifications de <span className="text-primary">{task.title}</span>
         </DialogTitle>
 
         <Form form={form} onSubmit={onSubmit} className="flex flex-col gap-2">
@@ -94,7 +94,7 @@ export function EditTaskDialog({
             render={({ field }) => (
               <FormItem>
                 <FormControl autoFocus={true}>
-                  <Input placeholder="Title" {...field} />
+                  <Input placeholder="Titre" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,7 +107,7 @@ export function EditTaskDialog({
               <FormItem>
                 <FormControl>
                   <Input
-                    placeholder="Content ?"
+                    placeholder="Contenu ?"
                     {...field}
                     value={field.value ?? ""}
                   />
@@ -121,7 +121,7 @@ export function EditTaskDialog({
               checked={isScheduledTask}
               onCheckedChange={(v) => setIsScheduledTask(v as boolean)}
             ></Checkbox>
-            <p>Scheduled task ?</p>
+            <p>Tâche programmée ?</p>
           </div>
           {isScheduledTask && (
             <div className="rounded-xl border-2 border-dashed p-2">
@@ -130,7 +130,7 @@ export function EditTaskDialog({
                 name="nextTimeInDays"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select the period</FormLabel>
+                    <FormLabel>Choisis une période</FormLabel>
                     <Select
                       onValueChange={(value) => {
                         field.onChange(parseInt(value, 10));
@@ -141,7 +141,7 @@ export function EditTaskDialog({
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Period before next creation ?" />
+                          <SelectValue placeholder="Temps avant la prochaine création ?" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -156,9 +156,9 @@ export function EditTaskDialog({
                       </SelectContent>
                     </Select>
                     <br />
-                    <FormLabel>Custom number of days</FormLabel>
+                    <FormLabel>Nombre de jours personnalisé ?</FormLabel>
                     <Input
-                      placeholder="Number of days"
+                      placeholder="Nombre de jours"
                       {...field}
                       type="number"
                       onChange={(e) => {
@@ -179,7 +179,7 @@ export function EditTaskDialog({
           )}
 
           <Button type="submit" className="mt-4">
-            Edit Task
+            Modifier
           </Button>
         </Form>
       </DialogContent>

@@ -29,10 +29,10 @@ export const NoHouse = () => {
   return (
     <>
       <Layout>
-        <LayoutTitle>Welcome in Baraque !</LayoutTitle>
+        <LayoutTitle>Bienvenue dans Baraque !</LayoutTitle>
         <LayoutContent>
           <Typography variant={"lead"}>
-            In baraque, you need to have a "baraque" to start your adventure
+            Ici, tu dois posséder une "baraque" pour commencer ton aventure.
           </Typography>
 
           <div className="mt-12  flex items-center justify-center gap-4 max-lg:flex-col">
@@ -43,7 +43,7 @@ export const NoHouse = () => {
             >
               <HousePlus className="mb-2 size-12" />
               <p>
-                <strong>Create</strong> a baraque
+                <strong>Créer</strong> une baraque
               </p>
             </Link>
             or
@@ -60,7 +60,7 @@ export const NoHouse = () => {
                 <HousePlus className="mb-2 size-12" />
               </div>
               <p>
-                <strong>Join</strong> a baraque
+                <strong>Rejoindre</strong> une baraque
               </p>
             </div>
           </div>

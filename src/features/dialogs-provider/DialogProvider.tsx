@@ -51,7 +51,7 @@ const useDialogStore = create<DialogStore>((set, get) => ({
                 removeDialog(id);
               })
               .catch((e) => {
-                toast.error("Some error occurred", {
+                toast.error("Une erreur est survenue", {
                   description: e.message,
                 });
               });

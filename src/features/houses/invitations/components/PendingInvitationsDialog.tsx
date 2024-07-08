@@ -28,15 +28,15 @@ export const PendingInvitationsDialog = (
   return (
     <DialogContent className="items-center justify-center bg-card  py-8">
       <DialogTitle className="text-xl">
-        Join a new <span className="text-primary">baraque</span>
+        Rejoindre une nouvelle <span className="text-primary">baraque</span>
       </DialogTitle>
       <div className="flex items-center gap-2 text-muted-foreground">
         <Info className="size-5" />
-        <p className="text-sm "> Ask your friends to invite you.</p>
+        <p className="text-sm "> Demande à quelqu'un de t'inviter.</p>
       </div>
       <Divider />
       {pendingInvitations.length === 0 && (
-        <Typography variant="lead">No pending invitations</Typography>
+        <Typography variant="lead">Pas d'invitations en attente</Typography>
       )}
       <div>
         {pendingInvitations.map((invitation) => (
@@ -50,7 +50,7 @@ export const PendingInvitationsDialog = (
                 answerInvitation(invitation.id, userApp, true).then((house) => {
                   removePendingInvitation(invitation.id);
                   setHouse(house!);
-                  toast.success("Invitation accepted");
+                  toast.success("Invitation acceptée");
                 })
               }
             />
@@ -59,7 +59,7 @@ export const PendingInvitationsDialog = (
               onClick={() =>
                 answerInvitation(invitation.id, userApp, false).then(() => {
                   removePendingInvitation(invitation.id);
-                  toast.success("Invitation declined");
+                  toast.success("Invitation refusée");
                 })
               }
             />

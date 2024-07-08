@@ -32,7 +32,7 @@ import { useUserStore } from "@/features/users/user.store";
 
 export const createTaskSchema = z.object({
   title: z.string().min(3, {
-    message: "Task title must be at least 3 characters long",
+    message: "Le titre de la tâche doit comporter au moins 3 caractères.",
   }),
   content: z.string().optional(),
   nextTimeInDays: z.number().optional(),
@@ -67,7 +67,7 @@ export function CreateTaskDialog({
       data.nextTimeInDays,
       userApp?.id,
     ).then((task) => {
-      toast.success("Task created");
+      toast.success("Tâche créée");
       addTaskCallback(task);
       form.reset();
       close();
@@ -92,7 +92,7 @@ export function CreateTaskDialog({
         className="flex gap-2 "
       >
         <ListPlus size={24} />
-        <p className="font-bold">Add task</p>
+        <p className="font-bold">Nouvelle tâche</p>
       </Button>
       <Dialog
         open={showNewTaskModal}
@@ -102,7 +102,7 @@ export function CreateTaskDialog({
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Create a new task in{" "}
+            Création de tâche dans{" "}
             <span className="text-primary">{project.name}</span>
           </DialogTitle>
 
@@ -113,7 +113,7 @@ export function CreateTaskDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormControl autoFocus={true}>
-                    <Input placeholder="Title" {...field} />
+                    <Input placeholder="Titre" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,7 +126,7 @@ export function CreateTaskDialog({
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Content ?"
+                      placeholder="Contenu"
                       {...field}
                       value={field.value ?? ""}
                     />
@@ -140,7 +140,7 @@ export function CreateTaskDialog({
                 checked={isScheduledTask}
                 onCheckedChange={(v) => setIsScheduledTask(v as boolean)}
               ></Checkbox>
-              <p>Scheduled task ?</p>
+              <p>Tâche programmée ?</p>
             </div>
             {isScheduledTask && (
               <div className="rounded-xl border-2 border-dashed p-2">
@@ -149,7 +149,7 @@ export function CreateTaskDialog({
                   name="nextTimeInDays"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Select the period</FormLabel>
+                      <FormLabel>Choisis une période</FormLabel>
                       <Select
                         onValueChange={(value) => {
                           field.onChange(parseInt(value, 10));
@@ -160,7 +160,7 @@ export function CreateTaskDialog({
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Period before next creation ?" />
+                            <SelectValue placeholder="Temps avant la prochaine création ?" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -175,9 +175,9 @@ export function CreateTaskDialog({
                         </SelectContent>
                       </Select>
                       <br />
-                      <FormLabel>Custom number of days</FormLabel>
+                      <FormLabel>Nombre de jours personnalisé ?</FormLabel>
                       <Input
-                        placeholder="Number of days"
+                        placeholder="Nombre de jours"
                         {...field}
                         type="number"
                         onChange={(e) => {
@@ -198,7 +198,7 @@ export function CreateTaskDialog({
             )}
 
             <Button type="submit" className="mt-4">
-              Create Task
+              Créer
             </Button>
           </Form>
         </DialogContent>

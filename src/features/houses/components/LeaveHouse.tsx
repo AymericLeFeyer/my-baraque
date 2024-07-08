@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { LogOut, Trash } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { leaveHouse } from "../actions/leave-house.action";
 import { toast } from "sonner";
 import { useUserStore } from "@/features/users/user.store";
@@ -28,14 +28,14 @@ export const LeaveHouse = (props: LeaveHouseProps) => {
         className="flex gap-2"
       >
         <LogOut size={16} />
-        Leave baraque
+        Quitter la baraque
       </Button>
       <Dialog
         open={modalLeaveHouse}
         onOpenChange={(a) => setModalLeaveHouse(a)}
       >
         <DialogContent>
-          <h1>Are you sure you want to leave this baraque?</h1>
+          <h1>Es-tu sûr(e) de vouloir quitter cette baraque ?</h1>
           <div className="flex gap-2">
             <Button
               variant="secondary"
@@ -43,7 +43,7 @@ export const LeaveHouse = (props: LeaveHouseProps) => {
                 setModalLeaveHouse(false);
               }}
             >
-              Cancel
+              Annuler
             </Button>
             <Button
               variant="destructive"
@@ -51,12 +51,12 @@ export const LeaveHouse = (props: LeaveHouseProps) => {
                 leaveHouse(props.houseId, userApp!).then(() => {
                   setModalLeaveHouse(false);
                   deleteHouse(props.houseId);
-                  toast.success("You left the house");
+                  toast.success("Tu es parti(e) de la baraque");
                   router.push("/houses");
                 });
               }}
             >
-              Delete
+              Supprimer
             </Button>
           </div>
         </DialogContent>

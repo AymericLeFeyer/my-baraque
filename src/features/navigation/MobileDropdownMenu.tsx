@@ -21,7 +21,6 @@ import { usePathname } from "next/navigation";
 import { useCurrentHouseStore } from "../houses/current-house.store";
 import { useProjectsStore } from "../projects/projects.store";
 import { useUserStore } from "../users/user.store";
-import { useRouter } from "next/navigation";
 import { getUserById } from "../users/actions/get-user.action.action";
 import { getHouses } from "../houses/actions/get-houses.action";
 import { getProjectsFromHouse } from "../projects/actions/get-projects.action";
@@ -129,7 +128,7 @@ export const MobileDropdownMenu = ({
             >
               <>
                 <Folder size={16} />
-                Projects
+                Projets
               </>
             </Link>
           </div>
@@ -146,7 +145,7 @@ export const MobileDropdownMenu = ({
                 <ShoppingCart size={16} />
                 <Badge variant={"outline"}>soon</Badge>
               </div>
-              Shopping list
+              Courses
             </>
           </div>
         </div>
@@ -162,7 +161,7 @@ export const MobileDropdownMenu = ({
                 <MenuSquareIcon size={16} />
                 <Badge variant={"outline"}>soon</Badge>
               </div>
-              Menus
+              Repas
             </>
           </div>
         </div>

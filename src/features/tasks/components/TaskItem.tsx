@@ -46,7 +46,7 @@ export const TaskItem = (props: TaskItemProps) => {
                   setCompleted(true, updatedTask);
                   if (updatedTask.nextTimeInDays !== null) {
                     rescheduleTask(updatedTask).then((newTask) => {
-                      toast.success("Task rescheduled");
+                      toast.success("Tâche reprogrammée");
                       addTask(newTask);
                     });
                   }
@@ -66,7 +66,7 @@ export const TaskItem = (props: TaskItemProps) => {
               <Typography variant="small">{props.task.content}</Typography>
               {isLaterTask && !props.task.isComplete && (
                 <Badge variant="default" className="mt-2">
-                  in {props.daysToGo} days
+                  dans {props.daysToGo} jours
                 </Badge>
               )}
             </div>

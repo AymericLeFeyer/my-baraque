@@ -59,7 +59,7 @@ export const TaskActions = (props: TaskActionsProps) => {
                   }}
                 >
                   <CalendarCheck2 size={16} />
-                  <Typography variant="small">Active Now</Typography>
+                  <Typography variant="small">Activer maintenant</Typography>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
               </>
@@ -69,7 +69,7 @@ export const TaskActions = (props: TaskActionsProps) => {
             onClick={() => setDeleteModalOpen(true)}
           >
             <Trash size={16} />
-            <Typography variant="small">Delete</Typography>
+            <Typography variant="small">Supprimer</Typography>
           </DropdownMenuLabel>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -88,7 +88,7 @@ export const TaskActions = (props: TaskActionsProps) => {
         onOpenChange={(a) => setDeleteModalOpen(a)}
       >
         <DialogContent>
-          <h1>Are you sure you want to delete this task?</h1>
+          <h1>Es-tu sûr(e) de vouloir supprimer cette tâche ?</h1>
           <div className="flex gap-2">
             <Button
               variant="destructive"
@@ -98,13 +98,13 @@ export const TaskActions = (props: TaskActionsProps) => {
                 setDeleteModalOpen(false);
               }}
             >
-              Delete
+              Supprimer
             </Button>
             <Button
               variant="secondary"
               onClick={() => setDeleteModalOpen(false)}
             >
-              Cancel
+              Annuler
             </Button>
           </div>
         </DialogContent>

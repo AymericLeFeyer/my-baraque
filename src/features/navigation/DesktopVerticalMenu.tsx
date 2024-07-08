@@ -4,8 +4,8 @@ import { Separator } from "@/components/ui/separator";
 import { Typography } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { Fragment, cloneElement, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { cloneElement, useEffect } from "react";
 import {
   Folder,
   FolderPlus,
@@ -23,7 +23,6 @@ import { useUserStore } from "../users/user.store";
 import { getUserById } from "../users/actions/get-user.action.action";
 import { HouseSelector } from "./HouseSelector";
 import { Badge } from "@/components/ui/badge";
-import { set } from "nprogress";
 import useTaskStore from "../tasks/tasks.store";
 import { getTaskNumber } from "../projects/actions/get-tasks-number.action";
 
@@ -135,7 +134,7 @@ export const DesktopVerticalMenu = ({
           >
             <>
               <Folder size={16} />
-              Projects
+              Projets
             </>
           </Link>
           <Link
@@ -191,7 +190,7 @@ export const DesktopVerticalMenu = ({
       >
         <>
           <ShoppingCart size={16} />
-          <div className="flex grow">Shopping List</div>
+          <div className="flex grow">Courses</div>
           <Badge variant={"outline"}>soon</Badge>
         </>
       </div>
@@ -203,7 +202,7 @@ export const DesktopVerticalMenu = ({
       >
         <>
           <MenuSquareIcon size={16} />
-          <div className="flex grow">Menus</div>
+          <div className="flex grow">Repas</div>
           <Badge variant={"outline"}>soon</Badge>
         </>
       </div>

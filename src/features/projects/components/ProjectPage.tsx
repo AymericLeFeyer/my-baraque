@@ -13,7 +13,6 @@ import {
 import { UpdateProject } from "./UpdateProject";
 import { DeleteProject } from "./DeleteProject";
 import { ProjectDetails } from "./ProjectDetails";
-import { useRouter } from "next/navigation";
 import RouteLoading from "../../../../app/(dashboard-layout)/loading";
 
 export type ProjectPageProps = {

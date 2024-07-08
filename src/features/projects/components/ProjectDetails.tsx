@@ -63,7 +63,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
       <p className="mb-8 text-xl">{props.project.description}</p>
       <div className="flex items-center justify-between">
         <Typography variant="h3" className="mt-6">
-          Tasks
+          Tâches
         </Typography>
         <CreateTaskDialog project={props.project} addTaskCallback={addTask} />
       </div>
@@ -78,7 +78,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
         <Divider className="mt-4" />
         <div className="flex items-center gap-2">
           <CalendarClock size={16} />
-          <Typography variant="code">Scheduled</Typography>
+          <Typography variant="code">Programmées</Typography>
         </div>
         {organizedTasks.later
           .sort((t1, t2) => {
@@ -99,7 +99,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
             <AccordionTrigger>
               <div className="flex items-center gap-2">
                 <Check size={16} />
-                <Typography variant="code">Completed</Typography>
+                <Typography variant="code">Complétées</Typography>
               </div>
             </AccordionTrigger>
             <AccordionContent className="flex flex-col gap-2">

@@ -13,7 +13,7 @@ export const Maker = () => {
       />
       <div className="flex flex-col gap-0">
         <Typography variant="large">
-          Made by{" "}
+          Créé par{" "}
           <Link
             className="font-extrabold text-blue-500 hover:underline"
             href="https://aymeric.lefeyer.fr"
@@ -22,10 +22,10 @@ export const Maker = () => {
           </Link>
         </Typography>
         <Link
-          href={SiteConfig.maker.twitter}
+          href={SiteConfig.maker.youtube}
           className="text-xs text-muted-foreground transition-colors hover:text-foreground hover:underline"
         >
-          Follow me on Twitter
+          Rejoins-moi sur YouTube
         </Link>
       </div>
     </div>

@@ -48,7 +48,7 @@ export default async function AuthSignInPage() {
             <Typography variant="small" className="mt-4">
               Tu as déjà un compte?{" "}
               <Typography variant="link" as={Link} href="/auth/signin">
-                Connecte-toi
+                Se connecter
               </Typography>
             </Typography>
           </CardContent>

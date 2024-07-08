@@ -18,7 +18,7 @@ export const SiteConfig = {
   maker: {
     image: "https://aymeric.lefeyer.fr/img/aymeric.d054fb57.png",
     website: "https://aymeric.lefeyer.fr",
-    twitter: "https://twitter.com/AymericLeFeyer",
+    youtube: "https://www.youtube.com/channel/UClCAe7FyrIwpkt9H56XRndA",
     name: "Aymeric",
   },
   auth: {

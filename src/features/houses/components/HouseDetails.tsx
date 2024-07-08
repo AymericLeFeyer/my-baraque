@@ -41,7 +41,6 @@ import { NoHouse } from "./NoHouse";
 import { LeaveHouse } from "./LeaveHouse";
 import { setOwner } from "../actions/set-owner.action";
 import { kickUser } from "../actions/kick-user.action";
-import { House } from "@prisma/client";
 import RouteLoading from "../../../../app/(dashboard-layout)/houses/loading";
 
 export const HouseDetails = () => {
@@ -141,7 +140,7 @@ export const HouseDetails = () => {
                           }
                         >
                           <Crown className="mr-2 size-4" />
-                          Set as owner
+                          Définir comme propriétaire
                         </div>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
@@ -157,7 +156,7 @@ export const HouseDetails = () => {
                           }
                         >
                           <UserX className="mr-2 size-4" />
-                          Remove
+                          Supprimer
                         </div>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -186,7 +185,7 @@ export const HouseDetails = () => {
 
           <div className="flex items-center justify-between">
             <Typography variant="h3" className="mt-6">
-              Projects
+              Projets
             </Typography>
             <Button
               variant="outline"
@@ -194,7 +193,7 @@ export const HouseDetails = () => {
               className="flex gap-2 "
             >
               <FolderPlus size={24} />
-              <p className="font-bold">Create project</p>
+              <p className="font-bold">Créer un projet</p>
             </Button>
           </div>
 
@@ -213,7 +212,7 @@ export const HouseDetails = () => {
         onOpenChange={(v) => setAddUserDialogOpen(v)}
       >
         <DialogContent>
-          <DialogTitle>Add user</DialogTitle>
+          <DialogTitle>Inviter un utilisateur</DialogTitle>
         </DialogContent>
       </Dialog>
 
@@ -222,7 +221,7 @@ export const HouseDetails = () => {
         onOpenChange={(v) => setPendingDialogOpen(v)}
       >
         <DialogContent>
-          <DialogTitle>Pending invitations</DialogTitle>
+          <DialogTitle>Invitations en cours</DialogTitle>
           {pendingInvitations.map((invitation) => (
             <div key={invitation.id}>
               <div className="flex gap-2">
