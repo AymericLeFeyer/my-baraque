@@ -6,26 +6,28 @@ export default function DeleteAccountEmail({ email }: { email: string }) {
   return (
     <EmailLayout>
       <Section className="my-6">
-        <Text className="text-lg leading-6">Hello,</Text>
+        <Text className="text-lg leading-6">Bonjour,</Text>
         <Text className="text-lg leading-6">
-          You account with email{" "}
+          Votre compte associé à l'adresse email{" "}
           <Link
             className="text-sky-500 hover:underline"
             href={`mailto:${email}`}
           >
             {email}
           </Link>{" "}
-          has been deleted.
+          a été supprimé.
         </Text>
-        <Text className="text-lg leading-6">This action is irreversible.</Text>
         <Text className="text-lg leading-6">
-          If you have any questions, please contact us at{" "}
+          Cette action est irréversible.
+        </Text>
+        <Text className="text-lg leading-6">
+          Si vous avez des questions, veuillez nous contacter à l'adresse{" "}
           {SiteConfig.email.contact}.
         </Text>
       </Section>
       <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
+        Cordialement,
+        <br />- {SiteConfig.maker.name} de {SiteConfig.title}
       </Text>
     </EmailLayout>
   );

@@ -9,24 +9,24 @@ export default function RemoveUserFromHouseEmail({
 }) {
   return (
     <EmailLayout>
-      <Preview>Oops, you have been kicked from {houseName}</Preview>
+      <Preview>Oups, vous avez été exclu(e) de {houseName}</Preview>
       <Section className="my-6">
         <Text className="text-lg leading-6">
-          We're sorry to inform you that you have been removed from the baraque{" "}
-          {houseName}
+          Nous sommes désolés de vous informer que vous avez été retiré(e) de la
+          baraque {houseName}.
         </Text>
         <Text className="text-lg leading-6">
           <Link
             className="text-sky-500 hover:underline"
             href={SiteConfig.prodUrl}
           >
-            👉 However, you can still create your own house here 👈
+            👉 Cependant, vous pouvez toujours créer votre propre maison ici 👈
           </Link>
         </Text>
       </Section>
       <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
+        Cordialement,
+        <br />- {SiteConfig.maker.name} de {SiteConfig.title}
       </Text>
     </EmailLayout>
   );

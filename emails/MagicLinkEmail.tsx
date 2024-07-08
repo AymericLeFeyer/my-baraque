@@ -6,21 +6,21 @@ export default function MagicLinkMail({ url }: { url: string }) {
   return (
     <EmailLayout>
       <Preview>
-        You have requested a magic link to sign in to your account.
+        Vous avez demandé un lien magique pour vous connecter à votre compte.
       </Preview>
       <Section className="my-6">
         <Text className="text-lg leading-6">
           <Link className="text-sky-500 hover:underline" href={url}>
-            👉 Click here to sign in 👈
+            👉 Cliquez ici pour vous connecter 👈
           </Link>
         </Text>
         <Text className="text-lg leading-6">
-          If you didn't request this, please ignore this email.
+          Si vous n'avez pas fait cette demande, veuillez ignorer cet email.
         </Text>
       </Section>
       <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
+        Cordialement,
+        <br />- {SiteConfig.maker.name} de {SiteConfig.title}
       </Text>
     </EmailLayout>
   );

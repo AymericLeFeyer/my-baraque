@@ -8,39 +8,40 @@ export default function SubscribtionFailedEmail() {
   return (
     <EmailLayout>
       <Preview>
-        Important information about your ${SiteConfig.title} account
+        Informations importantes concernant votre compte ${SiteConfig.title}
       </Preview>
       <Section className="my-6">
-        <Text className="text-lg leading-6">Hello,</Text>
+        <Text className="text-lg leading-6">Bonjour,</Text>
         <Text className="text-lg leading-6">
-          Your last payment didn't go through, so your extra features are on
-          hold.
+          Votre dernier paiement n'a pas été accepté, ce qui bloque l'accès à
+          vos fonctionnalités supplémentaires.
         </Text>
         <Text className="text-lg leading-6">
-          We've noticed an issue with your recent payment, which affects your
-          access to our premium features.
+          Nous avons remarqué un problème avec votre paiement récent, ce qui
+          affecte votre accès à nos fonctionnalités premium.
         </Text>
         <Text className="text-lg leading-6">
-          To resolve this and continue enjoying all the benefits, simply update
-          your payment details through the link below. It's quick and
-          straightforward!
+          Pour résoudre cela et continuer à profiter de tous les avantages, il
+          vous suffit de mettre à jour vos informations de paiement via le lien
+          ci-dessous. C'est rapide et simple !
         </Text>
         <Text className="text-lg leading-6">
           <Link
             className="text-sky-500 hover:underline"
             href={`${getServerUrl()}/account/billing`}
           >
-            Click to Update Payment and Keep Using ${SiteConfig.title}
+            Cliquez ici pour mettre à jour votre paiement et continuer à
+            utiliser ${SiteConfig.title}
           </Link>
         </Text>
         <Text className="text-lg leading-6">
-          Thank you for your prompt attention to this matter. We're here to help
-          if you have any questions.
+          Merci de votre attention rapide à ce sujet. Nous sommes là pour vous
+          aider si vous avez des questions.
         </Text>
       </Section>
       <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
+        Cordialement,
+        <br />- {SiteConfig.maker.name} de {SiteConfig.title}
       </Text>
     </EmailLayout>
   );

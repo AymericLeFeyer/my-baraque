@@ -12,26 +12,28 @@ export default function InvitationEmail({
   return (
     <EmailLayout>
       <Preview>
-        {userName} invited you to {houseName}
+        {userName} vous a invité(e) à rejoindre {houseName}
       </Preview>
       <Section className="my-6">
         <Text className="text-lg leading-6">
-          You have been invited by {userName} to join the {houseName} house in
-          Baraque !
+          Vous avez été invité(e) par {userName} à rejoindre la maison{" "}
+          {houseName} sur Baraque !
         </Text>
-        <Text>If you didn't request this, please ignore this email.</Text>
+        <Text>
+          Si vous n'avez pas fait cette demande, veuillez ignorer cet email.
+        </Text>
         <Text className="text-lg leading-6">
           <Link
             className="text-sky-500 hover:underline"
             href={SiteConfig.prodUrl}
           >
-            👉 Click here to start the adventure 👈
+            👉 Cliquez ici pour commencer l'aventure 👈
           </Link>
         </Text>
       </Section>
       <Text className="text-lg leading-6">
-        Best,
-        <br />- {SiteConfig.maker.name} from {SiteConfig.title}
+        Cordialement,
+        <br />- {SiteConfig.maker.name} de {SiteConfig.title}
       </Text>
     </EmailLayout>
   );
