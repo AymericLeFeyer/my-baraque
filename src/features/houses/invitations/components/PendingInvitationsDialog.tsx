@@ -28,7 +28,7 @@ export const PendingInvitationsDialog = (
   return (
     <DialogContent className="items-center justify-center bg-card  py-8">
       <DialogTitle className="text-xl">
-        Rejoindre une nouvelle <span className="text-primary">baraque</span>
+        Rejoins une nouvelle <span className="text-primary">baraque</span>
       </DialogTitle>
       <div className="flex items-center gap-2 text-muted-foreground">
         <Info className="size-5" />

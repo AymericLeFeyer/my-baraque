@@ -102,7 +102,7 @@ export function CreateTaskDialog({
       >
         <DialogContent className="items-center justify-center bg-card  py-8">
           <DialogTitle className="text-xl">
-            Création de tâche dans{" "}
+            Créé une nouvelle tâche dans{" "}
             <span className="text-primary">{project.name}</span>
           </DialogTitle>
 

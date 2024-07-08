@@ -3,12 +3,12 @@ import { AlertCircle, Mail, User2 } from "lucide-react";
 
 export const ACCOUNT_LINKS: NavigationLinkGroups[] = [
   {
-    title: "PERSONAL INFORMATION",
+    title: "INFORMATIONS PERSONNELLES",
     links: [
-      { url: "/account", title: "Profile", icon: <User2 /> },
+      { url: "/account", title: "Profil", icon: <User2 /> },
       {
         url: "/account/delete",
-        title: "Delete profile",
+        title: "Supprime ton profil",
         icon: <AlertCircle />,
       },
     ],
@@ -16,8 +16,8 @@ export const ACCOUNT_LINKS: NavigationLinkGroups[] = [
     icon: <User2 />,
   },
   {
-    title: "EMAIL SETTINGS",
-    links: [{ url: "/account/email", title: "Settings", icon: <Mail /> }],
+    title: "PARAMÈTRES DES EMAILS",
+    links: [{ url: "/account/email", title: "Paramètres", icon: <Mail /> }],
     url: "",
     icon: <Mail />,
   },

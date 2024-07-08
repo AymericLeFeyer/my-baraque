@@ -70,7 +70,7 @@ export const ProjectDetails = (props: ProjectDetailsProps) => {
       <div className="mt-4 flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <List size={16} />
-          <Typography variant="code">To do</Typography>
+          <Typography variant="code">À faire</Typography>
         </div>
         {organizedTasks.todo.map((task) => (
           <TaskItem key={task.id} task={task} houseId={props.house.id} />

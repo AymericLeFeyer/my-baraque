@@ -5,6 +5,7 @@ import { FAQSection } from "@/features/landing/FAQSection";
 import { LandingHeader } from "@/features/landing/LandingHeader";
 import { SectionDivider } from "@/features/landing/SectionDivider";
 import { Video } from "@/features/landing/Video";
+import { Footer } from "@/features/layout/Footer";
 
 export default function HomePage() {
   return (
@@ -44,6 +45,8 @@ export default function HomePage() {
         <EmailFormSection />
 
         <SectionDivider />
+
+        <Footer />
       </div>
     </>
   );

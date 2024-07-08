@@ -49,7 +49,7 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
       return;
     }
 
-    toast.success("Your feedback has been sent. Thanks you.");
+    toast.success("Ton feedback a été envoyé, merci beaucoup ❤️.");
     form.reset();
     setOpen(false);
   };

@@ -91,7 +91,7 @@ export const ProviderButton = (props: ProviderButtonProps) => {
       }}
     >
       {githubSignInMutation.isPending ? <Loader size={16} /> : data.icon}
-      <span className="ml-2 text-base">Connecté via {data.name}</span>
+      <span className="ml-2 text-base">Connexion via {data.name}</span>
     </Button>
   );
 };

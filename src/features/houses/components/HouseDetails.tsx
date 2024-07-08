@@ -128,7 +128,7 @@ export const HouseDetails = () => {
                           onClick={() =>
                             setOwner(house!.id, user.id, userApp!.id).then(
                               () => {
-                                toast.success("Owner changed");
+                                toast.success("Responsable modifié");
                                 setHouse({
                                   ownerId: user.id,
                                   id: house!.id,
@@ -140,7 +140,7 @@ export const HouseDetails = () => {
                           }
                         >
                           <Crown className="mr-2 size-4" />
-                          Définir comme propriétaire
+                          Définir comme responsable
                         </div>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
@@ -149,7 +149,7 @@ export const HouseDetails = () => {
                           onClick={() =>
                             kickUser(house!.id, user.id, userApp!.id).then(
                               () => {
-                                toast.success("User kicked");
+                                toast.success("Utilisateur exclu");
                                 setUsers(users.filter((u) => u.id != user.id));
                               },
                             )
@@ -229,7 +229,7 @@ export const HouseDetails = () => {
                   className="cursor-pointer transition-colors hover:text-destructive "
                   onClick={() => {
                     cancelInvitation(invitation.id, house!.id).then(() => {
-                      toast.success("Invitation canceled");
+                      toast.success("Invitation annulée");
                       removePendingInvitation(invitation.id);
                       if (pendingInvitations.length == 0) {
                         setPendingDialogOpen(false);

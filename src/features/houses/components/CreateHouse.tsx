@@ -86,7 +86,7 @@ export function CreateHouse() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Name" {...field} />
+                    <Input placeholder="Nom" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
